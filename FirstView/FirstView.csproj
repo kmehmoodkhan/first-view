@@ -1,0 +1,1672 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props" Condition="Exists('..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{63616208-4B6C-4A8A-AF57-8666BFD1B7AC}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>FirstView</RootNamespace>
+    <AssemblyName>FirstView</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <Use64BitIISExpress />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ExcludeGeneratedDebugSymbol>true</ExcludeGeneratedDebugSymbol>
+    <RunCodeAnalysis>true</RunCodeAnalysis>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AjaxControlToolkit">
+      <HintPath>..\..\..\Ajax\AjaxControlToolkit.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="AspNet.ScriptManager.bootstrap">
+      <HintPath>..\packages\AspNet.ScriptManager.bootstrap.3.0.0\lib\net45\AspNet.ScriptManager.bootstrap.dll</HintPath>
+    </Reference>
+    <Reference Include="AspNet.ScriptManager.jQuery">
+      <HintPath>..\packages\AspNet.ScriptManager.jQuery.1.10.2\lib\net45\AspNet.ScriptManager.jQuery.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ScriptManager.MSAjax">
+      <HintPath>..\packages\Microsoft.AspNet.ScriptManager.MSAjax.5.0.0\lib\net45\Microsoft.ScriptManager.MSAjax.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ScriptManager.WebForms">
+      <HintPath>..\packages\Microsoft.AspNet.ScriptManager.WebForms.5.0.0\lib\net45\Microsoft.ScriptManager.WebForms.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Optimization, Version=1.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="WebGrease">
+      <Private>True</Private>
+      <HintPath>..\packages\WebGrease.1.5.2\lib\WebGrease.dll</HintPath>
+    </Reference>
+    <Reference Include="Antlr3.Runtime">
+      <Private>True</Private>
+      <HintPath>..\packages\Antlr.3.4.1.9004\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Web.Optimization.WebForms">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.WebForms.1.1.3\lib\net45\Microsoft.AspNet.Web.Optimization.WebForms.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.FriendlyUrls">
+      <HintPath>..\packages\Microsoft.AspNet.FriendlyUrls.Core.1.0.2\lib\net45\Microsoft.AspNet.FriendlyUrls.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Core">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.1\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Owin">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Owin.2.2.1\lib\net45\Microsoft.AspNet.Identity.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.EntityFramework">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.EntityFramework.2.2.1\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Providers">
+      <HintPath>..\packages\Microsoft.AspNet.Providers.Core.2.0.0\lib\net40\System.Web.Providers.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin">
+      <HintPath>..\packages\Microsoft.Owin.3.0.1\lib\net45\Microsoft.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Host.SystemWeb">
+      <HintPath>..\packages\Microsoft.Owin.Host.SystemWeb.3.0.1\lib\net45\Microsoft.Owin.Host.SystemWeb.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security">
+      <HintPath>..\packages\Microsoft.Owin.Security.3.0.1\lib\net45\Microsoft.Owin.Security.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Facebook">
+      <HintPath>..\packages\Microsoft.Owin.Security.Facebook.3.0.1\lib\net45\Microsoft.Owin.Security.Facebook.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Cookies">
+      <HintPath>..\packages\Microsoft.Owin.Security.Cookies.3.0.1\lib\net45\Microsoft.Owin.Security.Cookies.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Google">
+      <HintPath>..\packages\Microsoft.Owin.Security.Google.3.0.1\lib\net45\Microsoft.Owin.Security.Google.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Twitter">
+      <HintPath>..\packages\Microsoft.Owin.Security.Twitter.3.0.1\lib\net45\Microsoft.Owin.Security.Twitter.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.MicrosoftAccount">
+      <HintPath>..\packages\Microsoft.Owin.Security.MicrosoftAccount.3.0.1\lib\net45\Microsoft.Owin.Security.MicrosoftAccount.dll</HintPath>
+    </Reference>
+    <Reference Include="Owin">
+      <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.OAuth">
+      <HintPath>..\packages\Microsoft.Owin.Security.OAuth.3.0.1\lib\net45\Microsoft.Owin.Security.OAuth.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Admin\Approvals\PreviewArtistProfile.aspx" />
+    <Content Include="Admin\ArtistType\Add.aspx" />
+    <Content Include="Admin\ArtistType\Edit.aspx" />
+    <Content Include="Admin\ArtistType\List.aspx" />
+    <Content Include="Admin\Events\Add.aspx" />
+    <Content Include="Admin\Events\List.aspx" />
+    <Content Include="Admin\MenuManagement\AddMenu.aspx" />
+    <Content Include="Admin\MenuManagement\AddPageUrl.aspx" />
+    <Content Include="Admin\MenuManagement\MenuList.aspx" />
+    <Content Include="Admin\MenuManagement\PagesList.aspx" />
+    <Content Include="Admin\Users\PersonalDetails.aspx" />
+    <Content Include="Admin\Users\ResetPassword.aspx" />
+    <Content Include="ArtistWork\ExhibitionForm.aspx" />
+    <Content Include="Artist\PreviewArtistProfile.aspx" />
+    <Content Include="ContactUs.aspx" />
+    <Content Include="Content\jquery-ui.css" />
+    <Content Include="FindUs.aspx" />
+    <Content Include="FirstViewService.asmx" />
+    <Content Include="Images\ArtistType_100.png" />
+    <Content Include="Images\blank.png" />
+    <Content Include="Images\event_Caroline.jpg" />
+    <Content Include="Images\event_catherine_beale.jpg" />
+    <Content Include="Images\event_christmas_emporium.jpg" />
+    <Content Include="Images\event_NICKANDREW_01.png" />
+    <Content Include="Images\event_NICKANDREW_02.png" />
+    <Content Include="Images\event_NICKANDREW_03.png" />
+    <Content Include="Images\event_paul_boak.jpg" />
+    <Content Include="Images\event_siltongroup.jpg" />
+    <Content Include="Images\spring_emporium.jpg" />
+    <Content Include="Images\vintage_paint_01.jpg" />
+    <Content Include="Images\vintage_paint_02.jpg" />
+    <Content Include="Scripts\jquery-1.10.2.js" />
+    <Content Include="Scripts\jquery-1.10.2.min.js" />
+    <Content Include="Scripts\jquery-ui.js" />
+    <Content Include="Studio.aspx" />
+    <Content Include="Uploads\Original\10053.jpg" />
+    <Content Include="Uploads\Original\10061.jpg" />
+    <Content Include="Uploads\Original\10063.jpg" />
+    <Content Include="Uploads\Original\10064.jpg" />
+    <Content Include="Uploads\Original\10066.jpg" />
+    <Content Include="Uploads\Original\10067.jpg" />
+    <Content Include="Uploads\Original\10072.jpg" />
+    <Content Include="Uploads\Original\10093.jpg" />
+    <Content Include="Uploads\Original\1022.jpg" />
+    <Content Include="Uploads\Original\10306.jpg" />
+    <Content Include="Uploads\Original\10395.jpg" />
+    <Content Include="Uploads\Original\10396.jpg" />
+    <Content Include="Uploads\Original\10397.jpg" />
+    <Content Include="Uploads\Original\10398.jpg" />
+    <Content Include="Uploads\Original\2238.jpg" />
+    <Content Include="Uploads\Original\2258.jpg" />
+    <Content Include="Uploads\Original\2463.jpg" />
+    <Content Include="Uploads\Original\2689.jpg" />
+    <Content Include="Uploads\Original\2695.jpg" />
+    <Content Include="Uploads\Original\3749.jpg" />
+    <Content Include="Uploads\Original\3845.jpg" />
+    <Content Include="Uploads\Original\38e50143-076d-4f19-bd87-05385a372218.jpg" />
+    <Content Include="Uploads\Original\4103.jpg" />
+    <Content Include="Uploads\Original\4104.jpg" />
+    <Content Include="Uploads\Original\4126.jpg" />
+    <Content Include="Uploads\Original\4301.jpg" />
+    <Content Include="Uploads\Original\4304.jpg" />
+    <Content Include="Uploads\Original\4776.jpg" />
+    <Content Include="Uploads\Original\4885.jpg" />
+    <Content Include="Uploads\Original\4886.jpg" />
+    <Content Include="Uploads\Original\5456.jpg" />
+    <Content Include="Uploads\Original\5698.jpg" />
+    <Content Include="Uploads\Original\5708.jpg" />
+    <Content Include="Uploads\Original\6079.jpg" />
+    <Content Include="Uploads\Original\6080.jpg" />
+    <Content Include="Uploads\Original\6218.jpg" />
+    <Content Include="Uploads\Original\6222.jpg" />
+    <Content Include="Uploads\Original\6377.jpg" />
+    <Content Include="Uploads\Original\6425.jpg" />
+    <Content Include="Uploads\Original\6567.jpg" />
+    <Content Include="Uploads\Original\6597.jpg" />
+    <Content Include="Uploads\Original\6616.jpg" />
+    <Content Include="Uploads\Original\6619.jpg" />
+    <Content Include="Uploads\Original\6662.jpg" />
+    <Content Include="Uploads\Original\6707.jpg" />
+    <Content Include="Uploads\Original\6708.jpg" />
+    <Content Include="Uploads\Original\6710.jpg" />
+    <Content Include="Uploads\Original\6711.jpg" />
+    <Content Include="Uploads\Original\6803.jpg" />
+    <Content Include="Uploads\Original\6834.jpg" />
+    <Content Include="Uploads\Original\6835.jpg" />
+    <Content Include="Uploads\Original\6838.jpg" />
+    <Content Include="Uploads\Original\6860.jpg" />
+    <Content Include="Uploads\Original\6998.jpg" />
+    <Content Include="Uploads\Original\7032.jpg" />
+    <Content Include="Uploads\Original\7072.jpg" />
+    <Content Include="Uploads\Original\7077.jpg" />
+    <Content Include="Uploads\Original\7224.jpg" />
+    <Content Include="Uploads\Original\7523.jpg" />
+    <Content Include="Uploads\Original\7529.jpg" />
+    <Content Include="Uploads\Original\7530.jpg" />
+    <Content Include="Uploads\Original\7649.jpg" />
+    <Content Include="Uploads\Original\80237.jpg" />
+    <Content Include="Uploads\Original\80239.jpg" />
+    <Content Include="Uploads\Original\80314.jpg" />
+    <Content Include="Uploads\Original\80319.jpg" />
+    <Content Include="Uploads\Original\80376.jpg" />
+    <Content Include="Uploads\Original\80405.jpg" />
+    <Content Include="Uploads\Original\80462.jpg" />
+    <Content Include="Uploads\Original\80503.jpg" />
+    <Content Include="Uploads\Original\8142.jpg" />
+    <Content Include="Uploads\Original\81424.jpg" />
+    <Content Include="Uploads\Original\81436.jpg" />
+    <Content Include="Uploads\Original\81492.jpg" />
+    <Content Include="Uploads\Original\81516.jpg" />
+    <Content Include="Uploads\Original\81536.jpg" />
+    <Content Include="Uploads\Original\81973.jpg" />
+    <Content Include="Uploads\Original\8198.jpg" />
+    <Content Include="Uploads\Original\8200.jpg" />
+    <Content Include="Uploads\Original\82053.jpg" />
+    <Content Include="Uploads\Original\82214.jpg" />
+    <Content Include="Uploads\Original\82817.jpg" />
+    <Content Include="Uploads\Original\82867.jpg" />
+    <Content Include="Uploads\Original\83081.jpg" />
+    <Content Include="Uploads\Original\8309.jpg" />
+    <Content Include="Uploads\Original\8310.jpg" />
+    <Content Include="Uploads\Original\8311.jpg" />
+    <Content Include="Uploads\Original\8313.jpg" />
+    <Content Include="Uploads\Original\8316.jpg" />
+    <Content Include="Uploads\Original\8327.jpg" />
+    <Content Include="Uploads\Original\8331.jpg" />
+    <Content Include="Uploads\Original\83561.jpg" />
+    <Content Include="Uploads\Original\8361.jpg" />
+    <Content Include="Uploads\Original\83617.jpg" />
+    <Content Include="Uploads\Original\8362.jpg" />
+    <Content Include="Uploads\Original\8364.jpg" />
+    <Content Include="Uploads\Original\83642.jpg" />
+    <Content Include="Uploads\Original\8384.jpg" />
+    <Content Include="Uploads\Original\8400.jpg" />
+    <Content Include="Uploads\Original\8423.jpg" />
+    <Content Include="Uploads\Original\8424.jpg" />
+    <Content Include="Uploads\Original\8425.jpg" />
+    <Content Include="Uploads\Original\8428.jpg" />
+    <Content Include="Uploads\Original\8429.jpg" />
+    <Content Include="Uploads\Original\8458.jpg" />
+    <Content Include="Uploads\Original\8461.jpg" />
+    <Content Include="Uploads\Original\8499.jpg" />
+    <Content Include="Uploads\Original\8500.jpg" />
+    <Content Include="Uploads\Original\8502.jpg" />
+    <Content Include="Uploads\Original\8746.jpg" />
+    <Content Include="Uploads\Original\8747.jpg" />
+    <Content Include="Uploads\Original\8750.jpg" />
+    <Content Include="Uploads\Original\8767.jpg" />
+    <Content Include="Uploads\Original\8853.jpg" />
+    <Content Include="Uploads\Original\8907.jpg" />
+    <Content Include="Uploads\Original\8975.jpg" />
+    <Content Include="Uploads\Original\8b2f85d0-b501-4cca-9a5f-a7ed3c3d0d99.jpg" />
+    <Content Include="Uploads\Original\90001.jpg" />
+    <Content Include="Uploads\Original\90002.jpg" />
+    <Content Include="Uploads\Original\90003.jpg" />
+    <Content Include="Uploads\Original\90004.jpg" />
+    <Content Include="Uploads\Original\90005.jpg" />
+    <Content Include="Uploads\Original\90006.jpg" />
+    <Content Include="Uploads\Original\90007.jpg" />
+    <Content Include="Uploads\Original\90008.jpg" />
+    <Content Include="Uploads\Original\90009.jpg" />
+    <Content Include="Uploads\Original\90010.jpg" />
+    <Content Include="Uploads\Original\90011.jpg" />
+    <Content Include="Uploads\Original\90012.jpg" />
+    <Content Include="Uploads\Original\90013.jpg" />
+    <Content Include="Uploads\Original\90014.jpg" />
+    <Content Include="Uploads\Original\90015.jpg" />
+    <Content Include="Uploads\Original\90016.jpg" />
+    <Content Include="Uploads\Original\90017.jpg" />
+    <Content Include="Uploads\Original\90018.jpg" />
+    <Content Include="Uploads\Original\90019.jpg" />
+    <Content Include="Uploads\Original\90020.jpg" />
+    <Content Include="Uploads\Original\90021.jpg" />
+    <Content Include="Uploads\Original\90022.jpg" />
+    <Content Include="Uploads\Original\90023.jpg" />
+    <Content Include="Uploads\Original\90024.jpg" />
+    <Content Include="Uploads\Original\90025.jpg" />
+    <Content Include="Uploads\Original\90026.jpg" />
+    <Content Include="Uploads\Original\90027.jpg" />
+    <Content Include="Uploads\Original\90028.jpg" />
+    <Content Include="Uploads\Original\90029.jpg" />
+    <Content Include="Uploads\Original\90030.jpg" />
+    <Content Include="Uploads\Original\90031.jpg" />
+    <Content Include="Uploads\Original\90032.jpg" />
+    <Content Include="Uploads\Original\90033.jpg" />
+    <Content Include="Uploads\Original\90034.jpg" />
+    <Content Include="Uploads\Original\90035.jpg" />
+    <Content Include="Uploads\Original\90036.jpg" />
+    <Content Include="Uploads\Original\90037.jpg" />
+    <Content Include="Uploads\Original\90038.jpg" />
+    <Content Include="Uploads\Original\90039.jpg" />
+    <Content Include="Uploads\Original\90040.jpg" />
+    <Content Include="Uploads\Original\90041.jpg" />
+    <Content Include="Uploads\Original\90042.jpg" />
+    <Content Include="Uploads\Original\90044.jpg" />
+    <Content Include="Uploads\Original\90045.jpg" />
+    <Content Include="Uploads\Original\90046.jpg" />
+    <Content Include="Uploads\Original\90047.jpg" />
+    <Content Include="Uploads\Original\90048.jpg" />
+    <Content Include="Uploads\Original\90049.jpg" />
+    <Content Include="Uploads\Original\90050.jpg" />
+    <Content Include="Uploads\Original\90051.jpg" />
+    <Content Include="Uploads\Original\90052.jpg" />
+    <Content Include="Uploads\Original\90053.jpg" />
+    <Content Include="Uploads\Original\90054.jpg" />
+    <Content Include="Uploads\Original\90055.jpg" />
+    <Content Include="Uploads\Original\90056.jpg" />
+    <Content Include="Uploads\Original\9039.jpg" />
+    <Content Include="Uploads\Original\9066.jpg" />
+    <Content Include="Uploads\Original\9105.jpg" />
+    <Content Include="Uploads\Original\9106.jpg" />
+    <Content Include="Uploads\Original\9107.jpg" />
+    <Content Include="Uploads\Original\9128.jpg" />
+    <Content Include="Uploads\Original\9131.jpg" />
+    <Content Include="Uploads\Original\9132.jpg" />
+    <Content Include="Uploads\Original\9133.jpg" />
+    <Content Include="Uploads\Original\9134.jpg" />
+    <Content Include="Uploads\Original\9135.jpg" />
+    <Content Include="Uploads\Original\9150.jpg" />
+    <Content Include="Uploads\Original\9248.jpg" />
+    <Content Include="Uploads\Original\9330.jpg" />
+    <Content Include="Uploads\Original\9332.jpg" />
+    <Content Include="Uploads\Original\9336.jpg" />
+    <Content Include="Uploads\Original\9337.jpg" />
+    <Content Include="Uploads\Original\9370.jpg" />
+    <Content Include="Uploads\Original\9377.jpg" />
+    <Content Include="Uploads\Original\9384.jpg" />
+    <Content Include="Uploads\Original\9428.jpg" />
+    <Content Include="Uploads\Original\9429.jpg" />
+    <Content Include="Uploads\Original\9430.jpg" />
+    <Content Include="Uploads\Original\9454.jpg" />
+    <Content Include="Uploads\Original\9455.jpg" />
+    <Content Include="Uploads\Original\9566.jpg" />
+    <Content Include="Uploads\Original\9598.jpg" />
+    <Content Include="Uploads\Original\9599.jpg" />
+    <Content Include="Uploads\Original\9601.jpg" />
+    <Content Include="Uploads\Original\9623.jpg" />
+    <Content Include="Uploads\Original\9626.jpg" />
+    <Content Include="Uploads\Original\9638.jpg" />
+    <Content Include="Uploads\Original\9642.jpg" />
+    <Content Include="Uploads\Original\9645.jpg" />
+    <Content Include="Uploads\Original\9674.jpg" />
+    <Content Include="Uploads\Original\9675.jpg" />
+    <Content Include="Uploads\Original\9868.jpg" />
+    <Content Include="Uploads\Original\9983.jpg" />
+    <Content Include="Uploads\Preview\10053.jpg" />
+    <Content Include="Uploads\Preview\10061.jpg" />
+    <Content Include="Uploads\Preview\10063.jpg" />
+    <Content Include="Uploads\Preview\10064.jpg" />
+    <Content Include="Uploads\Preview\10066.jpg" />
+    <Content Include="Uploads\Preview\10067.jpg" />
+    <Content Include="Uploads\Preview\10072.jpg" />
+    <Content Include="Uploads\Preview\10093.jpg" />
+    <Content Include="Uploads\Preview\1022.jpg" />
+    <Content Include="Uploads\Preview\10306.jpg" />
+    <Content Include="Uploads\Preview\10395.jpg" />
+    <Content Include="Uploads\Preview\10396.jpg" />
+    <Content Include="Uploads\Preview\10397.jpg" />
+    <Content Include="Uploads\Preview\10398.jpg" />
+    <Content Include="Uploads\Preview\2238.jpg" />
+    <Content Include="Uploads\Preview\2258.jpg" />
+    <Content Include="Uploads\Preview\2463.jpg" />
+    <Content Include="Uploads\Preview\2689.jpg" />
+    <Content Include="Uploads\Preview\2695.jpg" />
+    <Content Include="Uploads\Preview\3749.jpg" />
+    <Content Include="Uploads\Preview\3845.jpg" />
+    <Content Include="Uploads\Preview\38e50143-076d-4f19-bd87-05385a372218.jpg" />
+    <Content Include="Uploads\Preview\4103.jpg" />
+    <Content Include="Uploads\Preview\4104.jpg" />
+    <Content Include="Uploads\Preview\4126.jpg" />
+    <Content Include="Uploads\Preview\4301.jpg" />
+    <Content Include="Uploads\Preview\4304.jpg" />
+    <Content Include="Uploads\Preview\4776.jpg" />
+    <Content Include="Uploads\Preview\4885.jpg" />
+    <Content Include="Uploads\Preview\4886.jpg" />
+    <Content Include="Uploads\Preview\5456.jpg" />
+    <Content Include="Uploads\Preview\5698.jpg" />
+    <Content Include="Uploads\Preview\5708.jpg" />
+    <Content Include="Uploads\Preview\6079.jpg" />
+    <Content Include="Uploads\Preview\6080.jpg" />
+    <Content Include="Uploads\Preview\6218.jpg" />
+    <Content Include="Uploads\Preview\6222.jpg" />
+    <Content Include="Uploads\Preview\6377.jpg" />
+    <Content Include="Uploads\Preview\6425.jpg" />
+    <Content Include="Uploads\Preview\6567.jpg" />
+    <Content Include="Uploads\Preview\6597.jpg" />
+    <Content Include="Uploads\Preview\6616.jpg" />
+    <Content Include="Uploads\Preview\6619.jpg" />
+    <Content Include="Uploads\Preview\6662.jpg" />
+    <Content Include="Uploads\Preview\6707.jpg" />
+    <Content Include="Uploads\Preview\6708.jpg" />
+    <Content Include="Uploads\Preview\6710.jpg" />
+    <Content Include="Uploads\Preview\6711.jpg" />
+    <Content Include="Uploads\Preview\6803.jpg" />
+    <Content Include="Uploads\Preview\6834.jpg" />
+    <Content Include="Uploads\Preview\6835.jpg" />
+    <Content Include="Uploads\Preview\6838.jpg" />
+    <Content Include="Uploads\Preview\6860.jpg" />
+    <Content Include="Uploads\Preview\6998.jpg" />
+    <Content Include="Uploads\Preview\7032.jpg" />
+    <Content Include="Uploads\Preview\7072.jpg" />
+    <Content Include="Uploads\Preview\7077.jpg" />
+    <Content Include="Uploads\Preview\7224.jpg" />
+    <Content Include="Uploads\Preview\7523.jpg" />
+    <Content Include="Uploads\Preview\7529.jpg" />
+    <Content Include="Uploads\Preview\7530.jpg" />
+    <Content Include="Uploads\Preview\7649.jpg" />
+    <Content Include="Uploads\Preview\80237.jpg" />
+    <Content Include="Uploads\Preview\80239.jpg" />
+    <Content Include="Uploads\Preview\80314.jpg" />
+    <Content Include="Uploads\Preview\80319.jpg" />
+    <Content Include="Uploads\Preview\80376.jpg" />
+    <Content Include="Uploads\Preview\80405.jpg" />
+    <Content Include="Uploads\Preview\80462.jpg" />
+    <Content Include="Uploads\Preview\80503.jpg" />
+    <Content Include="Uploads\Preview\8142.jpg" />
+    <Content Include="Uploads\Preview\81424.jpg" />
+    <Content Include="Uploads\Preview\81436.jpg" />
+    <Content Include="Uploads\Preview\81492.jpg" />
+    <Content Include="Uploads\Preview\81516.jpg" />
+    <Content Include="Uploads\Preview\81536.jpg" />
+    <Content Include="Uploads\Preview\81973.jpg" />
+    <Content Include="Uploads\Preview\8198.jpg" />
+    <Content Include="Uploads\Preview\8200.jpg" />
+    <Content Include="Uploads\Preview\82053.jpg" />
+    <Content Include="Uploads\Preview\82214.jpg" />
+    <Content Include="Uploads\Preview\82817.jpg" />
+    <Content Include="Uploads\Preview\82867.jpg" />
+    <Content Include="Uploads\Preview\83081.jpg" />
+    <Content Include="Uploads\Preview\8309.jpg" />
+    <Content Include="Uploads\Preview\8310.jpg" />
+    <Content Include="Uploads\Preview\8311.jpg" />
+    <Content Include="Uploads\Preview\8313.jpg" />
+    <Content Include="Uploads\Preview\8316.jpg" />
+    <Content Include="Uploads\Preview\8327.jpg" />
+    <Content Include="Uploads\Preview\8331.jpg" />
+    <Content Include="Uploads\Preview\83561.jpg" />
+    <Content Include="Uploads\Preview\8361.jpg" />
+    <Content Include="Uploads\Preview\83617.jpg" />
+    <Content Include="Uploads\Preview\8362.jpg" />
+    <Content Include="Uploads\Preview\8364.jpg" />
+    <Content Include="Uploads\Preview\83642.jpg" />
+    <Content Include="Uploads\Preview\8384.jpg" />
+    <Content Include="Uploads\Preview\8400.jpg" />
+    <Content Include="Uploads\Preview\8423.jpg" />
+    <Content Include="Uploads\Preview\8424.jpg" />
+    <Content Include="Uploads\Preview\8425.jpg" />
+    <Content Include="Uploads\Preview\8428.jpg" />
+    <Content Include="Uploads\Preview\8429.jpg" />
+    <Content Include="Uploads\Preview\8458.jpg" />
+    <Content Include="Uploads\Preview\8461.jpg" />
+    <Content Include="Uploads\Preview\8499.jpg" />
+    <Content Include="Uploads\Preview\8500.jpg" />
+    <Content Include="Uploads\Preview\8502.jpg" />
+    <Content Include="Uploads\Preview\8746.jpg" />
+    <Content Include="Uploads\Preview\8747.jpg" />
+    <Content Include="Uploads\Preview\8750.jpg" />
+    <Content Include="Uploads\Preview\8767.jpg" />
+    <Content Include="Uploads\Preview\8853.jpg" />
+    <Content Include="Uploads\Preview\8907.jpg" />
+    <Content Include="Uploads\Preview\8975.jpg" />
+    <Content Include="Uploads\Preview\8b2f85d0-b501-4cca-9a5f-a7ed3c3d0d99.jpg" />
+    <Content Include="Uploads\Preview\90001.jpg" />
+    <Content Include="Uploads\Preview\90002.jpg" />
+    <Content Include="Uploads\Preview\90003.jpg" />
+    <Content Include="Uploads\Preview\90004.jpg" />
+    <Content Include="Uploads\Preview\90005.jpg" />
+    <Content Include="Uploads\Preview\90006.jpg" />
+    <Content Include="Uploads\Preview\90007.jpg" />
+    <Content Include="Uploads\Preview\90008.jpg" />
+    <Content Include="Uploads\Preview\90009.jpg" />
+    <Content Include="Uploads\Preview\90010.jpg" />
+    <Content Include="Uploads\Preview\90011.jpg" />
+    <Content Include="Uploads\Preview\90012.jpg" />
+    <Content Include="Uploads\Preview\90013.jpg" />
+    <Content Include="Uploads\Preview\90014.jpg" />
+    <Content Include="Uploads\Preview\90015.jpg" />
+    <Content Include="Uploads\Preview\90016.jpg" />
+    <Content Include="Uploads\Preview\90017.jpg" />
+    <Content Include="Uploads\Preview\90018.jpg" />
+    <Content Include="Uploads\Preview\90019.jpg" />
+    <Content Include="Uploads\Preview\90020.jpg" />
+    <Content Include="Uploads\Preview\90021.jpg" />
+    <Content Include="Uploads\Preview\90022.jpg" />
+    <Content Include="Uploads\Preview\90023.jpg" />
+    <Content Include="Uploads\Preview\90024.jpg" />
+    <Content Include="Uploads\Preview\90025.jpg" />
+    <Content Include="Uploads\Preview\90026.jpg" />
+    <Content Include="Uploads\Preview\90027.jpg" />
+    <Content Include="Uploads\Preview\90028.jpg" />
+    <Content Include="Uploads\Preview\90029.jpg" />
+    <Content Include="Uploads\Preview\90030.jpg" />
+    <Content Include="Uploads\Preview\90031.jpg" />
+    <Content Include="Uploads\Preview\90032.jpg" />
+    <Content Include="Uploads\Preview\90033.jpg" />
+    <Content Include="Uploads\Preview\90034.jpg" />
+    <Content Include="Uploads\Preview\90035.jpg" />
+    <Content Include="Uploads\Preview\90036.jpg" />
+    <Content Include="Uploads\Preview\90037.jpg" />
+    <Content Include="Uploads\Preview\90038.jpg" />
+    <Content Include="Uploads\Preview\90039.jpg" />
+    <Content Include="Uploads\Preview\90040.jpg" />
+    <Content Include="Uploads\Preview\90041.jpg" />
+    <Content Include="Uploads\Preview\90042.jpg" />
+    <Content Include="Uploads\Preview\90043.jpg" />
+    <Content Include="Uploads\Preview\90044.jpg" />
+    <Content Include="Uploads\Preview\90045.jpg" />
+    <Content Include="Uploads\Preview\90046.jpg" />
+    <Content Include="Uploads\Preview\90047.jpg" />
+    <Content Include="Uploads\Preview\90048.jpg" />
+    <Content Include="Uploads\Preview\90049.jpg" />
+    <Content Include="Uploads\Preview\90050.jpg" />
+    <Content Include="Uploads\Preview\90051.jpg" />
+    <Content Include="Uploads\Preview\90052.jpg" />
+    <Content Include="Uploads\Preview\90053.jpg" />
+    <Content Include="Uploads\Preview\90054.jpg" />
+    <Content Include="Uploads\Preview\90055.jpg" />
+    <Content Include="Uploads\Preview\90056.jpg" />
+    <Content Include="Uploads\Preview\9039.jpg" />
+    <Content Include="Uploads\Preview\9066.jpg" />
+    <Content Include="Uploads\Preview\9105.jpg" />
+    <Content Include="Uploads\Preview\9106.jpg" />
+    <Content Include="Uploads\Preview\9107.jpg" />
+    <Content Include="Uploads\Preview\9128.jpg" />
+    <Content Include="Uploads\Preview\9131.jpg" />
+    <Content Include="Uploads\Preview\9132.jpg" />
+    <Content Include="Uploads\Preview\9133.jpg" />
+    <Content Include="Uploads\Preview\9134.jpg" />
+    <Content Include="Uploads\Preview\9135.jpg" />
+    <Content Include="Uploads\Preview\9150.jpg" />
+    <Content Include="Uploads\Preview\9248.jpg" />
+    <Content Include="Uploads\Preview\9330.jpg" />
+    <Content Include="Uploads\Preview\9332.jpg" />
+    <Content Include="Uploads\Preview\9336.jpg" />
+    <Content Include="Uploads\Preview\9337.jpg" />
+    <Content Include="Uploads\Preview\9370.jpg" />
+    <Content Include="Uploads\Preview\9377.jpg" />
+    <Content Include="Uploads\Preview\9384.jpg" />
+    <Content Include="Uploads\Preview\9428.jpg" />
+    <Content Include="Uploads\Preview\9429.jpg" />
+    <Content Include="Uploads\Preview\9430.jpg" />
+    <Content Include="Uploads\Preview\9454.jpg" />
+    <Content Include="Uploads\Preview\9455.jpg" />
+    <Content Include="Uploads\Preview\9566.jpg" />
+    <Content Include="Uploads\Preview\9598.jpg" />
+    <Content Include="Uploads\Preview\9599.jpg" />
+    <Content Include="Uploads\Preview\9601.jpg" />
+    <Content Include="Uploads\Preview\9623.jpg" />
+    <Content Include="Uploads\Preview\9626.jpg" />
+    <Content Include="Uploads\Preview\9638.jpg" />
+    <Content Include="Uploads\Preview\9642.jpg" />
+    <Content Include="Uploads\Preview\9645.jpg" />
+    <Content Include="Uploads\Preview\9674.jpg" />
+    <Content Include="Uploads\Preview\9675.jpg" />
+    <Content Include="Uploads\Preview\9868.jpg" />
+    <Content Include="Uploads\Preview\9983.jpg" />
+    <Content Include="Uploads\Resized\10053.jpg" />
+    <Content Include="Uploads\Resized\10061.jpg" />
+    <Content Include="Uploads\Resized\10063.jpg" />
+    <Content Include="Uploads\Resized\10064.jpg" />
+    <Content Include="Uploads\Resized\10066.jpg" />
+    <Content Include="Uploads\Resized\10067.jpg" />
+    <Content Include="Uploads\Resized\10072.jpg" />
+    <Content Include="Uploads\Resized\10093.jpg" />
+    <Content Include="Uploads\Resized\1022.jpg" />
+    <Content Include="Uploads\Resized\10306.jpg" />
+    <Content Include="Uploads\Resized\10395.jpg" />
+    <Content Include="Uploads\Resized\10396.jpg" />
+    <Content Include="Uploads\Resized\10397.jpg" />
+    <Content Include="Uploads\Resized\10398.jpg" />
+    <Content Include="Uploads\Resized\2238.jpg" />
+    <Content Include="Uploads\Resized\2258.jpg" />
+    <Content Include="Uploads\Resized\2463.jpg" />
+    <Content Include="Uploads\Resized\2689.jpg" />
+    <Content Include="Uploads\Resized\2695.jpg" />
+    <Content Include="Uploads\Resized\3749.jpg" />
+    <Content Include="Uploads\Resized\3845.jpg" />
+    <Content Include="Uploads\Resized\38e50143-076d-4f19-bd87-05385a372218.jpg" />
+    <Content Include="Uploads\Resized\4103.jpg" />
+    <Content Include="Uploads\Resized\4104.jpg" />
+    <Content Include="Uploads\Resized\4126.jpg" />
+    <Content Include="Uploads\Resized\4301.jpg" />
+    <Content Include="Uploads\Resized\4304.jpg" />
+    <Content Include="Uploads\Resized\4776.jpg" />
+    <Content Include="Uploads\Resized\4885.jpg" />
+    <Content Include="Uploads\Resized\4886.jpg" />
+    <Content Include="Uploads\Resized\5456.jpg" />
+    <Content Include="Uploads\Resized\5698.jpg" />
+    <Content Include="Uploads\Resized\5708.jpg" />
+    <Content Include="Uploads\Resized\6079.jpg" />
+    <Content Include="Uploads\Resized\6080.jpg" />
+    <Content Include="Uploads\Resized\6218.jpg" />
+    <Content Include="Uploads\Resized\6222.jpg" />
+    <Content Include="Uploads\Resized\6377.jpg" />
+    <Content Include="Uploads\Resized\6425.jpg" />
+    <Content Include="Uploads\Resized\6567.jpg" />
+    <Content Include="Uploads\Resized\6597.jpg" />
+    <Content Include="Uploads\Resized\6616.jpg" />
+    <Content Include="Uploads\Resized\6619.jpg" />
+    <Content Include="Uploads\Resized\6662.jpg" />
+    <Content Include="Uploads\Resized\6707.jpg" />
+    <Content Include="Uploads\Resized\6708.jpg" />
+    <Content Include="Uploads\Resized\6710.jpg" />
+    <Content Include="Uploads\Resized\6711.jpg" />
+    <Content Include="Uploads\Resized\6803.jpg" />
+    <Content Include="Uploads\Resized\6834.jpg" />
+    <Content Include="Uploads\Resized\6835.jpg" />
+    <Content Include="Uploads\Resized\6838.jpg" />
+    <Content Include="Uploads\Resized\6860.jpg" />
+    <Content Include="Uploads\Resized\6998.jpg" />
+    <Content Include="Uploads\Resized\7032.jpg" />
+    <Content Include="Uploads\Resized\7072.jpg" />
+    <Content Include="Uploads\Resized\7077.jpg" />
+    <Content Include="Uploads\Resized\7224.jpg" />
+    <Content Include="Uploads\Resized\7523.jpg" />
+    <Content Include="Uploads\Resized\7529.jpg" />
+    <Content Include="Uploads\Resized\7530.jpg" />
+    <Content Include="Uploads\Resized\7649.jpg" />
+    <Content Include="Uploads\Resized\80237.jpg" />
+    <Content Include="Uploads\Resized\80239.jpg" />
+    <Content Include="Uploads\Resized\80314.jpg" />
+    <Content Include="Uploads\Resized\80319.jpg" />
+    <Content Include="Uploads\Resized\80376.jpg" />
+    <Content Include="Uploads\Resized\80405.jpg" />
+    <Content Include="Uploads\Resized\80462.jpg" />
+    <Content Include="Uploads\Resized\80503.jpg" />
+    <Content Include="Uploads\Resized\8142.jpg" />
+    <Content Include="Uploads\Resized\81424.jpg" />
+    <Content Include="Uploads\Resized\81436.jpg" />
+    <Content Include="Uploads\Resized\81492.jpg" />
+    <Content Include="Uploads\Resized\81516.jpg" />
+    <Content Include="Uploads\Resized\81536.jpg" />
+    <Content Include="Uploads\Resized\81973.jpg" />
+    <Content Include="Uploads\Resized\8198.jpg" />
+    <Content Include="Uploads\Resized\8200.jpg" />
+    <Content Include="Uploads\Resized\82053.jpg" />
+    <Content Include="Uploads\Resized\82214.jpg" />
+    <Content Include="Uploads\Resized\82817.jpg" />
+    <Content Include="Uploads\Resized\82867.jpg" />
+    <Content Include="Uploads\Resized\83081.jpg" />
+    <Content Include="Uploads\Resized\8309.jpg" />
+    <Content Include="Uploads\Resized\8310.jpg" />
+    <Content Include="Uploads\Resized\8311.jpg" />
+    <Content Include="Uploads\Resized\8313.jpg" />
+    <Content Include="Uploads\Resized\8316.jpg" />
+    <Content Include="Uploads\Resized\8327.jpg" />
+    <Content Include="Uploads\Resized\8331.jpg" />
+    <Content Include="Uploads\Resized\83561.jpg" />
+    <Content Include="Uploads\Resized\8361.jpg" />
+    <Content Include="Uploads\Resized\83617.jpg" />
+    <Content Include="Uploads\Resized\8362.jpg" />
+    <Content Include="Uploads\Resized\8364.jpg" />
+    <Content Include="Uploads\Resized\83642.jpg" />
+    <Content Include="Uploads\Resized\8384.jpg" />
+    <Content Include="Uploads\Resized\8400.jpg" />
+    <Content Include="Uploads\Resized\8423.jpg" />
+    <Content Include="Uploads\Resized\8424.jpg" />
+    <Content Include="Uploads\Resized\8425.jpg" />
+    <Content Include="Uploads\Resized\8428.jpg" />
+    <Content Include="Uploads\Resized\8429.jpg" />
+    <Content Include="Uploads\Resized\8458.jpg" />
+    <Content Include="Uploads\Resized\8461.jpg" />
+    <Content Include="Uploads\Resized\8499.jpg" />
+    <Content Include="Uploads\Resized\8500.jpg" />
+    <Content Include="Uploads\Resized\8502.jpg" />
+    <Content Include="Uploads\Resized\8746.jpg" />
+    <Content Include="Uploads\Resized\8747.jpg" />
+    <Content Include="Uploads\Resized\8750.jpg" />
+    <Content Include="Uploads\Resized\8767.jpg" />
+    <Content Include="Uploads\Resized\8853.jpg" />
+    <Content Include="Uploads\Resized\8907.jpg" />
+    <Content Include="Uploads\Resized\8975.jpg" />
+    <Content Include="Uploads\Resized\8b2f85d0-b501-4cca-9a5f-a7ed3c3d0d99.jpg" />
+    <Content Include="Uploads\Resized\90001.jpg" />
+    <Content Include="Uploads\Resized\90002.jpg" />
+    <Content Include="Uploads\Resized\90003.jpg" />
+    <Content Include="Uploads\Resized\90004.jpg" />
+    <Content Include="Uploads\Resized\90005.jpg" />
+    <Content Include="Uploads\Resized\90006.jpg" />
+    <Content Include="Uploads\Resized\90007.jpg" />
+    <Content Include="Uploads\Resized\90008.jpg" />
+    <Content Include="Uploads\Resized\90009.jpg" />
+    <Content Include="Uploads\Resized\90010.jpg" />
+    <Content Include="Uploads\Resized\90011.jpg" />
+    <Content Include="Uploads\Resized\90012.jpg" />
+    <Content Include="Uploads\Resized\90013.jpg" />
+    <Content Include="Uploads\Resized\90014.jpg" />
+    <Content Include="Uploads\Resized\90015.jpg" />
+    <Content Include="Uploads\Resized\90016.jpg" />
+    <Content Include="Uploads\Resized\90017.jpg" />
+    <Content Include="Uploads\Resized\90018.jpg" />
+    <Content Include="Uploads\Resized\90019.jpg" />
+    <Content Include="Uploads\Resized\90020.jpg" />
+    <Content Include="Uploads\Resized\90021.jpg" />
+    <Content Include="Uploads\Resized\90022.jpg" />
+    <Content Include="Uploads\Resized\90023.jpg" />
+    <Content Include="Uploads\Resized\90024.jpg" />
+    <Content Include="Uploads\Resized\90025.jpg" />
+    <Content Include="Uploads\Resized\90026.jpg" />
+    <Content Include="Uploads\Resized\90027.jpg" />
+    <Content Include="Uploads\Resized\90028.jpg" />
+    <Content Include="Uploads\Resized\90029.jpg" />
+    <Content Include="Uploads\Resized\90030.jpg" />
+    <Content Include="Uploads\Resized\90031.jpg" />
+    <Content Include="Uploads\Resized\90032.jpg" />
+    <Content Include="Uploads\Resized\90033.jpg" />
+    <Content Include="Uploads\Resized\90034.jpg" />
+    <Content Include="Uploads\Resized\90035.jpg" />
+    <Content Include="Uploads\Resized\90036.jpg" />
+    <Content Include="Uploads\Resized\90037.jpg" />
+    <Content Include="Uploads\Resized\90038.jpg" />
+    <Content Include="Uploads\Resized\90039.jpg" />
+    <Content Include="Uploads\Resized\90040.jpg" />
+    <Content Include="Uploads\Resized\90041.jpg" />
+    <Content Include="Uploads\Resized\90042.jpg" />
+    <Content Include="Uploads\Resized\90044.jpg" />
+    <Content Include="Uploads\Resized\90045.jpg" />
+    <Content Include="Uploads\Resized\90046.jpg" />
+    <Content Include="Uploads\Resized\90047.jpg" />
+    <Content Include="Uploads\Resized\90048.jpg" />
+    <Content Include="Uploads\Resized\90049.jpg" />
+    <Content Include="Uploads\Resized\90050.jpg" />
+    <Content Include="Uploads\Resized\90051.jpg" />
+    <Content Include="Uploads\Resized\90052.jpg" />
+    <Content Include="Uploads\Resized\90053.jpg" />
+    <Content Include="Uploads\Resized\90054.jpg" />
+    <Content Include="Uploads\Resized\90055.jpg" />
+    <Content Include="Uploads\Resized\90056.jpg" />
+    <Content Include="Uploads\Resized\9039.jpg" />
+    <Content Include="Uploads\Resized\9066.jpg" />
+    <Content Include="Uploads\Resized\9105.jpg" />
+    <Content Include="Uploads\Resized\9106.jpg" />
+    <Content Include="Uploads\Resized\9107.jpg" />
+    <Content Include="Uploads\Resized\9128.jpg" />
+    <Content Include="Uploads\Resized\9131.jpg" />
+    <Content Include="Uploads\Resized\9132.jpg" />
+    <Content Include="Uploads\Resized\9133.jpg" />
+    <Content Include="Uploads\Resized\9134.jpg" />
+    <Content Include="Uploads\Resized\9135.jpg" />
+    <Content Include="Uploads\Resized\9150.jpg" />
+    <Content Include="Uploads\Resized\9248.jpg" />
+    <Content Include="Uploads\Resized\9330.jpg" />
+    <Content Include="Uploads\Resized\9332.jpg" />
+    <Content Include="Uploads\Resized\9336.jpg" />
+    <Content Include="Uploads\Resized\9337.jpg" />
+    <Content Include="Uploads\Resized\9370.jpg" />
+    <Content Include="Uploads\Resized\9377.jpg" />
+    <Content Include="Uploads\Resized\9384.jpg" />
+    <Content Include="Uploads\Resized\9428.jpg" />
+    <Content Include="Uploads\Resized\9429.jpg" />
+    <Content Include="Uploads\Resized\9430.jpg" />
+    <Content Include="Uploads\Resized\9454.jpg" />
+    <Content Include="Uploads\Resized\9455.jpg" />
+    <Content Include="Uploads\Resized\9566.jpg" />
+    <Content Include="Uploads\Resized\9598.jpg" />
+    <Content Include="Uploads\Resized\9599.jpg" />
+    <Content Include="Uploads\Resized\9601.jpg" />
+    <Content Include="Uploads\Resized\9623.jpg" />
+    <Content Include="Uploads\Resized\9626.jpg" />
+    <Content Include="Uploads\Resized\9638.jpg" />
+    <Content Include="Uploads\Resized\9642.jpg" />
+    <Content Include="Uploads\Resized\9645.jpg" />
+    <Content Include="Uploads\Resized\9674.jpg" />
+    <Content Include="Uploads\Resized\9675.jpg" />
+    <Content Include="Uploads\Resized\9868.jpg" />
+    <Content Include="Uploads\Resized\9983.jpg" />
+    <Content Include="Uploads\Thumbnails\10053.jpg" />
+    <Content Include="Uploads\Thumbnails\10061.jpg" />
+    <Content Include="Uploads\Thumbnails\10063.jpg" />
+    <Content Include="Uploads\Thumbnails\10064.jpg" />
+    <Content Include="Uploads\Thumbnails\10066.jpg" />
+    <Content Include="Uploads\Thumbnails\10067.jpg" />
+    <Content Include="Uploads\Thumbnails\10072.jpg" />
+    <Content Include="Uploads\Thumbnails\10093.jpg" />
+    <Content Include="Uploads\Thumbnails\1022.jpg" />
+    <Content Include="Uploads\Thumbnails\10306.jpg" />
+    <Content Include="Uploads\Thumbnails\10395.jpg" />
+    <Content Include="Uploads\Thumbnails\10396.jpg" />
+    <Content Include="Uploads\Thumbnails\10397.jpg" />
+    <Content Include="Uploads\Thumbnails\10398.jpg" />
+    <Content Include="Uploads\Thumbnails\2238.jpg" />
+    <Content Include="Uploads\Thumbnails\2258.jpg" />
+    <Content Include="Uploads\Thumbnails\2463.jpg" />
+    <Content Include="Uploads\Thumbnails\2689.jpg" />
+    <Content Include="Uploads\Thumbnails\2695.jpg" />
+    <Content Include="Uploads\Thumbnails\3749.jpg" />
+    <Content Include="Uploads\Thumbnails\38e50143-076d-4f19-bd87-05385a372218.jpg" />
+    <Content Include="Uploads\Thumbnails\4103.jpg" />
+    <Content Include="Uploads\Thumbnails\4104.jpg" />
+    <Content Include="Uploads\Thumbnails\4126.jpg" />
+    <Content Include="Uploads\Thumbnails\4301.jpg" />
+    <Content Include="Uploads\Thumbnails\4304.jpg" />
+    <Content Include="Uploads\Thumbnails\4776.jpg" />
+    <Content Include="Uploads\Thumbnails\4885.jpg" />
+    <Content Include="Uploads\Thumbnails\4886.jpg" />
+    <Content Include="Uploads\Thumbnails\5456.jpg" />
+    <Content Include="Uploads\Thumbnails\5698.jpg" />
+    <Content Include="Uploads\Thumbnails\5708.jpg" />
+    <Content Include="Uploads\Thumbnails\6079.jpg" />
+    <Content Include="Uploads\Thumbnails\6080.jpg" />
+    <Content Include="Uploads\Thumbnails\6218.jpg" />
+    <Content Include="Uploads\Thumbnails\6222.jpg" />
+    <Content Include="Uploads\Thumbnails\6377.jpg" />
+    <Content Include="Uploads\Thumbnails\6425.jpg" />
+    <Content Include="Uploads\Thumbnails\6567.jpg" />
+    <Content Include="Uploads\Thumbnails\6597.jpg" />
+    <Content Include="Uploads\Thumbnails\6616.jpg" />
+    <Content Include="Uploads\Thumbnails\6662.jpg" />
+    <Content Include="Uploads\Thumbnails\6707.jpg" />
+    <Content Include="Uploads\Thumbnails\6708.jpg" />
+    <Content Include="Uploads\Thumbnails\6710.jpg" />
+    <Content Include="Uploads\Thumbnails\6711.jpg" />
+    <Content Include="Uploads\Thumbnails\6803.jpg" />
+    <Content Include="Uploads\Thumbnails\6834.jpg" />
+    <Content Include="Uploads\Thumbnails\6835.jpg" />
+    <Content Include="Uploads\Thumbnails\6838.jpg" />
+    <Content Include="Uploads\Thumbnails\6860.jpg" />
+    <Content Include="Uploads\Thumbnails\6998.jpg" />
+    <Content Include="Uploads\Thumbnails\7032.jpg" />
+    <Content Include="Uploads\Thumbnails\7072.jpg" />
+    <Content Include="Uploads\Thumbnails\7077.jpg" />
+    <Content Include="Uploads\Thumbnails\7224.jpg" />
+    <Content Include="Uploads\Thumbnails\7523.jpg" />
+    <Content Include="Uploads\Thumbnails\7529.jpg" />
+    <Content Include="Uploads\Thumbnails\7530.jpg" />
+    <Content Include="Uploads\Thumbnails\7649.jpg" />
+    <Content Include="Uploads\Thumbnails\80237.jpg" />
+    <Content Include="Uploads\Thumbnails\80239.jpg" />
+    <Content Include="Uploads\Thumbnails\80314.jpg" />
+    <Content Include="Uploads\Thumbnails\80319.jpg" />
+    <Content Include="Uploads\Thumbnails\80376.jpg" />
+    <Content Include="Uploads\Thumbnails\80405.jpg" />
+    <Content Include="Uploads\Thumbnails\80462.jpg" />
+    <Content Include="Uploads\Thumbnails\80503.jpg" />
+    <Content Include="Uploads\Thumbnails\8142.jpg" />
+    <Content Include="Uploads\Thumbnails\81424.jpg" />
+    <Content Include="Uploads\Thumbnails\81436.jpg" />
+    <Content Include="Uploads\Thumbnails\81492.jpg" />
+    <Content Include="Uploads\Thumbnails\81516.jpg" />
+    <Content Include="Uploads\Thumbnails\81536.jpg" />
+    <Content Include="Uploads\Thumbnails\81973.jpg" />
+    <Content Include="Uploads\Thumbnails\8198.jpg" />
+    <Content Include="Uploads\Thumbnails\8200.jpg" />
+    <Content Include="Uploads\Thumbnails\82053.jpg" />
+    <Content Include="Uploads\Thumbnails\82214.jpg" />
+    <Content Include="Uploads\Thumbnails\82817.jpg" />
+    <Content Include="Uploads\Thumbnails\82867.jpg" />
+    <Content Include="Uploads\Thumbnails\83081.jpg" />
+    <Content Include="Uploads\Thumbnails\8309.jpg" />
+    <Content Include="Uploads\Thumbnails\8310.jpg" />
+    <Content Include="Uploads\Thumbnails\8311.jpg" />
+    <Content Include="Uploads\Thumbnails\8313.jpg" />
+    <Content Include="Uploads\Thumbnails\8316.jpg" />
+    <Content Include="Uploads\Thumbnails\8327.jpg" />
+    <Content Include="Uploads\Thumbnails\8331.jpg" />
+    <Content Include="Uploads\Thumbnails\83561.jpg" />
+    <Content Include="Uploads\Thumbnails\8361.jpg" />
+    <Content Include="Uploads\Thumbnails\83617.jpg" />
+    <Content Include="Uploads\Thumbnails\8362.jpg" />
+    <Content Include="Uploads\Thumbnails\8364.jpg" />
+    <Content Include="Uploads\Thumbnails\83642.jpg" />
+    <Content Include="Uploads\Thumbnails\8384.jpg" />
+    <Content Include="Uploads\Thumbnails\8400.jpg" />
+    <Content Include="Uploads\Thumbnails\8423.jpg" />
+    <Content Include="Uploads\Thumbnails\8424.jpg" />
+    <Content Include="Uploads\Thumbnails\8425.jpg" />
+    <Content Include="Uploads\Thumbnails\8428.jpg" />
+    <Content Include="Uploads\Thumbnails\8429.jpg" />
+    <Content Include="Uploads\Thumbnails\8458.jpg" />
+    <Content Include="Uploads\Thumbnails\8461.jpg" />
+    <Content Include="Uploads\Thumbnails\8499.jpg" />
+    <Content Include="Uploads\Thumbnails\8500.jpg" />
+    <Content Include="Uploads\Thumbnails\8502.jpg" />
+    <Content Include="Uploads\Thumbnails\8746.jpg" />
+    <Content Include="Uploads\Thumbnails\8747.jpg" />
+    <Content Include="Uploads\Thumbnails\8750.jpg" />
+    <Content Include="Uploads\Thumbnails\8767.jpg" />
+    <Content Include="Uploads\Thumbnails\8853.jpg" />
+    <Content Include="Uploads\Thumbnails\8907.jpg" />
+    <Content Include="Uploads\Thumbnails\8975.jpg" />
+    <Content Include="Uploads\Thumbnails\8b2f85d0-b501-4cca-9a5f-a7ed3c3d0d99.jpg" />
+    <Content Include="Uploads\Thumbnails\90001.jpg" />
+    <Content Include="Uploads\Thumbnails\90002.jpg" />
+    <Content Include="Uploads\Thumbnails\90003.jpg" />
+    <Content Include="Uploads\Thumbnails\90004.jpg" />
+    <Content Include="Uploads\Thumbnails\90005.jpg" />
+    <Content Include="Uploads\Thumbnails\90006.jpg" />
+    <Content Include="Uploads\Thumbnails\90007.jpg" />
+    <Content Include="Uploads\Thumbnails\90008.jpg" />
+    <Content Include="Uploads\Thumbnails\90009.jpg" />
+    <Content Include="Uploads\Thumbnails\90010.jpg" />
+    <Content Include="Uploads\Thumbnails\90011.jpg" />
+    <Content Include="Uploads\Thumbnails\90012.jpg" />
+    <Content Include="Uploads\Thumbnails\90013.jpg" />
+    <Content Include="Uploads\Thumbnails\90014.jpg" />
+    <Content Include="Uploads\Thumbnails\90015.jpg" />
+    <Content Include="Uploads\Thumbnails\90016.jpg" />
+    <Content Include="Uploads\Thumbnails\90017.jpg" />
+    <Content Include="Uploads\Thumbnails\90018.jpg" />
+    <Content Include="Uploads\Thumbnails\90019.jpg" />
+    <Content Include="Uploads\Thumbnails\90020.jpg" />
+    <Content Include="Uploads\Thumbnails\90021.jpg" />
+    <Content Include="Uploads\Thumbnails\90022.jpg" />
+    <Content Include="Uploads\Thumbnails\90023.jpg" />
+    <Content Include="Uploads\Thumbnails\90024.jpg" />
+    <Content Include="Uploads\Thumbnails\90025.jpg" />
+    <Content Include="Uploads\Thumbnails\90026.jpg" />
+    <Content Include="Uploads\Thumbnails\90027.jpg" />
+    <Content Include="Uploads\Thumbnails\90028.jpg" />
+    <Content Include="Uploads\Thumbnails\90029.jpg" />
+    <Content Include="Uploads\Thumbnails\90030.jpg" />
+    <Content Include="Uploads\Thumbnails\90031.jpg" />
+    <Content Include="Uploads\Thumbnails\90032.jpg" />
+    <Content Include="Uploads\Thumbnails\90033.jpg" />
+    <Content Include="Uploads\Thumbnails\90034.jpg" />
+    <Content Include="Uploads\Thumbnails\90035.jpg" />
+    <Content Include="Uploads\Thumbnails\90036.jpg" />
+    <Content Include="Uploads\Thumbnails\90037.jpg" />
+    <Content Include="Uploads\Thumbnails\90038.jpg" />
+    <Content Include="Uploads\Thumbnails\90039.jpg" />
+    <Content Include="Uploads\Thumbnails\90040.jpg" />
+    <Content Include="Uploads\Thumbnails\90041.jpg" />
+    <Content Include="Uploads\Thumbnails\90042.jpg" />
+    <Content Include="Uploads\Thumbnails\90043.jpg" />
+    <Content Include="Uploads\Thumbnails\90044.jpg" />
+    <Content Include="Uploads\Thumbnails\90045.jpg" />
+    <Content Include="Uploads\Thumbnails\90046.jpg" />
+    <Content Include="Uploads\Thumbnails\90047.jpg" />
+    <Content Include="Uploads\Thumbnails\90048.jpg" />
+    <Content Include="Uploads\Thumbnails\90049.jpg" />
+    <Content Include="Uploads\Thumbnails\90050.jpg" />
+    <Content Include="Uploads\Thumbnails\90051.jpg" />
+    <Content Include="Uploads\Thumbnails\90052.jpg" />
+    <Content Include="Uploads\Thumbnails\90053.jpg" />
+    <Content Include="Uploads\Thumbnails\90054.jpg" />
+    <Content Include="Uploads\Thumbnails\90055.jpg" />
+    <Content Include="Uploads\Thumbnails\90056.jpg" />
+    <Content Include="Uploads\Thumbnails\9039.jpg" />
+    <Content Include="Uploads\Thumbnails\9066.jpg" />
+    <Content Include="Uploads\Thumbnails\9105.jpg" />
+    <Content Include="Uploads\Thumbnails\9106.jpg" />
+    <Content Include="Uploads\Thumbnails\9107.jpg" />
+    <Content Include="Uploads\Thumbnails\9128.jpg" />
+    <Content Include="Uploads\Thumbnails\9131.jpg" />
+    <Content Include="Uploads\Thumbnails\9132.jpg" />
+    <Content Include="Uploads\Thumbnails\9133.jpg" />
+    <Content Include="Uploads\Thumbnails\9134.jpg" />
+    <Content Include="Uploads\Thumbnails\9135.jpg" />
+    <Content Include="Uploads\Thumbnails\9150.jpg" />
+    <Content Include="Uploads\Thumbnails\9248.jpg" />
+    <Content Include="Uploads\Thumbnails\9330.jpg" />
+    <Content Include="Uploads\Thumbnails\9332.jpg" />
+    <Content Include="Uploads\Thumbnails\9336.jpg" />
+    <Content Include="Uploads\Thumbnails\9337.jpg" />
+    <Content Include="Uploads\Thumbnails\9370.jpg" />
+    <Content Include="Uploads\Thumbnails\9377.jpg" />
+    <Content Include="Uploads\Thumbnails\9384.jpg" />
+    <Content Include="Uploads\Thumbnails\9428.jpg" />
+    <Content Include="Uploads\Thumbnails\9429.jpg" />
+    <Content Include="Uploads\Thumbnails\9430.jpg" />
+    <Content Include="Uploads\Thumbnails\9454.jpg" />
+    <Content Include="Uploads\Thumbnails\9455.jpg" />
+    <Content Include="Uploads\Thumbnails\9566.jpg" />
+    <Content Include="Uploads\Thumbnails\9598.jpg" />
+    <Content Include="Uploads\Thumbnails\9599.jpg" />
+    <Content Include="Uploads\Thumbnails\9601.jpg" />
+    <Content Include="Uploads\Thumbnails\9623.jpg" />
+    <Content Include="Uploads\Thumbnails\9626.jpg" />
+    <Content Include="Uploads\Thumbnails\9638.jpg" />
+    <Content Include="Uploads\Thumbnails\9642.jpg" />
+    <Content Include="Uploads\Thumbnails\9645.jpg" />
+    <Content Include="Uploads\Thumbnails\9674.jpg" />
+    <Content Include="Uploads\Thumbnails\9675.jpg" />
+    <Content Include="Uploads\Thumbnails\9868.jpg" />
+    <Content Include="Uploads\Thumbnails\9983.jpg" />
+    <Content Include="Uploads\Thumbnails\blank.png" />
+    <Content Include="Uploads\Thumbnails\blank1.png" />
+    <Content Include="Uploads\Thumbnails\blank2.png" />
+    <Content Include="Uploads\Thumbnails\blank3.png" />
+    <Content Include="Users\PreviewArtistProfile.aspx" />
+    <Content Include="Users\ProfileEdit.aspx" />
+    <Content Include="Utils\dist\css\lightbox.css" />
+    <Content Include="Utils\dist\css\lightbox.min.css" />
+    <Content Include="Utils\dist\images\close.png" />
+    <Content Include="Utils\dist\images\loading.gif" />
+    <Content Include="Utils\dist\images\next.png" />
+    <Content Include="Utils\dist\images\prev.png" />
+    <Content Include="Utils\dist\js\lightbox-plus-jquery.js" />
+    <Content Include="Utils\dist\js\lightbox-plus-jquery.min.js" />
+    <Content Include="Utils\dist\js\lightbox.js" />
+    <Content Include="Utils\dist\js\lightbox.min.js" />
+    <Content Include="VintagePaint.aspx" />
+    <Content Include="Events.aspx" />
+    <Content Include="AboutUs.aspx" />
+    <Content Include="Admin\Approvals\List.aspx" />
+    <Content Include="Admin\Approvals\Preview.aspx" />
+    <Content Include="Admin\ArtistWork\Add.aspx" />
+    <Content Include="Admin\ArtistWork\Edit.aspx" />
+    <Content Include="Admin\ArtistWork\List.aspx" />
+    <Content Include="Admin\Menu.aspx" />
+    <Content Include="Admin\Artists\Add.aspx" />
+    <Content Include="Admin\Artists\Edit.aspx" />
+    <Content Include="Admin\Artists\List.aspx" />
+    <Content Include="Admin\Settings\List.aspx" />
+    <Content Include="Admin\Users\Add.aspx" />
+    <Content Include="Admin\Users\Edit.aspx" />
+    <Content Include="Admin\Users\List.aspx" />
+    <Content Include="ArtistWork\Edit.aspx" />
+    <Content Include="ArtistWork\Main.aspx" />
+    <Content Include="ArtistWork\Add.aspx" />
+    <Content Include="Artist\Index.aspx" />
+    <Content Include="Artist\IndexView.aspx" />
+    <Content Include="Artist\Menu.aspx" />
+    <Content Include="Artist\ProfileEdit.aspx" />
+    <Content Include="Artist\ProfileAdd.aspx" />
+    <Content Include="Artist\Preview.aspx" />
+    <Content Include="Artist\ProfileInformation.aspx" />
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Site.css" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Images\AboutUs_01_beamgallery.jpg" />
+    <Content Include="Images\AboutUs_02_archway_gallery.jpg" />
+    <Content Include="Images\AboutUs_03_arch_window_gallery.jpg" />
+    <Content Include="Images\AboutUs_04_studio.jpg" />
+    <Content Include="Images\AboutUs_05_spread_eagle_courtyard.jpg" />
+    <Content Include="Images\Artists.png" />
+    <Content Include="Images\FirstViewLogo.jpg" />
+    <Content Include="Images\imageJQ-1.jpg" />
+    <Content Include="Images\imageJQ-2.jpg" />
+    <Content Include="Images\imageJQ-3.jpg" />
+    <Content Include="Images\imageJQ-4.jpg" />
+    <Content Include="Images\imageJQ-5.jpg" />
+    <Content Include="Images\imageJQ-6.jpg" />
+    <Content Include="Images\loading.gif" />
+    <Content Include="Images\Preview_100.png" />
+    <Content Include="Images\Settings_100.png" />
+    <Content Include="Images\studio_01.jpg" />
+    <Content Include="Images\studio_02.jpg" />
+    <Content Include="Images\studio_03.jpg" />
+    <Content Include="Images\studio_04.jpg" />
+    <Content Include="Images\studio_05.jpg" />
+    <Content Include="Images\studio_outdoor_workshop.jpg" />
+    <Content Include="Images\Thumbs\Thumbs.db" />
+    <None Include="Properties\PublishProfiles\FirstView.pubxml" />
+    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
+    <Content Include="PublicMaster.Master" />
+    <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Images\boatbig.png" />
+    <Content Include="Images\boatpaper.png" />
+    <Content Include="Images\boatsail.png" />
+    <Content Include="Images\busdouble.png" />
+    <Content Include="Images\busgreen.png" />
+    <Content Include="Images\busred.png" />
+    <Content Include="Images\carconvert.png" />
+    <Content Include="Images\carearly.png" />
+    <Content Include="Images\carfast.png" />
+    <Content Include="Images\carfaster.png" />
+    <Content Include="Images\carracer.png" />
+    <Content Include="Images\planeace.png" />
+    <Content Include="Images\planeglider.png" />
+    <Content Include="Images\planepaper.png" />
+    <Content Include="Images\planeprop.png" />
+    <Content Include="Images\rocket.png" />
+    <Content Include="Images\Thumbs\boatbig.png" />
+    <Content Include="Images\Thumbs\boatpaper.png" />
+    <Content Include="Images\Thumbs\boatsail.png" />
+    <Content Include="Images\Thumbs\busdouble.png" />
+    <Content Include="Images\Thumbs\busgreen.png" />
+    <Content Include="Images\Thumbs\busred.png" />
+    <Content Include="Images\Thumbs\carconvert.png" />
+    <Content Include="Images\Thumbs\carearly.png" />
+    <Content Include="Images\Thumbs\carfast.png" />
+    <Content Include="Images\Thumbs\carfaster.png" />
+    <Content Include="Images\Thumbs\carracer.png" />
+    <Content Include="Images\Thumbs\planeace.png" />
+    <Content Include="Images\Thumbs\planeglider.png" />
+    <Content Include="Images\Thumbs\planepaper.png" />
+    <Content Include="Images\Thumbs\planeprop.png" />
+    <Content Include="Images\Thumbs\rocket.png" />
+    <Content Include="Images\Thumbs\truckbig.png" />
+    <Content Include="Images\Thumbs\truckearly.png" />
+    <Content Include="Images\Thumbs\truckfire.png" />
+    <Content Include="Images\truckbig.png" />
+    <Content Include="Images\truckearly.png" />
+    <Content Include="Images\truckfire.png" />
+    <Content Include="Content\basic.css" />
+    <Content Include="Images\UAC_100.png" />
+    <Content Include="Images\Users.png" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\dropzone-amd-module.js" />
+    <Content Include="Content\dropzone.css" />
+    <Content Include="Scripts\dropzone.js" />
+    <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\respond.js" />
+    <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\WebForms\DetailsView.js" />
+    <Content Include="Scripts\WebForms\Focus.js" />
+    <Content Include="Scripts\WebForms\GridView.js" />
+    <Content Include="Scripts\WebForms\Menu.js" />
+    <Content Include="Scripts\WebForms\MenuStandards.js" />
+    <Content Include="Scripts\WebForms\MSAjax\MicrosoftAjax.js" />
+    <Content Include="Scripts\WebForms\MSAjax\MicrosoftAjaxApplicationServices.js" />
+    <Content Include="Scripts\WebForms\MSAjax\MicrosoftAjaxComponentModel.js" />
+    <Content Include="Scripts\WebForms\MSAjax\MicrosoftAjaxCore.js" />
+    <Content Include="Scripts\WebForms\MSAjax\MicrosoftAjaxGlobalization.js" />
+    <Content Include="Scripts\WebForms\MSAjax\MicrosoftAjaxHistory.js" />
+    <Content Include="Scripts\WebForms\MSAjax\MicrosoftAjaxNetwork.js" />
+    <Content Include="Scripts\WebForms\MSAjax\MicrosoftAjaxSerialization.js" />
+    <Content Include="Scripts\WebForms\MSAjax\MicrosoftAjaxTimer.js" />
+    <Content Include="Scripts\WebForms\MSAjax\MicrosoftAjaxWebForms.js" />
+    <Content Include="Scripts\WebForms\MSAjax\MicrosoftAjaxWebServices.js" />
+    <Content Include="Scripts\WebForms\SmartNav.js" />
+    <Content Include="Scripts\WebForms\TreeView.js" />
+    <Content Include="Scripts\WebForms\WebForms.js" />
+    <Content Include="Scripts\WebForms\WebParts.js" />
+    <Content Include="Scripts\WebForms\WebUIValidation.js" />
+    <Content Include="Scripts\_references.js" />
+    <Content Include="Default.aspx" />
+    <Content Include="favicon.ico" />
+    <Content Include="Global.asax" />
+    <Content Include="Site.Master" />
+    <Content Include="Users\RegisterVerify.aspx" />
+    <Content Include="Users\ResetPassword.aspx" />
+    <Content Include="Users\ForgotPassword.aspx" />
+    <Content Include="Users\Login.aspx" />
+    <Content Include="Users\Register.aspx" />
+    <Content Include="Utils\Upload.aspx" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Bundle.config" />
+    <Content Include="packages.config" />
+    <None Include="Project_Readme.html" />
+    <Content Include="Utils\dist\js\lightbox-plus-jquery.min.map" />
+    <Content Include="Utils\dist\js\lightbox.min.map" />
+    <Content Include="Utils\ImageHandler.ashx" />
+    <Content Include="Scripts\jquery-1.10.2.min.map" />
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Admin\Approvals\PreviewArtistProfile.aspx.cs">
+      <DependentUpon>PreviewArtistProfile.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Approvals\PreviewArtistProfile.aspx.designer.cs">
+      <DependentUpon>PreviewArtistProfile.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\ArtistType\Add.aspx.cs">
+      <DependentUpon>Add.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\ArtistType\Add.aspx.designer.cs">
+      <DependentUpon>Add.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\ArtistType\Edit.aspx.cs">
+      <DependentUpon>Edit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\ArtistType\Edit.aspx.designer.cs">
+      <DependentUpon>Edit.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\ArtistType\List.aspx.cs">
+      <DependentUpon>List.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\ArtistType\List.aspx.designer.cs">
+      <DependentUpon>List.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Events\Add.aspx.cs">
+      <DependentUpon>Add.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Events\Add.aspx.designer.cs">
+      <DependentUpon>Add.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Events\List.aspx.cs">
+      <DependentUpon>List.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Events\List.aspx.designer.cs">
+      <DependentUpon>List.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\MenuManagement\AddMenu.aspx.cs">
+      <DependentUpon>AddMenu.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\MenuManagement\AddMenu.aspx.designer.cs">
+      <DependentUpon>AddMenu.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\MenuManagement\AddPageUrl.aspx.cs">
+      <DependentUpon>AddPageUrl.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\MenuManagement\AddPageUrl.aspx.designer.cs">
+      <DependentUpon>AddPageUrl.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\MenuManagement\MenuList.aspx.cs">
+      <DependentUpon>MenuList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\MenuManagement\MenuList.aspx.designer.cs">
+      <DependentUpon>MenuList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\MenuManagement\PagesList.aspx.cs">
+      <DependentUpon>PagesList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\MenuManagement\PagesList.aspx.designer.cs">
+      <DependentUpon>PagesList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Users\PersonalDetails.aspx.cs">
+      <DependentUpon>PersonalDetails.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Users\PersonalDetails.aspx.designer.cs">
+      <DependentUpon>PersonalDetails.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Users\ResetPassword.aspx.cs">
+      <DependentUpon>ResetPassword.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Users\ResetPassword.aspx.designer.cs">
+      <DependentUpon>ResetPassword.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ArtistWork\ExhibitionForm.aspx.cs">
+      <DependentUpon>ExhibitionForm.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ArtistWork\ExhibitionForm.aspx.designer.cs">
+      <DependentUpon>ExhibitionForm.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Artist\PreviewArtistProfile.aspx.cs">
+      <DependentUpon>PreviewArtistProfile.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Artist\PreviewArtistProfile.aspx.designer.cs">
+      <DependentUpon>PreviewArtistProfile.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Common\CommonLibrary.cs" />
+    <Compile Include="ContactUs.aspx.cs">
+      <DependentUpon>ContactUs.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ContactUs.aspx.designer.cs">
+      <DependentUpon>ContactUs.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="FindUs.aspx.cs">
+      <DependentUpon>FindUs.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="FindUs.aspx.designer.cs">
+      <DependentUpon>FindUs.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="FirstViewService.asmx.cs">
+      <DependentUpon>FirstViewService.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Models\MenuGlobals.cs" />
+    <Compile Include="PublicMaster.Master.cs">
+      <DependentUpon>PublicMaster.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PublicMaster.Master.designer.cs">
+      <DependentUpon>PublicMaster.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Studio.aspx.cs">
+      <DependentUpon>Studio.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Studio.aspx.designer.cs">
+      <DependentUpon>Studio.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Users\PreviewArtistProfile.aspx.cs">
+      <DependentUpon>PreviewArtistProfile.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Users\PreviewArtistProfile.aspx.designer.cs">
+      <DependentUpon>PreviewArtistProfile.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Users\ProfileEdit.aspx.cs">
+      <DependentUpon>ProfileEdit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Users\ProfileEdit.aspx.designer.cs">
+      <DependentUpon>ProfileEdit.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Utils\ImageHandler.ashx.cs">
+      <DependentUpon>ImageHandler.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="VintagePaint.aspx.cs">
+      <DependentUpon>VintagePaint.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="VintagePaint.aspx.designer.cs">
+      <DependentUpon>VintagePaint.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Events.aspx.cs">
+      <DependentUpon>Events.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Events.aspx.designer.cs">
+      <DependentUpon>Events.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AboutUs.aspx.cs">
+      <DependentUpon>AboutUs.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AboutUs.aspx.designer.cs">
+      <DependentUpon>AboutUs.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Approvals\List.aspx.cs">
+      <DependentUpon>List.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Approvals\List.aspx.designer.cs">
+      <DependentUpon>List.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Approvals\Preview.aspx.cs">
+      <DependentUpon>Preview.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Approvals\Preview.aspx.designer.cs">
+      <DependentUpon>Preview.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\ArtistWork\Add.aspx.cs">
+      <DependentUpon>Add.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\ArtistWork\Add.aspx.designer.cs">
+      <DependentUpon>Add.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\ArtistWork\Edit.aspx.cs">
+      <DependentUpon>Edit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\ArtistWork\Edit.aspx.designer.cs">
+      <DependentUpon>Edit.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\ArtistWork\List.aspx.cs">
+      <DependentUpon>List.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\ArtistWork\List.aspx.designer.cs">
+      <DependentUpon>List.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Menu.aspx.cs">
+      <DependentUpon>Menu.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Menu.aspx.designer.cs">
+      <DependentUpon>Menu.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Artists\Add.aspx.cs">
+      <DependentUpon>Add.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Artists\Add.aspx.designer.cs">
+      <DependentUpon>Add.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Artists\Edit.aspx.cs">
+      <DependentUpon>Edit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Artists\Edit.aspx.designer.cs">
+      <DependentUpon>Edit.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Artists\List.aspx.cs">
+      <DependentUpon>List.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Artists\List.aspx.designer.cs">
+      <DependentUpon>List.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Settings\List.aspx.cs">
+      <DependentUpon>List.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Settings\List.aspx.designer.cs">
+      <DependentUpon>List.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Users\Add.aspx.cs">
+      <DependentUpon>Add.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Users\Add.aspx.designer.cs">
+      <DependentUpon>Add.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Users\Edit.aspx.cs">
+      <DependentUpon>Edit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Users\Edit.aspx.designer.cs">
+      <DependentUpon>Edit.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Users\List.aspx.cs">
+      <DependentUpon>List.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Users\List.aspx.designer.cs">
+      <DependentUpon>List.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\IdentityConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="ArtistWork\Edit.aspx.cs">
+      <DependentUpon>Edit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ArtistWork\Edit.aspx.designer.cs">
+      <DependentUpon>Edit.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ArtistWork\Main.aspx.cs">
+      <DependentUpon>Main.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ArtistWork\Main.aspx.designer.cs">
+      <DependentUpon>Main.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ArtistWork\Add.aspx.cs">
+      <DependentUpon>Add.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ArtistWork\Add.aspx.designer.cs">
+      <DependentUpon>Add.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Artist\Index.aspx.cs">
+      <DependentUpon>Index.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Artist\Index.aspx.designer.cs">
+      <DependentUpon>Index.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Artist\IndexView.aspx.cs">
+      <DependentUpon>IndexView.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Artist\IndexView.aspx.designer.cs">
+      <DependentUpon>IndexView.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Artist\Menu.aspx.cs">
+      <DependentUpon>Menu.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Artist\Menu.aspx.designer.cs">
+      <DependentUpon>Menu.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Artist\ProfileEdit.aspx.cs">
+      <DependentUpon>ProfileEdit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Artist\ProfileEdit.aspx.designer.cs">
+      <DependentUpon>ProfileEdit.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Artist\ProfileAdd.aspx.cs">
+      <DependentUpon>ProfileAdd.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Artist\ProfileAdd.aspx.designer.cs">
+      <DependentUpon>ProfileAdd.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Artist\Preview.aspx.cs">
+      <DependentUpon>Preview.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Artist\Preview.aspx.designer.cs">
+      <DependentUpon>Preview.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Artist\ProfileInformation.aspx.cs">
+      <DependentUpon>ProfileInformation.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Artist\ProfileInformation.aspx.designer.cs">
+      <DependentUpon>ProfileInformation.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Default.aspx.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Default.aspx.designer.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Site.Master.cs">
+      <DependentUpon>Site.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Site.Master.designer.cs">
+      <DependentUpon>Site.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Startup.cs" />
+    <Compile Include="Users\RegisterVerify.aspx.cs">
+      <DependentUpon>RegisterVerify.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Users\RegisterVerify.aspx.designer.cs">
+      <DependentUpon>RegisterVerify.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Users\ResetPassword.aspx.cs">
+      <DependentUpon>ResetPassword.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Users\ResetPassword.aspx.designer.cs">
+      <DependentUpon>ResetPassword.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Users\ForgotPassword.aspx.cs">
+      <DependentUpon>ForgotPassword.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Users\ForgotPassword.aspx.designer.cs">
+      <DependentUpon>ForgotPassword.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Users\Login.aspx.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Users\Login.aspx.designer.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Users\Register.aspx.cs">
+      <DependentUpon>Register.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Users\Register.aspx.designer.cs">
+      <DependentUpon>Register.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Utils\Upload.aspx.cs">
+      <DependentUpon>Upload.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Utils\Upload.aspx.designer.cs">
+      <DependentUpon>Upload.aspx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="Other\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Entities\FirstView.Entities.csproj">
+      <Project>{8548f951-918e-4413-b79f-4fb4e1484f20}</Project>
+      <Name>FirstView.Entities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FirstView.DAL\FirstView.BusinessLayer.csproj">
+      <Project>{5dd63e96-6870-42f3-b6f2-acfa01b9fa42}</Project>
+      <Name>FirstView.BusinessLayer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FirstView.Model\FirstView.Model.csproj">
+      <Project>{a1d123fe-8a60-471c-8ea0-97dcf35d2ae9}</Project>
+      <Name>FirstView.Model</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>62395</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:62395/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,228 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="PublicMaster.master.cs" Inherits="FirstView.PublicMaster" %>
+<!DOCTYPE html>
+<html lang="en">
+<head runat="server">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%: Page.Title %> - First-View Gallery</title>
+    <asp:PlaceHolder runat="server">
+        <%: Scripts.Render("~/bundles/modernizr") %>
+    </asp:PlaceHolder>
+    <webopt:BundleReference runat="server" Path="~/Content/css" />
+    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <style>
+        body {
+            padding-top: 60px;
+        }
+
+        @media screen and (max-width: 768px) {
+            body {
+                padding-top: 130px;
+            }
+        }
+
+        @media screen and (max-width: 980px) {
+            body {
+                padding-top: 150px;
+            }
+        }
+
+        @media screen and (max-width: 1280px) {
+            body {
+                padding-top: 150px;
+            }
+        }
+        /* navbar */
+        .navbar-default {
+            background-color: #FFFFFF;
+            border-color: #E7E7E7;
+        }
+
+        #overlay {
+            position: fixed; /* Sit on top of the page content */
+            display: none; /* Hidden by default */
+            width: 100%; /* Full width (cover the whole page) */
+            height: 100%; /* Full height (cover the whole page) */
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0,0,0,0.5); /* Black background with opacity */
+            z-index: 2; /* Specify a stack order in case you're using a different order for other elements */
+            cursor: pointer; /* Add a pointer on hover */
+        }
+
+        #text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            font-size: 50px;
+            color: white;
+            transform: translate(-50%,-50%);
+            -ms-transform: translate(-50%,-50%);
+        }
+        /*------------------------------------*\
+	NAV
+\*------------------------------------*/
+        #nav {
+            list-style: none;
+            font-weight: normal;
+            margin-bottom: 10px;
+            margin-right: 0px;
+            z-index:100001;
+        }
+
+            #nav li {
+                float: left;
+                margin-right: 5px;
+                position: relative;
+                z-index:100001;
+                /*border-radius: 5px;*/
+            }
+
+            #nav a {
+                display: block;
+                padding: 5px;
+                text-decoration: none;
+                /*color: #fff;
+                background: #757171;*/
+                color: black;
+                /*border-radius: 5px;*/
+            }
+
+                #nav a:hover {
+                    color: #000000;
+                    background: #fff;
+                    text-decoration: underline;
+                    margin-left: 0px;
+                    z-index:100001;
+                }
+
+            /*--- DROPDOWN ---*/
+            #nav ul {
+                -webkit-padding-start: 0px;
+                min-width:200px;
+                background: #fff; /* Adding a background makes the dropdown work properly in IE7+. Make this as close to your page's background as possible (i.e. white page == white background). */
+                background: rgba(255,255,255,0); /* But! Let's make the background fully transparent where we can, we don't actually want to see it if we can help it... */
+                list-style: none;
+                position: absolute;
+                left: -9999px; /* Hide off-screen when not needed (this is more accessible than display:none;) */
+                border-radius: 5px;
+                z-index:100001;
+            }
+
+                #nav ul li {
+                    border-bottom: 1px solid white; /* Introducing a padding between the li and the a give the illusion spaced items */
+                    float: none;
+                }
+
+                #nav ul a {
+                    white-space: nowrap; /* Stop text wrapping and creating multi-line dropdown items */
+                }
+
+            #nav li:hover ul { /* Display the dropdown on hover */
+                left: 0; /* Bring back on-screen when needed */
+            }
+
+            #nav li:hover a { /* These create persistent hover states, meaning the top-most link stays 'hovered' even when your cursor has moved down the list. */
+                background: Whitesmoke;
+                text-decoration: underline;
+            }
+
+            #nav li:hover ul a { /* The persistent hover state does however create a global style for links even before they're hovered. Here we undo these effects. */
+                text-decoration: none;
+            }
+
+            #nav li:hover ul li a:hover { /* Here we define the most explicit hover states--what happens when you hover each individual link. */
+                background: Whitesmoke;
+            }
+    </style>
+    <asp:ContentPlaceHolder ID="HeaderContent" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form runat="server">
+        <asp:ScriptManager ID="ScriptManager1" runat="server" EnablePageMethods="true">
+            <Scripts>
+                <%--To learn more about bundling scripts in ScriptManager see http://go.microsoft.com/fwlink/?LinkID=301884 --%>
+                <%--Framework Scripts--%>
+                <asp:ScriptReference Name="MsAjaxBundle" />
+                <asp:ScriptReference Name="jquery" />
+                <asp:ScriptReference Name="jquery.ui.combined" />
+                <asp:ScriptReference Name="bootstrap" />
+                <asp:ScriptReference Name="respond" />
+                <asp:ScriptReference Name="WebForms.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebForms.js" />
+                <asp:ScriptReference Name="WebUIValidation.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebUIValidation.js" />
+                <asp:ScriptReference Name="MenuStandards.js" Assembly="System.Web" Path="~/Scripts/WebForms/MenuStandards.js" />
+                <asp:ScriptReference Name="GridView.js" Assembly="System.Web" Path="~/Scripts/WebForms/GridView.js" />
+                <asp:ScriptReference Name="DetailsView.js" Assembly="System.Web" Path="~/Scripts/WebForms/DetailsView.js" />
+                <asp:ScriptReference Name="TreeView.js" Assembly="System.Web" Path="~/Scripts/WebForms/TreeView.js" />
+                <asp:ScriptReference Name="WebParts.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebParts.js" />
+                <asp:ScriptReference Name="Focus.js" Assembly="System.Web" Path="~/Scripts/WebForms/Focus.js" />
+                <asp:ScriptReference Name="WebFormsBundle" />
+                <%--Site Scripts--%>
+            </Scripts>
+        </asp:ScriptManager>
+
+        <div class="navbar navbar-default navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" runat="server" href="~/">
+                        <asp:Image ID="Image1" runat="server" ImageUrl="~/Images/FirstViewLogo.jpg" />
+                    </a>
+                </div>
+                <br />
+                <div class="navbar-collapse">
+                    <ul class="nav navbar-nav" style="font-size: 12px" runat="server" id="nav">
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right" id="nav" style="font-size: 12px; float: right; margin-right: 0px;">
+                        <li><a runat="server" style="font-size: 12px" id="login_success_linktop1" href="~/Users/Register.aspx">Register</a></li>
+                        <li><a runat="server" style="font-size: 12px" id="login_success_linktop2" href="~/Users/Login.aspx">Log in</a></li>
+                    </ul>
+                 
+                </div>
+               
+            </div>
+        </div>
+        <div class="container body-content">
+            <asp:ContentPlaceHolder ID="MainContent" runat="server">
+            </asp:ContentPlaceHolder>
+            <hr />
+            <footer>
+                <table style="width: 100%" border="0">
+                    <tr>
+                        <td style="vertical-align: middle">
+                            <ul class="nav navbar-nav navbar-left">
+                                <li><%: DateTime.Now.Year %> - First-View Gallery</li>
+                            </ul>
+                        </td>
+                        <td style="vertical-align: top; text-align: right">
+                            <div id="login_none" runat="server">
+                                <ul class="nav navbar-nav navbar-right">
+                                    <li><a runat="server" href="~/Users/Register">Register</a></li>
+                                    <li><a runat="server" href="~/Users/Login">Log in</a></li>
+                                </ul>
+                            </div>
+                            <div id="login_success" runat="server" style="display: none">
+                                <ul class="nav navbar-nav navbar-right">
+                                    <li><a id="login_success_link1" runat="server" href="~/">Logged In: </a></li>
+                                    <li><a id="login_success_link2" runat="server" href="~/Users/Login?LogOut=1">Log Out</a></li>
+                                </ul>
+
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </footer>
+        </div>
+        <div id="overlay">
+            <div id="text">Please wait...</div>
+        </div>
+    </form>
+</body>
+</html>
