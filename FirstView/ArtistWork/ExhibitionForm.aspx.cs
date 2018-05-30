@@ -93,5 +93,13 @@ namespace FirstView.ArtistWork
         {
 
         }
+
+
+        protected void gvArtistWorks_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            LoadGridView();
+            gvArtistWorks.PageIndex = e.NewPageIndex;
+            gvArtistWorks.DataBind();
+        }
     }
 }

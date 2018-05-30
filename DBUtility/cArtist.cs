@@ -167,6 +167,17 @@ namespace FirstView.DataAccessLayer
             dv = db.ExecuteDataView("usp_Artist_UserDetailsByArtistId", System.Data.CommandType.StoredProcedure);
             return dv;
         }
+
+        public static int UpdateProfileStatus(int artistId, int status,int adminId)
+        {
+            DBHelper db = new DBHelper(DBHelper.ConnectionStr.DefaultConnection);
+            DataView dv = new DataView();
+            db.AddParameter("@ArtistId", artistId);
+            db.AddParameter("@StatusId", status);
+            db.AddParameter("@AdminId", adminId);
+            int result = db.ExecuteNonQuery("usp_ProfileApprovals_Approve", System.Data.CommandType.StoredProcedure);
+            return result;
+        }
     }
 }
 

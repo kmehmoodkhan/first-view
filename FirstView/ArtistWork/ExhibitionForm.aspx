@@ -82,7 +82,7 @@
                     <div style="width: 100%; max-height: 180px; overflow-y: scroll;">
                         <asp:GridView ID="gvArtistWorks" runat="server" Width="100%" HorizontalAlign="Left" OnRowDataBound="gvArtistWorks_RowDataBound"
                             AutoGenerateColumns="false" AllowPaging="true" ShowHeader="false"
-                            DataKeyNames="ArtistWorkID,ArtistID,ImageFileName,IsDeleted,Width,Height,ExhibitionNo,Commission" CssClass="table table-bordered table-striped table-hover">
+                            DataKeyNames="ArtistWorkID,ArtistID,ImageFileName,IsDeleted,Width,Height,ExhibitionNo,Commission" CssClass="table table-bordered table-striped table-hover" OnPageIndexChanging="gvArtistWorks_PageIndexChanging">
                             <Columns>
                                 <asp:BoundField DataField="WorkName" HeaderText="Work Name" />
                                 <asp:BoundField DataField="FramedText" HeaderText="Is Framed" ItemStyle-Width="10%" />

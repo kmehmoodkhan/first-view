@@ -110,6 +110,13 @@ namespace FirstView.Artist
 
             a.Edit(Convert.ToInt32(Session["FV_ArtistID"]), txtName.Text, txtSurname.Text, txtCV.Text, Convert.ToInt32(ddlArtistType.SelectedValue),true, hidUniqueID.Value, Session["FV_Username"].ToString());
 
+            int ArtistID = Convert.ToInt32(Session["FV_ArtistID"]);
+
+            int adminId = 0;
+            string emailAddr = GetAdminEmailAddress(out adminId);
+
+            SendEmail(ArtistID, 1, emailAddr, adminId);
+
             // Set Artist Name and Surname
             Session["FV_Name"] = txtName.Text;
             Session["FV_Surname"] = txtSurname.Text;
@@ -119,7 +126,19 @@ namespace FirstView.Artist
             //Response.Redirect("Menu.aspx");
         }        
 
-        private void SendEmail(int ArtistID, int ApprovalStatus, string EmailAddress)
+        private string GetAdminEmailAddress(out int adminId)
+        {
+
+            adminId = 0;
+            cUsers u = new cUsers();
+            DataView dv = new DataView();
+
+            // Send Email to All Admins
+            dv = u.ListAllAdmins();
+            adminId = Convert.ToInt32(dv.Table.Rows[0]["UserId"].ToString());
+            return dv.Table.Rows[0]["Email"].ToString();
+        }
+        private void SendEmail(int ArtistID, int ApprovalStatus, string EmailAddress, int adminId)
         {
             string Surname = "";
             string Name = "";
@@ -177,7 +196,10 @@ namespace FirstView.Artist
                 sbBody.AppendLine("Good day, <br/>");
                 sbBody.AppendLine(String.Concat("The Artist: ", Name, " ", Surname, " has re-submitted their page for approval. <br/>"));
             }
-            sbBody.AppendLine(String.Concat("<a href='http://first-view.uk/users/Login.aspx?RetUrl=4&ArtistID=", ArtistID.ToString(), "'> Click here to approve the page.</a><br/><br/>"));
+
+            string url = "http://first-view.uk/users/Login.aspx?papr=1&ArtistId=" + ArtistID+ "&AdId="+ adminId;
+
+            sbBody.AppendLine(String.Concat("<a href='"+url+"'> Click here to approve the page.</a><br/><br/>"));
             sbBody.AppendLine("Thank You<br/>");
             sbBody.AppendLine("Admin @ First-View");
 

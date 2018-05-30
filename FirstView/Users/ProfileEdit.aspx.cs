@@ -110,9 +110,11 @@ namespace FirstView.PublicView
             DataView dv = cUsers.ListAllAdmins();
             ArrayList alEmailIds = new ArrayList();
             string emailId = string.Empty;
+            int adminId = 0;
             foreach (DataRow dr in dv.Table.Rows)
             {
                 emailId = Convert.ToString(dr["Email"]);
+                adminId = Convert.ToInt32(dr["UserId"]);
                 if (!alEmailIds.Contains(emailId))
                 {
                     alEmailIds.Add(emailId);
@@ -122,7 +124,7 @@ namespace FirstView.PublicView
             {
                 for (int i = 0; i < alEmailIds.Count; i++)
                 {
-                    SendEmail(artistId, 1, alEmailIds[i].ToString());
+                    SendEmail(artistId, 1, alEmailIds[i].ToString(), adminId);
                 }
             }
             ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "openModal();", true);
@@ -130,7 +132,9 @@ namespace FirstView.PublicView
             //Response.Redirect("Menu.aspx");
         }
 
-        private void SendEmail(int ArtistID, int ApprovalStatus, string EmailAddress)
+
+
+        private void SendEmail(int ArtistID, int ApprovalStatus, string EmailAddress, int adminId)
         {
             string Surname = "";
             string Name = "";
@@ -176,7 +180,10 @@ namespace FirstView.PublicView
             sbBody.AppendLine("Good day, <br/>");
             sbBody.AppendLine(String.Concat("The Artist: ", Name, " ", Surname, " has submitted their page for approval. <br/>"));
 
-            sbBody.AppendLine(String.Concat("<a href='http://first-view.uk/users/Login.aspx?RetUrl=4&ArtistID=", ArtistID.ToString(), "'> Click here to approve the page.</a><br/><br/>"));
+            string url = "http://first-view.uk/users/Login.aspx?papr=1&ArtistId=" + ArtistID + "&AdId=" + adminId;
+
+            sbBody.AppendLine(String.Concat("<a href='" + url + "'> Click here to approve the page.</a><br/><br/>"));
+
             sbBody.AppendLine("Thank You<br/>");
             sbBody.AppendLine("Admin @ First-View");
 

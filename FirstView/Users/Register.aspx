@@ -190,6 +190,12 @@
                 <asp:CompareValidator ID="cvPass" ControlToValidate="txtConfirmPassword" ControlToCompare="txtPassword" CssClass="text-danger" SetFocusOnError="true" Display="Dynamic" runat="server" ErrorMessage="The Passwords entered do not match."></asp:CompareValidator>
             </div>
         </div>
+
+        <div class="row">
+            <div class="col-md-2 col-sm-12 col-xs-12 marginTop">
+                <asp:Button ID="Button1" ValidationGroup="reg" class="btn btn-primary" runat="server" Width="80px" Text="Save" OnClick="butRegister_Click" />
+            </div>
+        </div>
     </div>
     <div id="myModal" class="modal fade">
         <div class="modal-dialog">

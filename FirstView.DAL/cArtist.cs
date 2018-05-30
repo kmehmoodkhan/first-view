@@ -83,6 +83,11 @@ namespace FirstView.BusinessLayer
             return FirstView.DataAccessLayer.cArtist.UserDetailsByArtistId(ArtistID);
         }
 
+        public int UpdateProfileStatus(int artistId,int status,int adminId)
+        {
+            return FirstView.DataAccessLayer.cArtist.UpdateProfileStatus(artistId, status, adminId);
+        }
+
     }
 }
 

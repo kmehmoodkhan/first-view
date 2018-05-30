@@ -125,7 +125,7 @@
                         </div>
                         <div class="row marginTop">
                             <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12 align-middle">
-                                <label for="subject">Prsentation<span class="requiredF">*</span></label>
+                                <label for="subject">Presentation<span class="requiredF">*</span></label>
                                 <div class="input-group" style="width: 100% !important;">
                                     <asp:RadioButtonList ID="rbltPresenation" CssClass="RadioButtonWidth" runat="server" RepeatColumns="4" Font-Bold="false" RepeatDirection="Horizontal" TextAlign="Left" Width="100%"
                                         RepeatLayout="Table">

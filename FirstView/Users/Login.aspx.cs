@@ -51,6 +51,21 @@ namespace FirstView.Users
                         lblStatus.Visible = true;
                     }
                 }
+
+                if (Request.QueryString["papr"] != null)
+                {
+                    int newStatus = 2;
+                    int artistId = Convert.ToInt32(Request.QueryString["ArtistId"]);
+                    int adId = Convert.ToInt32(Request.QueryString["AdId"]);
+
+                    cArtist a = new cArtist();
+                    a.UpdateProfileStatus(artistId, newStatus, adId);
+
+                    lblStatus.Text = "Artist profile has been approved successfully. Please login to continue.";
+                    lblStatus.CssClass = "text-success";
+                    lblStatus.Visible = true;
+                }
+
                 txtUsername.Focus();
             }
         }
@@ -68,7 +83,7 @@ namespace FirstView.Users
             string Username = "";
             cUsers usr = new cUsers();
             DataView dv = new DataView();
-            
+
             Session.RemoveAll();
             Session.Clear();
             IsValidLogin = usr.DoAuthenticate(txtUsername.Text, txtPassword.Text);
@@ -153,6 +168,6 @@ namespace FirstView.Users
             {
                 ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "openModalLogin();", true);
             }
-        }    
+        }
     }
 }
