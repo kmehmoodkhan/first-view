@@ -92,6 +92,7 @@
                             </GroupTemplate>
                             <ItemTemplate>
                                 <asp:HiddenField runat="server" ID="hdnfArtistWorkID" Value='<%# Eval("ArtistWorkID") %>' />
+                                 <asp:HiddenField runat="server" ID="hiddenApprovalStatus" Value='<%# Eval("ApprovalStatus") %>' />
                                 <div class="col-md-3" style="display: <%# Eval("Show")%>; margin-top: 25px;">
                                     <div class="ArtistWorkItemContainer">
                                         <p>

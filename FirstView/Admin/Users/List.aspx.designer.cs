@@ -94,6 +94,15 @@ namespace FirstView.Admin.Users {
         protected global::System.Web.UI.HtmlControls.HtmlButton butClearSearch;
         
         /// <summary>
+        /// rptAlphabets control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Repeater rptAlphabets;
+        
+        /// <summary>
         /// upCrudGrid control.
         /// </summary>
         /// <remarks>
@@ -110,6 +119,15 @@ namespace FirstView.Admin.Users {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView gvUsers;
+        
+        /// <summary>
+        /// lblStatus control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblStatus;
         
         /// <summary>
         /// lblMessage control.

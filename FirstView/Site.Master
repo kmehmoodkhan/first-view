@@ -179,7 +179,7 @@
                 </div>
                 <br />
                 <div class="navbar-collapse">
-                    <ul class="nav navbar-nav" style="font-size: 12px; width:50%" runat="server" id="nav">
+                    <ul class="nav navbar-nav" style="font-size: 12px; width:55%" runat="server" id="nav">
                     </ul>
                     <ul class="nav navbar-nav navbar-right" id="nav" style="font-size: 12px; float: right; margin-right: 0px;">
                         <li><a runat="server" style="font-size: 12px" id="login_success_linktop1" href="~/Users/Register.aspx">Register</a></li>

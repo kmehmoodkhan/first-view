@@ -16,6 +16,7 @@ namespace FirstView.Admin.ArtistWork
             CheckUserValidity();
             if (!Page.IsPostBack)
             {
+                ViewState["IgnorePattern"] = false;
                 LoadData();
             }
         }
@@ -69,7 +70,7 @@ namespace FirstView.Admin.ArtistWork
             }
         }
 
-        private void DoSearch()
+        private void DoSearch(bool ignorePattern = false)
         {
             int IsDeleted = -1;
             int ArtistID = 0;
@@ -107,11 +108,27 @@ namespace FirstView.Admin.ArtistWork
             if (txtSearchNote.Text.Length > 0)
             { Note = txtSearchNote.Text; }
 
-            dv = aw.Search(ArtistID, IsDeleted, WorkName, Note);
+            string Pattern = "";
 
-            if (dv.Table.Rows.Count > 0)
+            if (!ignorePattern)
             {
-                gvArtistWorks.DataSource = dv.Table;
+                if (Request.QueryString["sAlpha"] != null)
+                {
+                    Pattern = Request.QueryString["sAlpha"].ToString();
+                }
+            }
+
+            DataSet ds = aw.Search(ArtistID, IsDeleted, WorkName, Note, Pattern);
+
+            if (ds.Tables.Count > 0)
+            {
+                this.rptAlphabets.DataSource = ds.Tables[1];
+                this.rptAlphabets.DataBind();
+            }
+
+            if (ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0)
+            {
+                gvArtistWorks.DataSource = ds.Tables[0];
                 gvArtistWorks.DataBind();
                 gvArtistWorks.Visible = true;
                 lblStatus.Visible = false;                
@@ -145,7 +162,7 @@ namespace FirstView.Admin.ArtistWork
 
                 string msg=aw.Delete(ArtistWorkID, Session["FV_Username"].ToString());
                 DoSearch();
-                ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "ShowPopup('"+ msg + "');", true);
+                //ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "ShowPopup('"+ msg + "');", true);
             }
         }
         string status = "0";
@@ -221,18 +238,18 @@ namespace FirstView.Admin.ArtistWork
                     hypEdit.NavigateUrl = "Edit.aspx?ArtistID=" + ArtistID.ToString() + "&ArtistWorkID=" + ArtistWorkID.ToString();
                 }
 
-                Button imgDel = (Button)e.Row.FindControl("butDelete");
-                if (imgDel != null)
-                {
-                    string deleteMessage = "Are you sure you want to delete this item?";
-                    imgDel.Style["Cursor"] = "hand";
-                    if (IsDeleted == true)
-                    {
-                        deleteMessage = "Are you sure you want to undelete this item?";
-                        imgDel.Text = "Undelete";
-                    }
-                    imgDel.Attributes.Add("onclick", "return ConfirmDelete('" + deleteMessage + "')");
-                }
+                //Button imgDel = (Button)e.Row.FindControl("butDelete");
+                //if (imgDel != null)
+                //{
+                //    string deleteMessage = "Are you sure you want to delete this item?";
+                //    imgDel.Style["Cursor"] = "hand";
+                //    if (IsDeleted == true)
+                //    {
+                //        deleteMessage = "Are you sure you want to undelete this item?";
+                //        imgDel.Text = "Undelete";
+                //    }
+                //    imgDel.Attributes.Add("onclick", "return ConfirmDelete('" + deleteMessage + "')");
+                //}
 
                 // Check Approval Status 
                 ApprovalStatus = "";//appr.CheckArtistWorkStatus(ArtistWorkID);
@@ -318,13 +335,14 @@ namespace FirstView.Admin.ArtistWork
 
         protected void butClearSearch_ServerClick(object sender, EventArgs e)
         {
+            ViewState["IgnorePattern"] = true;
             radArtistActive.Checked = true;
             radArtistAll.Checked = false;
             radArtistDeleted.Checked = false;
             ddlArtist.SelectedValue = "";
             txtSearchNote.Text = "";
             txtSearchWorkName.Text = "";
-            DoSearch();
+            DoSearch(true);
         }
 
         private void SendEmail(int ArtistWorkID, int ApprovalStatus)
@@ -417,6 +435,41 @@ namespace FirstView.Admin.ArtistWork
         protected void btnExhibition_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private string Pattern
+        {
+            get
+            {
+                string Pattern = "";
+
+                if (Request.QueryString["sAlpha"] != null)
+                {
+                    Pattern = Request.QueryString["sAlpha"].ToString();
+                }
+                return Pattern;
+            }
+        }
+
+        protected void rptAlphabets_ItemDataBound(object sender, RepeaterItemEventArgs e)
+        {
+            if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
+            {
+                HyperLink hlink = e.Item.FindControl("linkIndex") as HyperLink;
+                string currentText = ((System.Data.DataRowView)e.Item.DataItem).Row.ItemArray[0].ToString();
+
+                bool ignorePattern = false;
+                if (ViewState["IgnorePattern"] != null)
+                {
+                    ignorePattern = Convert.ToBoolean(ViewState["IgnorePattern"]);
+                }
+                if (currentText.ToLower().Equals(Pattern.ToLower()) && !ignorePattern)
+                {
+
+                    hlink.CssClass += " selected";
+                }
+                hlink.NavigateUrl = "/Admin/ArtistWork/List.aspx?sAlpha=" + currentText;
+            }
         }
     }
 }

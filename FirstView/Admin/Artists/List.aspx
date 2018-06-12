@@ -106,6 +106,12 @@
                 </div>
             </div>
         </div>
+          <asp:Repeater ID="rptAlphabets" runat="server" OnItemDataBound="rptAlphabets_ItemDataBound">
+            <ItemTemplate>
+                <asp:HyperLink ID="linkIndex" runat="server" Text='<%# DataBinder.Eval(Container.DataItem,"IndexChar")%>' CssClass="btn-sm  btn btn-info"></asp:HyperLink>
+            </ItemTemplate>
+        </asp:Repeater>
+        <br /><br />
         <asp:UpdatePanel ID="upCrudGrid" runat="server">
             <ContentTemplate>
                 <asp:GridView ID="gvArtists" runat="server" Width="100%" HorizontalAlign="Left" OnRowDataBound="gvArtists_RowDataBound"

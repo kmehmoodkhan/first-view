@@ -4,6 +4,11 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <style type="text/css">
+        .padding-txt {
+            margin-bottom: 4px;
+            margin-top: 4px;
+        }
+
         .VeryPoor {
             background-color: red;
         }
@@ -27,6 +32,36 @@
         .border {
             border: medium #000000;
             width: 500px;
+        }
+
+
+        /*.container .row div {
+            padding-top: 8px !important;
+        }*/
+
+        .container .row div input[type="text"],
+        input[type="password"],
+        input[type="email"],
+        input[type="tel"],
+        input[type="select"],
+        span, select {
+            margin-bottom: 4px;
+            margin-top: 4px;
+        }
+
+        .lbl_padding {
+            padding-top: 8px;
+        }
+
+        .form-control {
+            display: inline !important;
+            margin-right: 20px !important;
+        }
+
+        @media (min-width: 992px) {
+            .col-md-2 {
+                width: 11.666667%;
+            }
         }
     </style>
     <script type="text/javascript">
@@ -67,113 +102,121 @@
     </script>
     <div class="container">
         <div class="page-header">
-            <h4>Registration</h4>
-            <p>Please complete the registration details below:</p>
-            <p class="lead">
-                <asp:Button ID="butRegister" ValidationGroup="reg" class="btn btn-primary" runat="server" Width="80px" Text="Save" OnClick="butRegister_Click" />
-            </p>
+            <h4 style="font-size: 25px; margin-bottom: 0px; margin-top: 0px;">Registration</h4>
         </div>
         <div class="row">
-            <div class="col-md-2 col-sm-12 col-xs-12 marginTop">
+            <div class="col-md-2 col-sm-12 col-xs-12 lbl_padding">
                 <asp:Label ID="Label5" runat="server" Text="Name"></asp:Label>
             </div>
-            <div class="col-md-4 col-sm-12 col-xs-12 marginTop">
-                <asp:TextBox ID="txtName" class="form-control" MaxLength="100" ToolTip="Name is a required field." runat="server"></asp:TextBox>
+            <div class="col-md-8 col-sm-12 col-xs-12">
+                <asp:TextBox ID="txtName" class="form-control padding-txt" MaxLength="100" ToolTip="Name is a required field." runat="server"></asp:TextBox>
                 <asp:RequiredFieldValidator ID="rfvtxtName" ValidationGroup="reg" ControlToValidate="txtName" CssClass="text-danger" Display="Dynamic" SetFocusOnError="true" runat="server" ErrorMessage="Name is a required field"></asp:RequiredFieldValidator>
             </div>
         </div>
         <div class="row">
-            <div class="col-md-2 col-sm-12 col-xs-12 marginTop">
+            <div class="col-md-2 col-sm-12 col-xs-12 lbl_padding">
                 <asp:Label ID="Label6" runat="server" Text="Surname"></asp:Label>
             </div>
-            <div class="col-md-4 col-sm-12 col-xs-12 marginTop">
-                <asp:TextBox ID="txtSurname" class="form-control" MaxLength="100" ToolTip="Surname is a required field." runat="server"></asp:TextBox>
+            <div class="col-md-8 col-sm-12 col-xs-12">
+                <asp:TextBox ID="txtSurname" class="form-control padding-txt" MaxLength="100" ToolTip="Surname is a required field." runat="server"></asp:TextBox>
                 <asp:RequiredFieldValidator ID="rfvtxtSurname" ValidationGroup="reg" ControlToValidate="txtSurname" CssClass="text-danger" Display="Dynamic" SetFocusOnError="true" runat="server" ErrorMessage="Surname is a required field"></asp:RequiredFieldValidator>
             </div>
         </div>
         <div class="row">
-            <div class="col-md-2 col-sm-12 col-xs-12 marginTop">
+            <div class="col-md-2 col-sm-12 col-xs-12 lbl_padding">
                 <asp:Label ID="Label7" runat="server" Text="Email Address"></asp:Label>
             </div>
-            <div class="col-md-4 col-sm-12 col-xs-12 marginTop">
-                <asp:TextBox ID="txtEmailAddress" class="form-control" MaxLength="100" TextMode="Email" runat="server" ToolTip="Email Address is a required field."></asp:TextBox>
+            <div class="col-md-8 col-sm-12 col-xs-12">
+                <asp:TextBox ID="txtEmailAddress" class="form-control padding-txt" MaxLength="100" TextMode="Email" runat="server" ToolTip="Email Address is a required field."></asp:TextBox>
                 <asp:RegularExpressionValidator ID="regexEmailValid" ValidationGroup="reg" runat="server" ValidationExpression="\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*" CssClass="text-danger" Display="Dynamic" ControlToValidate="txtEmailAddress" ErrorMessage="Please provide a valid email."></asp:RegularExpressionValidator>
                 <asp:RequiredFieldValidator ID="rfvtxtEmailAddress" ValidationGroup="reg" ControlToValidate="txtEmailAddress" CssClass="text-danger" Display="Dynamic" SetFocusOnError="true" runat="server" ErrorMessage="Email Address is a required field"></asp:RequiredFieldValidator>
             </div>
         </div>
         <div class="row">
-            <div class="col-md-2 col-sm-12 col-xs-12 marginTop">
+            <div class="col-md-2 col-sm-12 col-xs-12 lbl_padding">
                 <asp:Label ID="Label9" runat="server" Text="Address"></asp:Label>
             </div>
-            <div class="col-md-4 col-sm-12 col-xs-12 marginTop">
-                <asp:TextBox ID="txtAddress" class="form-control" MaxLength="250" runat="server" TextMode="MultiLine" ToolTip="Address is a required field." Rows="4"></asp:TextBox>
+            <div class="col-md-8 col-sm-12 col-xs-12">
+                <asp:TextBox ID="txtAddress" class="form-control padding-txt" MaxLength="250" runat="server" ToolTip="Address is a required field."></asp:TextBox>
                 <asp:RequiredFieldValidator ID="rfvtxtAddress" ValidationGroup="reg" ControlToValidate="txtAddress" CssClass="text-danger" Display="Dynamic" SetFocusOnError="true" runat="server" ErrorMessage="Address is a required field"></asp:RequiredFieldValidator>
             </div>
         </div>
         <div class="row">
-            <div class="col-md-2 col-sm-12 col-xs-12 marginTop">
+            <div class="col-md-2 col-sm-12 col-xs-12 lbl_padding">
                 <asp:Label ID="Label10" runat="server" Text="Town"></asp:Label>
             </div>
-            <div class="col-md-4 col-sm-12 col-xs-12 marginTop">
-                <asp:TextBox ID="txtTown" class="form-control" MaxLength="50" runat="server"></asp:TextBox>
+            <div class="col-md-8 col-sm-12 col-xs-12">
+                <asp:TextBox ID="txtTown" class="form-control padding-txt" MaxLength="50" runat="server"></asp:TextBox>
             </div>
         </div>
         <div class="row">
-            <div class="col-md-2 col-sm-12 col-xs-12 marginTop">
+            <div class="col-md-2 col-sm-12 col-xs-12 lbl_padding">
                 <asp:Label ID="Label11" runat="server" Text="Post Code"></asp:Label>
             </div>
-            <div class="col-md-4 col-sm-12 col-xs-12 marginTop">
-                <asp:TextBox ID="txtPostCode" class="form-control" MaxLength="50" runat="server" ToolTip="Postal Code is a required field."></asp:TextBox>
+            <div class="col-md-8 col-sm-12 col-xs-12">
+                <asp:TextBox ID="txtPostCode" class="form-control padding-txt" MaxLength="50" runat="server" ToolTip="Postal Code is a required field."></asp:TextBox>
                 <asp:RequiredFieldValidator ID="rfvtxtPostCode" ValidationGroup="reg" ControlToValidate="txtPostCode" CssClass="text-danger" Display="Dynamic" SetFocusOnError="true" runat="server" ErrorMessage="Postal Code is a required field"></asp:RequiredFieldValidator>
             </div>
         </div>
         <div class="row">
-            <div class="col-md-2 col-sm-12 col-xs-12 marginTop">
+            <div class="col-md-2 col-sm-12 col-xs-12 lbl_padding">
                 <asp:Label ID="Label12" runat="server" Text="Telephone"></asp:Label>
             </div>
-            <div class="col-md-4 marginTop">
-                <asp:TextBox ID="txtTelephone" class="form-control" MaxLength="50" runat="server" ToolTip="Between Telephone and Mobile number  at least one should be specified."></asp:TextBox>
+            <div class="col-md-4" style="width: 309px;">
+                <asp:TextBox ID="txtTelephone" class="form-control padding-txt" MaxLength="50" runat="server" ToolTip="Between Telephone and Mobile number  at least one should be specified."></asp:TextBox>
+            </div>
+            <div class="col-md-2 col-sm-12 col-xs-12 lbl_padding" style="width: 161px;">
+                <asp:Label ID="Label13" runat="server" Text="Mobile"></asp:Label>
+            </div>
+            <div class="col-md-4 col-sm-12 col-xs-12">
+                <asp:TextBox ID="txtMobile" class="form-control padding-txt" MaxLength="50" runat="server" ToolTip="Between Telephone and Mobile number  at least one should be specified."></asp:TextBox>
             </div>
         </div>
-        <div class="row">
+        <%--<div class="row">
             <div class="col-md-2 col-sm-12 col-xs-12 marginTop">
                 <asp:Label ID="Label13" runat="server" Text="Mobile"></asp:Label>
             </div>
             <div class="col-md-4 col-sm-12 col-xs-12 marginTop">
                 <asp:TextBox ID="txtMobile" class="form-control" MaxLength="50" runat="server" ToolTip="Between Telephone and Mobile number  at least one should be specified."></asp:TextBox>
             </div>
-        </div>
+        </div>--%>
         <div class="row">
-            <div class="col-md-2 col-sm-12 col-xs-12 marginTop">
+            <div class="col-md-2 col-sm-12 col-xs-12 lbl_padding">
                 Bank Sort Code
             </div>
-            <div class="col-md-4 marginTop">
-                <asp:TextBox ID="txtBankSortCode" class="form-control" MaxLength="50" runat="server"></asp:TextBox>
+            <div class="col-md-4" style="width: 309px;">
+                <asp:TextBox ID="txtBankSortCode" class="form-control padding-txt" MaxLength="50" runat="server"></asp:TextBox>
+            </div>
+            <div class="col-md-2 col-sm-12 col-xs-12 lbl_padding" style="width: 161px;">
+                Bank Account Number
+            </div>
+            <div class="col-md-4 col-sm-12 col-xs-12">
+                <asp:TextBox ID="txtBankAccountNumber" class="form-control padding-txt" MaxLength="50" runat="server"></asp:TextBox>
             </div>
         </div>
-        <div class="row">
+        <%-- <div class="row">
             <div class="col-md-2 col-sm-12 col-xs-12 marginTop">
                 Bank Account Number
             </div>
             <div class="col-md-4 col-sm-12 col-xs-12 marginTop">
                 <asp:TextBox ID="txtBankAccountNumber" class="form-control" MaxLength="50" runat="server"></asp:TextBox>
             </div>
-        </div>
+        </div>--%>
         <div class="row">
-            <div class="col-md-2 col-sm-12 col-xs-12 marginTop">
+            <div class="col-md-2 col-sm-12 col-xs-12 lbl_padding">
                 <asp:Label ID="Label1" runat="server" Text="Username"></asp:Label>
             </div>
-            <div class="col-md-4 col-sm-12 col-xs-12 marginTop">
-                <asp:TextBox ID="txtUsername" MaxLength="50" class="form-control" runat="server" ToolTip="Username is a required field."></asp:TextBox>
+            <div class="col-md-8 col-sm-12 col-xs-12">
+                <asp:TextBox ID="txtUsername" MaxLength="50" class="form-control padding-txt" runat="server" ToolTip="Username is a required field."></asp:TextBox>
                 <asp:RequiredFieldValidator ID="rfvtxtUsername" ValidationGroup="reg" ControlToValidate="txtUsername" CssClass="text-danger" Display="Dynamic" SetFocusOnError="true" runat="server" ErrorMessage="Username is a required field"></asp:RequiredFieldValidator>
             </div>
         </div>
         <div class="row">
-            <div class="col-md-2 col-sm-12 col-xs-12 marginTop">
+            <div class="col-md-2 col-sm-12 col-xs-12 lbl_padding">
                 <asp:Label ID="Label2" runat="server" Text="Password"></asp:Label>
             </div>
-            <div class="col-md-4 col-sm-12 col-xs-12 marginTop">
-                <asp:TextBox ID="txtPassword" class="form-control" TextMode="Password" MaxLength="50" Width="95%" runat="server" ToolTip="Password is a required field."></asp:TextBox>
+            <div class="col-md-8 col-sm-12 col-xs-12">
+                <asp:TextBox ID="txtPassword" class="form-control padding-txt" TextMode="Password" MaxLength="50" Width="95%" runat="server" ToolTip="Password is a required field."></asp:TextBox>
                 <asp:RequiredFieldValidator ID="rfvtxtPassword" ValidationGroup="reg" ControlToValidate="txtPassword" CssClass="text-danger" Display="Dynamic" SetFocusOnError="true" runat="server" ErrorMessage="Password is a required field"></asp:RequiredFieldValidator>
                 <asp:RegularExpressionValidator Display="Dynamic" ValidationGroup="reg" ControlToValidate="txtPassword" ID="revPassword" ValidationExpression="^[\s\S]{6,}$" runat="server" ErrorMessage="Minimum 6 characters required."></asp:RegularExpressionValidator>
                 <ajaxToolkit:PasswordStrength ID="PasswordStrength1" runat="server" DisplayPosition="RightSide" StrengthIndicatorType="BarIndicator" TargetControlID="txtPassword" PrefixText="Stength:" Enabled="true" RequiresUpperAndLowerCaseCharacters="true" MinimumLowerCaseCharacters="1" MinimumUpperCaseCharacters="1" MinimumNumericCharacters="1" PreferredPasswordLength="6" TextStrengthDescriptions="VeryPoor; Weak; Average; Strong; Excellent" StrengthStyles="VeryPoor; Weak; Average; Excellent; Strong;" CalculationWeightings="25;25;15;35" BarBorderCssClass="border" HelpStatusLabelID="lblPass" />
@@ -181,19 +224,22 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-md-2 col-sm-12 col-xs-12 marginTop">
+            <div class="col-md-2 col-sm-12 col-xs-12 lbl_padding">
                 <asp:Label ID="Label8" runat="server" Text="Confirm Password"></asp:Label>
             </div>
-            <div class="col-md-4 col-sm-12 col-xs-12 marginTop">
-                <asp:TextBox ID="txtConfirmPassword" class="form-control" TextMode="Password" MaxLength="50" runat="server" ToolTip="Confirm Password is a required field and should be same as password."></asp:TextBox>
+            <div class="col-md-8 col-sm-12 col-xs-12">
+                <asp:TextBox ID="txtConfirmPassword" class="form-control padding-txt" TextMode="Password" MaxLength="50" runat="server" ToolTip="Confirm Password is a required field and should be same as password."></asp:TextBox>
                 <asp:RequiredFieldValidator ID="rfvtxtConfirmPassword" ValidationGroup="reg" ControlToValidate="txtConfirmPassword" CssClass="text-danger" Display="Dynamic" SetFocusOnError="true" runat="server" ErrorMessage="Confirm Password is a required field"></asp:RequiredFieldValidator>
                 <asp:CompareValidator ID="cvPass" ControlToValidate="txtConfirmPassword" ControlToCompare="txtPassword" CssClass="text-danger" SetFocusOnError="true" Display="Dynamic" runat="server" ErrorMessage="The Passwords entered do not match."></asp:CompareValidator>
             </div>
         </div>
 
         <div class="row">
-            <div class="col-md-2 col-sm-12 col-xs-12 marginTop">
-                <asp:Button ID="Button1" ValidationGroup="reg" class="btn btn-primary" runat="server" Width="80px" Text="Save" OnClick="butRegister_Click" />
+            <div class="col-md-2 col-sm-12 col-xs-12">
+            </div>
+            <div class="col-md-4 col-sm-12 col-xs-12" style="padding-top: 4px;">
+                <asp:Button ID="Button1" ValidationGroup="reg" class="btn btn-primary" runat="server" Width="80px" Text="Save" OnClick="butRegister_Click" />&nbsp;
+                <asp:Button ID="ButtonCancel" ValidationGroup="reg" CausesValidation="false" class="btn btn-primary" runat="server" Width="80px" Text="Cancel" OnClick="butCancel_Click" />
             </div>
         </div>
     </div>

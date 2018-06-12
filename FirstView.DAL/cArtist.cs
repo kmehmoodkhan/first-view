@@ -25,9 +25,9 @@ namespace FirstView.BusinessLayer
             return FirstView.DataAccessLayer.cArtist.ListByIDForEmail(ArtistID);
         }
 
-        public DataView Search(int IsDeleted, string Name, int ArtistTypeID)
+        public DataSet Search(int IsDeleted, string Name, int ArtistTypeID,string Pattern)
         {
-            return FirstView.DataAccessLayer.cArtist.Search(IsDeleted,Name,ArtistTypeID);
+            return FirstView.DataAccessLayer.cArtist.Search(IsDeleted,Name,ArtistTypeID,Pattern);
         }
 
         public DataView CreateIndex()

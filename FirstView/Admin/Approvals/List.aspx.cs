@@ -14,6 +14,20 @@ namespace FirstView.Admin.Approvals
             if (!Page.IsPostBack)
             {
                 LoadData();
+                ViewState["IgnorePattern"] = false;
+            }
+        }
+
+        private int Status
+        {
+            get
+            {
+                int Status = 0;
+                if(Request.QueryString["Status"] != null)
+                {
+                    Status = Convert.ToInt32(Request.QueryString["Status"]);
+                }
+                return Status;
             }
         }
 
@@ -28,6 +42,21 @@ namespace FirstView.Admin.Approvals
             {
                 Response.Redirect("../../Users/Login.aspx?im=3");
             }
+        }
+
+        protected void radArtistAll_CheckedChanged(object sender, EventArgs e)
+        {
+            DoSearch();
+        }
+
+        protected void radArtistActive_CheckedChanged(object sender, EventArgs e)
+        {
+            DoSearch();
+        }
+
+        protected void radArtistDeleted_CheckedChanged(object sender, EventArgs e)
+        {
+            DoSearch();
         }
 
         private void LoadData()
@@ -83,11 +112,11 @@ namespace FirstView.Admin.Approvals
             }
         }
 
-        private void DoSearch()
+        private void DoSearch(bool ignorePattern = false)
         {
             int ApprovalStatus = 0;
             int ArtistID = 0;
-            DataView dv = new DataView();
+            
             cApprovals appr = new cApprovals();
 
             if (ddlArtist.SelectedItem != null)
@@ -98,6 +127,13 @@ namespace FirstView.Admin.Approvals
                 }
             }
 
+         
+            if(Status > 0 && ViewState["StatusUsed"]== null)
+            {
+                ddlApprovalStatus.SelectedValue = Status.ToString();
+                ViewState["StatusUsed"] = true;
+            }
+
             if (ddlApprovalStatus.SelectedValue != null)
             {
                 if (ddlApprovalStatus.SelectedValue.Length > 0)
@@ -106,20 +142,61 @@ namespace FirstView.Admin.Approvals
                 }
             }
 
-            dv = appr.Search(ArtistID, ApprovalStatus);
 
-            if (dv.Table.Rows.Count > 0)
+            int DeleteStatus = 0;
+            if(radArtistAll.Checked)
             {
-                gvApprovals.DataSource = dv.Table;
+                DeleteStatus = 2;
+            }
+            else if(radArtistActive.Checked)
+            {
+                DeleteStatus = 0;
+            }
+            else
+            {
+                DeleteStatus = 1;
+            }
+
+            string Pattern = "";
+
+            if (!ignorePattern)
+            {
+                if (Request.QueryString["sAlpha"] != null)
+                {
+                    Pattern = Request.QueryString["sAlpha"].ToString();
+                }
+            }
+                
+
+            DataSet ds = appr.Search(ArtistID, ApprovalStatus,Pattern, DeleteStatus);
+
+
+
+            if (ds.Tables.Count > 0)
+            {
+                rptAlphabets.DataSource = ds.Tables[0];
+                rptAlphabets.DataBind();
+
+                gvApprovals.DataSource = ds.Tables[1];
                 gvApprovals.DataBind();
                 gvApprovals.Visible = true;
-                lblStatus.Visible = false;
+
+                if (ds.Tables[1].Rows.Count > 0)
+                {
+                    lblStatus.Visible = false;
+                }
+                else
+                {
+                    lblStatus.Visible = true;
+                    lblStatus.Text = "There is no data available.";
+                }
             }
             else
             {
                 gvApprovals.Visible = false;
                 lblStatus.Text = "There is no data available.";
                 lblStatus.Visible = true;
+                rptAlphabets.Visible = false;
             }
         }
 
@@ -191,13 +268,49 @@ namespace FirstView.Admin.Approvals
 
         protected void butClearSearch_ServerClick(object sender, EventArgs e)
         {
+            ViewState["IgnorePattern"] = true;
             ddlArtist.SelectedValue = "";
             ddlApprovalStatus.SelectedValue = "0";
-            DoSearch();
+            DoSearch(true);
         }
         protected void ddlApprovalStatus_SelectedIndexChanged(object sender, EventArgs e)
         {
             DoSearch();
+        }
+
+        private string Pattern
+        {
+            get
+            {
+                string Pattern = "";
+
+                if (Request.QueryString["sAlpha"] != null)
+                {
+                    Pattern = Request.QueryString["sAlpha"].ToString();
+                }
+                return Pattern;
+            }
+        }
+
+        protected void rptAlphabets_ItemDataBound(object sender, RepeaterItemEventArgs e)
+        {
+            if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
+            {
+                HyperLink hlink = e.Item.FindControl("linkIndex") as HyperLink;
+                string currentText = ((System.Data.DataRowView)e.Item.DataItem).Row.ItemArray[0].ToString();
+
+                bool ignorePattern = false;
+                if (ViewState["IgnorePattern"] != null)
+                {
+                    ignorePattern = Convert.ToBoolean(ViewState["IgnorePattern"]);
+                }
+                if (currentText.ToLower().Equals(Pattern.ToLower()) && !ignorePattern)
+                {
+
+                    hlink.CssClass += " selected";
+                }
+                hlink.NavigateUrl = "/Admin/Approvals/List.aspx?sAlpha=" + currentText;
+            }
         }
     }
 }

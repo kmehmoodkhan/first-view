@@ -52,7 +52,7 @@
                                     <div class="ArtistWorkItemContainer">
                                         <p>
                                             <a href="../Uploads/Resized/<%# Eval("ImageFileName")%>" class="example-image-link" data-lightbox="example-set" data-title="<%# Eval("PreviewTitle")%>">
-                                                <img src="../Uploads/Thumbnails/<%# Eval("ImageFileName")%>" title="<%# Eval("WorkName")%>" class="ArtistWorkItem img-thumbnail" />
+                                                <img src="../Uploads/Thumbnails/<%# Eval("ImageFileName")%>" title="<%# Eval("WorkName")%>" class="ArtistWorkItem img-thumbnail" style="max-height:200px" />
                                             </a>
                                         </p>
                                     </div>
@@ -85,4 +85,9 @@
             </div>
         </div>
     </div>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('.img-thumbnail').css("height", "170px");
+        });
+    </script>
 </asp:Content>

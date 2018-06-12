@@ -161,14 +161,14 @@ namespace FirstView.DataAccessLayer
             i = db.ExecuteNonQuery("usp_Users_RecoveryForgotPassword", System.Data.CommandType.StoredProcedure);
         }
 
-        public static DataView List(bool? IsDeleted, string Name)
+        public static DataSet List(bool? IsDeleted, string Name,string Pattern)
         {
-            DataView dv = new DataView();
             DBHelper db = new DBHelper(DBHelper.ConnectionStr.DefaultConnection);
             db.AddParameter("@IsDeleted", IsDeleted);
             db.AddParameter("@Name", Name);
-            dv = db.ExecuteDataView("usp_Users_ListAll", System.Data.CommandType.StoredProcedure);
-            return dv;
+            db.AddParameter("@Pattern", Pattern);
+            DataSet ds = db.ExecuteDataSet("usp_Users_ListAll", System.Data.CommandType.StoredProcedure);
+            return ds;
         }
 
         public static DataView ListByID(int UserID)

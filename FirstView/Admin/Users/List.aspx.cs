@@ -13,6 +13,7 @@ namespace FirstView.Admin.Users
             CheckUserValidity();
             if (!Page.IsPostBack)
             {
+                ViewState["IgnorePattern"] = false;
                 LoadData();
             }
         }
@@ -56,16 +57,17 @@ namespace FirstView.Admin.Users
 
         protected void butClearSearch_ServerClick(object sender, EventArgs e)
         {
+            ViewState["IgnorePattern"] = true;
             radArtistAll.Checked = false;
             radArtistDeleted.Checked = false;
             radArtistActive.Checked = true;
             txtSearchName.Text = "";
-            LoadGridView();
+            LoadGridView(true);
         }
-        private void LoadGridView()
+        private void LoadGridView(bool ignorePattern=false)
         {
             cUsers usr = new cUsers();
-            DataView dv = new DataView();
+
             bool? IsDeleted = null;
             string Name = "";
 
@@ -73,7 +75,7 @@ namespace FirstView.Admin.Users
             {
                 Name = txtSearchName.Text;
             }
-           
+
             if (radArtistAll.Checked == true)
             {
                 IsDeleted = null;
@@ -86,15 +88,40 @@ namespace FirstView.Admin.Users
             {
                 IsDeleted = false;
             }
-            dv = usr.List(IsDeleted,Name);
-            if (dv.Table.Rows.Count > 0)
+
+            string Pattern = "";
+
+            if (!ignorePattern)
             {
-                gvUsers.DataSource = dv.Table;
+                if (Request.QueryString["sAlpha"] != null)
+                {
+                    Pattern = Request.QueryString["sAlpha"].ToString();
+                }
+            }
+
+            DataSet ds = usr.List(IsDeleted, Name, Pattern);
+
+            if (ds.Tables.Count > 0)
+            {
+                this.rptAlphabets.DataSource = ds.Tables[1];
+                this.rptAlphabets.DataBind();
+            }
+
+
+            if (ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0)
+            {
+                gvUsers.DataSource = ds.Tables[0];
                 gvUsers.DataBind();
                 gvUsers.Visible = true;
+                lblStatus.Visible = false;
             }
             else
-            { gvUsers.Visible = false; }
+            {
+                gvUsers.Visible = false;
+
+                lblStatus.Visible = true;
+                lblStatus.Text = "There is no data available.";
+            }
         }
 
         protected void gvUsers_PageIndexChanging(object sender, GridViewPageEventArgs e)
@@ -116,9 +143,9 @@ namespace FirstView.Admin.Users
                 int UserId = Convert.ToInt32(gvUsers.DataKeys[index]["UserID"]);
                 //int ArtistPieceID = Convert.ToInt32(gvUsers.DataKeys[index].Values["ArtistPieceID"]);
 
-                string message=aw.Delete(UserId, Session["FV_Username"].ToString());
+                string message = aw.Delete(UserId, Session["FV_Username"].ToString());
                 LoadGridView();
-                ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "ShowPopup('"+ message + "');", true);
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "ShowPopup('" + message + "');", true);
             }
         }
         protected void gvUsers_RowDataBound(object sender, GridViewRowEventArgs e)
@@ -142,7 +169,7 @@ namespace FirstView.Admin.Users
                 Button imgDel = (Button)e.Row.FindControl("butDelete");
                 if (imgDel != null)
                 {
-                    
+
                     imgDel.Style["Cursor"] = "hand";
                 }
                 if (gvUsers.DataKeys[e.Row.RowIndex]["IsActive"] != DBNull.Value)
@@ -227,13 +254,48 @@ namespace FirstView.Admin.Users
                     hypEdit.NavigateUrl = "Edit.aspx?UserID=" + UserID.ToString();
                 }
 
-               
+
 
                 HyperLink butResetPass = (HyperLink)e.Row.FindControl("butResetPass");
                 if (butResetPass != null)
                 {
                     butResetPass.NavigateUrl = "ResetPassword.aspx?UserID=" + UserID.ToString();
                 }
+            }
+        }
+
+        private string Pattern
+        {
+            get
+            {
+                string Pattern = "";
+
+                if (Request.QueryString["sAlpha"] != null)
+                {
+                    Pattern = Request.QueryString["sAlpha"].ToString();
+                }
+                return Pattern;
+            }
+        }
+
+        protected void rptAlphabets_ItemDataBound(object sender, RepeaterItemEventArgs e)
+        {
+            if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
+            {
+                HyperLink hlink = e.Item.FindControl("linkIndex") as HyperLink;
+                string currentText = ((System.Data.DataRowView)e.Item.DataItem).Row.ItemArray[0].ToString();
+
+                bool ignorePattern = false;
+                if (ViewState["IgnorePattern"] != null)
+                {
+                    ignorePattern = Convert.ToBoolean(ViewState["IgnorePattern"]);
+                }
+                if (currentText.ToLower().Equals(Pattern.ToLower()) && !ignorePattern)
+                {
+
+                    hlink.CssClass += " selected";
+                }
+                hlink.NavigateUrl = "/Admin/Users/List.aspx?sAlpha=" + currentText;
             }
         }
     }

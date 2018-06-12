@@ -48,15 +48,15 @@ namespace FirstView.DataAccessLayer
             return dv;
         }
 
-        public static DataView Search(int IsDeleted, string Name, int ArtistTypeID)
+        public static DataSet Search(int IsDeleted, string Name, int ArtistTypeID,string Pattern)
         {
-            DataView dv = new DataView();
             DBHelper db = new DBHelper(DBHelper.ConnectionStr.DefaultConnection);
             db.AddParameter("@IsDeleted", IsDeleted);
             db.AddParameter("@Name", Name);
             db.AddParameter("@ArtistTypeID", ArtistTypeID);
-            dv = db.ExecuteDataView("usp_Artist_Search", System.Data.CommandType.StoredProcedure);
-            return dv;
+            db.AddParameter("@Pattern", Pattern);
+            DataSet ds = db.ExecuteDataSet("usp_Artist_Search", System.Data.CommandType.StoredProcedure);
+            return ds;
         }
 
         public static DataView CreateIndex()

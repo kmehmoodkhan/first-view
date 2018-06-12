@@ -72,6 +72,17 @@
         <div class="panel panel-default">
           <div class="panel-heading">Search Filters</div>
           <div class="panel-body">
+              <div class="row">
+                    <div class="col-md-2">
+                        <asp:Label ID="Label2" runat="server" Text="Deleted?"></asp:Label>
+                    </div>
+                    <div class="col-md-10">
+                        <asp:RadioButton ID="radArtistAll" Text="All" runat="server" CssClass="radio-inline" GroupName="radArtist" CausesValidation="false" AutoPostBack="true" OnCheckedChanged="radArtistAll_CheckedChanged" />
+                        <asp:RadioButton ID="radArtistActive" Text="Active" runat="server" CssClass="radio-inline" GroupName="radArtist" CausesValidation="false" AutoPostBack="true" Checked="true" OnCheckedChanged="radArtistActive_CheckedChanged" />
+                        <asp:RadioButton ID="radArtistDeleted" Text="Deleted" runat="server" CssClass="radio-inline" GroupName="radArtist" CausesValidation="false" AutoPostBack="true" OnCheckedChanged="radArtistDeleted_CheckedChanged" />
+                    </div>
+                </div>
+               <br />
             <div class="row">
                 <div class="col-md-2">
                     <asp:Label ID="Label1" runat="server" Text="Artist"></asp:Label>
@@ -99,7 +110,12 @@
             </div>
           </div>
         </div>
-        <br />
+        <asp:Repeater ID="rptAlphabets" runat="server" OnItemDataBound="rptAlphabets_ItemDataBound">
+            <ItemTemplate>
+                <asp:HyperLink ID="linkIndex" runat="server" Text='<%# DataBinder.Eval(Container.DataItem,"IndexChar")%>' CssClass="btn-sm  btn btn-info"></asp:HyperLink>
+            </ItemTemplate>
+        </asp:Repeater>
+        <br /><br />
         <asp:UpdatePanel ID="upCrudGrid" runat="server">
             <ContentTemplate>
                 <asp:GridView ID="gvApprovals" runat="server" Width="100%" HorizontalAlign="Left" OnRowDataBound="gvApprovals_RowDataBound" AutoGenerateColumns="false" AllowPaging="true"
@@ -194,7 +210,7 @@
             </div>
         </div>
         <div id="myModalReset" class="modal fade">
-            <div class="modal-dialog">
+            <div class="modal-dialog">IU8
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">

@@ -15,6 +15,7 @@ namespace FirstView.Admin.Artists
             CheckUserValidity();
             if (!Page.IsPostBack)
             {
+                ViewState["IgnorePattern"] = false;
                 LoadData();
             }
         }
@@ -55,13 +56,13 @@ namespace FirstView.Admin.Artists
             DoSearch();
         }
 
-        private void DoSearch()
+        private void DoSearch(bool ignorePattern = false)
         {
             int ArtistTypeID = 0;
             int IsDeleted = -1;
             string Name = "";
             cArtist a = new cArtist();
-            DataView dv = new DataView();
+           
 
             if (txtSearchName.Text.Length > 0)
             {
@@ -88,11 +89,27 @@ namespace FirstView.Admin.Artists
                 IsDeleted = 1;
             }
 
-            dv = a.Search(IsDeleted, Name, ArtistTypeID);
+            string Pattern = "";
 
-            if (dv.Table.Rows.Count > 0)
+            if (!ignorePattern)
             {
-                gvArtists.DataSource = dv.Table;
+                if (Request.QueryString["sAlpha"] != null)
+                {
+                    Pattern = Request.QueryString["sAlpha"].ToString();
+                }
+            }
+
+            DataSet ds = a.Search(IsDeleted, Name, ArtistTypeID, Pattern);
+
+            if (ds.Tables.Count > 0)
+            {
+                this.rptAlphabets.DataSource = ds.Tables[1];
+                this.rptAlphabets.DataBind();
+            }
+
+            if (ds.Tables[0].Rows.Count > 0)
+            {
+                gvArtists.DataSource = ds.Tables[0];
                 gvArtists.DataBind();
                 gvArtists.Visible = true;
                 lblStatus.Visible = false;
@@ -263,16 +280,52 @@ namespace FirstView.Admin.Artists
 
         protected void butClearSearch_ServerClick(object sender, EventArgs e)
         {
+            ViewState["IgnorePattern"] = true;
             radArtistAll.Checked = false;
             radArtistDeleted.Checked = false;
             radArtistActive.Checked = true;
             txtSearchName.Text = "";
-            DoSearch();
+            DoSearch(true);
         }
 
         protected void ddlArtistType_SelectedIndexChanged(object sender, EventArgs e)
         {
             DoSearch();
+        }
+
+        private string Pattern
+        {
+            get
+            {
+                string Pattern = "";
+
+                if (Request.QueryString["sAlpha"] != null)
+                {
+                    Pattern = Request.QueryString["sAlpha"].ToString();
+                }
+                return Pattern;
+            }
+        }
+
+        protected void rptAlphabets_ItemDataBound(object sender, RepeaterItemEventArgs e)
+        {
+            if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
+            {
+                HyperLink hlink = e.Item.FindControl("linkIndex") as HyperLink;
+                string currentText = ((System.Data.DataRowView)e.Item.DataItem).Row.ItemArray[0].ToString();
+
+                bool ignorePattern = false;
+                if (ViewState["IgnorePattern"] != null)
+                {
+                    ignorePattern = Convert.ToBoolean(ViewState["IgnorePattern"]);
+                }
+                if (currentText.ToLower().Equals(Pattern.ToLower()) && !ignorePattern)
+                {
+
+                    hlink.CssClass += " selected";
+                }
+                hlink.NavigateUrl = "/Admin/Artists/List.aspx?sAlpha=" + currentText;
+            }
         }
     }
 }

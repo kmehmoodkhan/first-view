@@ -3,9 +3,9 @@ namespace FirstView.BusinessLayer
 {
     public class cApprovals
     {
-        public DataView Search(int ArtistID, int ApprovalStatus)
+        public DataSet Search(int ArtistID, int ApprovalStatus, string Pattern,int DeleteStatus)
         {
-            return FirstView.DataAccessLayer.cApprovals.Search(ArtistID, ApprovalStatus);
+            return FirstView.DataAccessLayer.cApprovals.Search(ArtistID, ApprovalStatus, Pattern,DeleteStatus);
         }
         public DataView CheckWorkApprovalStatus(int ArtistID)
         {

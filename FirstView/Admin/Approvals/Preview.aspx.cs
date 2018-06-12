@@ -145,17 +145,17 @@ namespace FirstView.Admin.Approvals
             butReject.Attributes.Add("onclick", "return ConfirmReject();");
             butReset.Attributes.Add("onclick", "return ConfirmReset();");
 
-            if (Request.QueryString["RetUrl"] != null)
-            {
-                if (Request.QueryString["RetUrl"].ToString() == "1")
-                {
-                    butBack.HRef = "../Artists/List.aspx";
-                }
-                if (Request.QueryString["RetUrl"].ToString() == "2")
-                {
-                    butBack.HRef = "../ArtistWork/List.aspx";
-                }
-            }
+            //if (Request.QueryString["RetUrl"] != null)
+            //{
+            //    if (Request.QueryString["RetUrl"].ToString() == "1")
+            //    {
+            //        butBack.HRef = "../Artists/List.aspx";
+            //    }
+            //    if (Request.QueryString["RetUrl"].ToString() == "2")
+            //    {
+            //        butBack.HRef = "../ArtistWork/List.aspx";
+            //    }
+            //}
         }
 
         private void SendEmail(int ArtistID, int ApprovalStatus)
@@ -380,6 +380,26 @@ namespace FirstView.Admin.Approvals
                     chkWork.Checked = false;
                 }
             }
+        }
+
+        protected void butBack_Click(object sender, EventArgs e)
+        {
+            string url = "/Admin/Approvals/List.aspx?Status=1";
+            
+
+            if (Request.QueryString["RetUrl"] != null)
+            {
+                if (Request.QueryString["RetUrl"].ToString() == "1")
+                {
+                    url = "~/Artists/List.aspx";
+                }
+                if (Request.QueryString["RetUrl"].ToString() == "2")
+                {
+                    url = "~/ArtistWork/List.aspx";
+                }
+            }
+
+            Response.Redirect(url);
         }
     }
 }

@@ -97,7 +97,7 @@
             <h4>Artist Page - Preview</h4>
             <div class="row">
                 <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                    <a href="List.aspx" id="butBack" runat="server" class="btn btn-default" role="button" style="width: 80px">Back</a>
+                    <asp:Button ID="butBack" Text="Back" runat="server" CssClass="btn btn-default" Width="80px" OnClick="butBack_Click" />
                     <asp:Button ID="butApprove" CssClass="btn btn-success" runat="server" Width="80px" Text="Approve" ToolTip="Approve Page" OnClientClick="return confirm('Are you sure to approve selected items?');" OnClick="butApprove_Click" CausesValidation="false"></asp:Button>
                     <asp:Button ID="butReject" CssClass="btn btn-danger" runat="server" Width="80px" Text="Reject" ToolTip="Reject Page" OnClientClick="return confirm('Are you sure to reject selected items?');" OnClick="butReject_Click" CausesValidation="false"></asp:Button>
                     <asp:Button ID="butReset" CssClass="btn btn-warning" runat="server" Width="80px" Text="Reset" ToolTip="Reset Page" OnClick="butReset_Click" CausesValidation="false"></asp:Button>

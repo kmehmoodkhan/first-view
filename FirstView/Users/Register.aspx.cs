@@ -28,7 +28,7 @@ namespace FirstView.Users
         //    bool UsernameExists = false;
 
         //    cUsers usr = new cUsers();
-            
+
         //    if (txtUsername.Text.Length > 0)
         //    {
         //        UsernameExists = usr.CheckUsernameExists(txtUsername.Text);
@@ -40,6 +40,12 @@ namespace FirstView.Users
         //    txtPassword.Focus();
         //}
 
+        
+
+         protected void butCancel_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/Default.aspx");
+        }
         protected void butRegister_Click(object sender, EventArgs e)
         {
             int ArtistID = 0;

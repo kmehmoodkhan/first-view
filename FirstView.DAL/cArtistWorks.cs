@@ -39,9 +39,9 @@ namespace FirstView.BusinessLayer
         {
             return FirstView.DataAccessLayer.cArtistWorks.Delete(ArtistWorkID,LastModifiedUser);
         }
-        public DataView Search(int ArtistID, int IsDeleted, string WorkName, string Note)
+        public DataSet Search(int ArtistID, int IsDeleted, string WorkName, string Note,string Pattern)
         {
-            return FirstView.DataAccessLayer.cArtistWorks.Search(ArtistID,IsDeleted,WorkName,Note);
+            return FirstView.DataAccessLayer.cArtistWorks.Search(ArtistID,IsDeleted,WorkName,Note, Pattern);
         }
         public string UpdateArtistWorkExhibitionNo(int ArtistWorkID, int LastModifiedUser)
         {

@@ -122,7 +122,12 @@
                 </div>
             </div>
         </div>
-        <br />
+          <asp:Repeater ID="rptAlphabets" runat="server" OnItemDataBound="rptAlphabets_ItemDataBound">
+            <ItemTemplate>
+                <asp:HyperLink ID="linkIndex" runat="server" Text='<%# DataBinder.Eval(Container.DataItem,"IndexChar")%>' CssClass="btn-sm  btn btn-info"></asp:HyperLink>
+            </ItemTemplate>
+        </asp:Repeater>
+        <br /><br />
         <asp:UpdatePanel ID="upCrudGrid" runat="server">
             <ContentTemplate>
                 <asp:GridView ID="gvArtistWorks" runat="server" Width="100%" HorizontalAlign="Left" OnRowDataBound="gvArtistWorks_RowDataBound"
@@ -181,6 +186,7 @@
                 <asp:Label ID="lblStatus" runat="server" CssClass="text-danger" Text="" Visible="false"></asp:Label>
             </ContentTemplate>
         </asp:UpdatePanel>
+        
         <div id="myModal" class="modal fade">
             <div class="modal-dialog">
                 <div class="modal-content">

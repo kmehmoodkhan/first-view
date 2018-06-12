@@ -116,7 +116,7 @@ namespace FirstView.DataAccessLayer
             return result;
         }
 
-        public static DataView Search(int ArtistID, int IsDeleted, string WorkName, string Note)
+        public static DataSet Search(int ArtistID, int IsDeleted, string WorkName, string Note, string Pattern)
         {
             DBHelper db = new DBHelper(DBHelper.ConnectionStr.DefaultConnection);
             DataView dv = new DataView();
@@ -124,8 +124,9 @@ namespace FirstView.DataAccessLayer
             db.AddParameter("@IsDeleted", IsDeleted);
             db.AddParameter("@WorkName", WorkName);
             db.AddParameter("@Note", Note);
-            dv = db.ExecuteDataView("usp_ArtistWork_Search", System.Data.CommandType.StoredProcedure);
-            return dv;
+            db.AddParameter("@Pattern", Pattern);
+            DataSet ds = db.ExecuteDataSet("usp_ArtistWork_Search", System.Data.CommandType.StoredProcedure);
+            return ds;
         }
         public static string UpdateArtistWorkExhibitionNo(int ArtistWorkID, int LastModifiedUser)
         {

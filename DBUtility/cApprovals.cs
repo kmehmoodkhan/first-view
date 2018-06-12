@@ -4,14 +4,16 @@ namespace FirstView.DataAccessLayer
 {
     public class cApprovals
     {
-        public static DataView Search(int ArtistID, int ApprovalStatus)
+        public static DataSet Search(int ArtistID, int ApprovalStatus, string Pattern,int DeleteStatus = 0)
         {
-            DataView dv = new DataView();
             DBHelper db = new DBHelper(DBHelper.ConnectionStr.DefaultConnection);
             db.AddParameter("@ArtistID", ArtistID);
             db.AddParameter("@ApprovalStatus", ApprovalStatus);
-            dv = db.ExecuteDataView("usp_Approvals_Search", System.Data.CommandType.StoredProcedure);
-            return dv;
+            db.AddParameter("@DeleteStatus", DeleteStatus);
+            db.AddParameter("@Pattern", Pattern);
+
+            DataSet ds = db.ExecuteDataSet("usp_Approvals_Search", System.Data.CommandType.StoredProcedure);
+            return ds;
         } 
         public static DataView CheckWorkApprovalStatus(int ArtistID)
         {

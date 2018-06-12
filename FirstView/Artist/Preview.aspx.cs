@@ -157,7 +157,9 @@ namespace FirstView.Artist
                 foreach (var item in ArtistWork.Items)
                 {
                     HiddenField hdnfArtistWorkId = item.FindControl("hdnfArtistWorkID") as HiddenField;
-                    artistWorkIds = artistWorkIds + (artistWorkIds.Length > 0 ? "," : "") + hdnfArtistWorkId.Value.Trim();
+                    HiddenField ApprovalStatus = item.FindControl("hiddenApprovalStatus") as HiddenField;
+                    if(ApprovalStatus.Value == "")
+                        artistWorkIds = artistWorkIds + (artistWorkIds.Length > 0 ? "," : "") + hdnfArtistWorkId.Value.Trim();
                 }
 
                 appr.UpdateArtistWorkStatus(artistWorkIds, Convert.ToInt32(Session["FV_UserID"]), txtApprovalComment.Text, 1);

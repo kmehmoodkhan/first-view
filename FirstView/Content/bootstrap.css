@@ -2433,6 +2433,9 @@ textarea.input-lg {
     border-color: #46b8da;
 }
 
+    .btn-info 
+  
+
     .btn-info:hover,
     .btn-info:focus,
     .btn-info:active,
@@ -2442,6 +2445,10 @@ textarea.input-lg {
         background-color: #39b3d7;
         border-color: #269abc;
     }
+.selected {
+    background-color: #365b7a !important;
+    border-color: #357ebd !important;
+}
 
     .btn-info:active,
     .btn-info.active,
@@ -2467,6 +2474,8 @@ textarea.input-lg {
         background-color: #5bc0de;
         border-color: #46b8da;
     }
+
+
 
 .btn-link {
     font-weight: normal;
@@ -7087,3 +7096,4 @@ td.visible-print {
         display: none !important;
     }
 }
+

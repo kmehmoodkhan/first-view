@@ -70,9 +70,9 @@ namespace FirstView.BusinessLayer
         {
             return FirstView.DataAccessLayer.cUsers.ListForLogin(Username, Hash(Password));
         }
-        public DataView List(bool? IsDeleted, string Name)
+        public DataSet List(bool? IsDeleted, string Name,string Pattern)
         {
-            return FirstView.DataAccessLayer.cUsers.List(IsDeleted, Name);
+            return FirstView.DataAccessLayer.cUsers.List(IsDeleted, Name,Pattern);
         }
         public DataView ListByID(int UserID)
         {

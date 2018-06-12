@@ -31,6 +31,10 @@ namespace FirstView
             }
         }
 
+        protected void ButtonCancel_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/Default.aspx");
+        }
         private void SendEmail(string EmailAddress)
         {
             string FromEmailAddress = "";
