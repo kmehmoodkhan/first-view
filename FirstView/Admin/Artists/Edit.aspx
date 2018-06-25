@@ -1,4 +1,5 @@
 ﻿<%@ Page Title="Artist Edit" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Edit.aspx.cs" Inherits="FirstView.Admin.Artists.Edit" %>
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <script type="text/javascript">
@@ -38,6 +39,18 @@
                 <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="txtSurname" SetFocusOnError="true" CssClass="text-danger" Display="Dynamic" ErrorMessage="Surname is a required field"></asp:RequiredFieldValidator>
             </div>
         </div>
+       <%-- <div class="row marginTop">
+            <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12 align-middle">
+                <label for="subject">Commission%<span class="requiredF">*</span></label>
+                <div class="input-group">
+                    <asp:TextBox ID="txtCommission" runat="server" class="form-control" MaxLength="3"></asp:TextBox>
+                    <br />
+                    <asp:RequiredFieldValidator ValidationGroup="Submit" ID="RequiredFieldValidator2" runat="server" ControlToValidate="txtCommission" SetFocusOnError="true" CssClass="text-danger" Display="Dynamic" ErrorMessage="Commission is a required field"></asp:RequiredFieldValidator>
+                    <cc1:filteredtextboxextender id="FilteredTextBoxExtender1" filtermode="ValidChars" validchars="0,1,2,3,4,5,6,7,8,9,." runat="server" targetcontrolid="txtPrice">
+                            </cc1:filteredtextboxextender>
+                </div>
+            </div>
+        </div>--%>
         <div class="row marginTop">
             <div class="col-md-2">
                 <asp:Label ID="Label3" runat="server" Text="CV"></asp:Label>
@@ -72,7 +85,7 @@
             <div class="col-md-2">
                 <asp:Label ID="lblIsActive" runat="server" Text="Is Active"></asp:Label>
             </div>
-             <div class="col-md-5">
+            <div class="col-md-5">
                 <asp:CheckBox ID="chkIsActive" runat="server" />
             </div>
         </div>

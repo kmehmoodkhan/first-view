@@ -1,9 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Text;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using FirstView.BusinessLayer;
+using System.Linq;
+
 namespace FirstView.Artist
 {
     public partial class Index : System.Web.UI.Page
@@ -59,7 +62,7 @@ namespace FirstView.Artist
             string ImageFileName = "";
 
             cArtist art = new cArtist();
-            DataView dv = new DataView();
+
             DataView dv2 = new DataView();
             StringBuilder sbHTML = new StringBuilder();
 
@@ -71,51 +74,58 @@ namespace FirstView.Artist
             }
 
 
-            dv = art.CreateIndex();
-            if (dv.Table.Rows.Count > 0)
+            DataSet ds = art.CreateIndex();
+            if (ds.Tables[0].Rows.Count > 0)
             {
                 HasData = true;
                 sbHTML.Clear();
                 sbHTML.AppendLine("<ul class='list-group'>");
-                for (int i = 0; i < dv.Table.Rows.Count; i++)
+                for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
                 {
-                    if (dv.Table.Rows[i]["Name"] != DBNull.Value)
+                    int artistId = 0;
+
+                    if (ds.Tables[0].Rows[i]["artistId"] != DBNull.Value)
                     {
-                        Name = dv.Table.Rows[i]["Name"].ToString();
+                        artistId = Convert.ToInt32(ds.Tables[0].Rows[i]["artistId"].ToString());
+                    }
+
+                    if (ds.Tables[0].Rows[i]["Name"] != DBNull.Value)
+                    {
+                        Name = ds.Tables[0].Rows[i]["Name"].ToString();
                     }
                     else
                     {
                         Name = "";
                     }
-                    if (dv.Table.Rows[i]["Surname"] != DBNull.Value)
+                    if (ds.Tables[0].Rows[i]["Surname"] != DBNull.Value)
                     {
-                        Surname = dv.Table.Rows[i]["Surname"].ToString();
+                        Surname = ds.Tables[0].Rows[i]["Surname"].ToString();
                     }
                     else
                     {
                         Surname = "";
                     }
-                    if (dv.Table.Rows[i]["ArtistType"] != DBNull.Value)
+                    if (ds.Tables[0].Rows[i]["ArtistType"] != DBNull.Value)
                     {
-                        ArtistType = dv.Table.Rows[i]["ArtistType"].ToString();
+                        ArtistType = ds.Tables[0].Rows[i]["ArtistType"].ToString();
                     }
                     else
                     {
                         ArtistType = "";
                     }
-                    if (dv.Table.Rows[i]["ImageFileName"] != DBNull.Value)
+                    if (ds.Tables[0].Rows[i]["ImageFileName"] != DBNull.Value)
                     {
-                        ImageFileName = dv.Table.Rows[i]["ImageFileName"].ToString();
+                        ImageFileName = ds.Tables[0].Rows[i]["ImageFileName"].ToString();
                     }
                     else
                     {
                         ImageFileName = "blank50.png";
                     }
-                    ArtistID = Convert.ToInt32(dv.Table.Rows[i]["ArtistID"]);
-                    IsHeader = Convert.ToInt32(dv.Table.Rows[i]["IsHeader"]);
-                    if (dv.Table.Rows[i]["CV"] != null)
+                    ArtistID = Convert.ToInt32(ds.Tables[0].Rows[i]["ArtistID"]);
+                    IsHeader = Convert.ToInt32(ds.Tables[0].Rows[i]["IsHeader"]);
+                    if (ds.Tables[0].Rows[i]["CV"] != null)
                     {
-                        CV = dv.Table.Rows[i]["CV"].ToString();
+                        CV = ds.Tables[0].Rows[i]["CV"].ToString();
                     }
                     if (CV.Length > 150)
                     {
@@ -129,22 +139,45 @@ namespace FirstView.Artist
                     if (IsHeader == 1)
                     {
                         sbHTML.AppendLine("<li class='list-group-item active' style='height: 30px; padding: 5px;'>" + Surname.Substring(0, 1).ToUpper() + "</li>");
-                        //sbHTML.AppendLine("<li class='list-group-item'>");
-                        //sbHTML.AppendLine("<div class='row'>");
-                        //sbHTML.AppendLine("<a class='col-md-2' href='IndexView.aspx?ArtistID=" + ArtistID.ToString() + "'>" + Name + " " + Surname + "<br/><p class='text-muted'>" + ArtistType + "</p></a>");
-                        //sbHTML.AppendLine("<p class='col-md-2'><img src='../Uploads/Preview/" + ImageFileName + "' alt='' class='img-thumbnail'></p>");
-                        //sbHTML.AppendLine("<p class='col-md-8'>" + TrimCV + "</p>");
-                        //sbHTML.AppendLine("</div>");
-                        //sbHTML.AppendLine("</li>");
                     }
                     else
                     {
-                        //sbHTML.AppendLine("<li class='list-group-item'><div class='row'><a class='col-md-4' href='IndexView.aspx?ArtistID=" + ArtistID.ToString() + "'>" + Name + " " + Surname + "</a><p class='col-md-8'>" + CV + "</p></div></li>");
-                        sbHTML.AppendLine("<li class='list-group-item'>");
+                        string url = "IndexView.aspx?ArtistID=" + ArtistID.ToString();
+
+                        DataView dv = ds.Tables[1].DefaultView;
+                        dv.RowFilter = $"ArtistId={artistId}";
+
+
+                        List<string> images = new List<string>();
+
+                        if (dv.Table.Rows.Count > 0)    
+                        {
+                            foreach(DataRow dr in dv.ToTable().Rows)
+                            {
+                                if(dr["ImageFileName"] != null)
+                                {
+                                    images.Add(Convert.ToString(dr["ImageFileName"]));
+                                }
+                            }
+                        }
+
+                        string imagesList = "<p class='col-md-4'>";
+
+                        for (int j = 0; j < images.Count; j++)
+                        {
+                            imagesList += "<img class='img-thumbnail-mini' src='/Uploads/Preview/" + images[j] + "'></img>";
+                        }
+                        imagesList += "</p>";
+
+                        sbHTML.AppendLine("<li class='list-group-item' onclick='return ShowArtistDetail(" + ArtistID + ")'>");
                         sbHTML.AppendLine("<div class='row'>");
                         sbHTML.AppendLine("<a class='col-md-2' href='IndexView.aspx?ArtistID=" + ArtistID.ToString() + "'>" + Name + " " + Surname + "<br/><p class='text-muted'>" + ArtistType + "</p></a>");
-                        sbHTML.AppendLine("<p class='col-md-2'><img src='../Uploads/Preview/" + ImageFileName + "' alt='' class='img-thumbnail'></p>");
-                        sbHTML.AppendLine("<p class='col-md-8'>" + TrimCV + "</p>");
+                        //sbHTML.AppendLine("<p class='col-md-2'><img src='../Uploads/Original/" + ImageFileName + "' alt='' class='img-thumbnail'></p>");
+                       
+
+                        sbHTML.Append(imagesList);
+
+                        sbHTML.AppendLine("<p class='col-md-6'>" + TrimCV + "</p>");
                         sbHTML.AppendLine("</div>");
                         sbHTML.AppendLine("</li>");
                     }
@@ -254,9 +287,11 @@ namespace FirstView.Artist
                     }
                     else
                     {
+                        string url = "IndexView.aspx?ArtistID=" + ArtistID.ToString();
+
                         sbHTML.AppendLine("<li class='list-group-item'>");
                         sbHTML.AppendLine("<div class='row'>");
-                        sbHTML.AppendLine("<a class='col-md-2' href='IndexView.aspx?ArtistID=" + ArtistID.ToString() + "'>" + Name + " " + Surname + "<br/><p class='text-muted'>" + ArtistType + "</p></a>");
+                        sbHTML.AppendLine("<a class='col-md-2' href='" + url + "'>" + Name + " " + Surname + "<br/><p class='text-muted'>" + ArtistType + "</p></a>");
                         sbHTML.AppendLine("<p class='col-md-2'><img src='../Uploads/Preview/" + ImageFileName + "' alt='' class='img-thumbnail'></p>");
                         sbHTML.AppendLine("<p class='col-md-8'>" + TrimCV + "</p>");
                         sbHTML.AppendLine("</div>");
@@ -291,7 +326,7 @@ namespace FirstView.Artist
             string TrimCV = "";
             string ArtistType = "";
             cArtist art = new cArtist();
-            DataView dv = new DataView();
+            
             DataView dv2 = new DataView();
             bool HasData = false;
             string SearchAlphabet = "";
@@ -311,56 +346,114 @@ namespace FirstView.Artist
                 rptAlphabets.DataBind();
             }
 
-            dv = art.CreateIndexSearchAlpha(SearchAlphabet);
-            if (dv.Table.Rows.Count > 0)
+            DataSet ds = art.CreateIndexSearchAlpha(SearchAlphabet);
+            if (ds.Tables[0].Rows.Count > 0)
             {
                 HasData = true;
                 sbHTML.Clear();
                 sbHTML.AppendLine("<ul class='list-group'>");
-                for (int i = 0; i < dv.Table.Rows.Count; i++)
+                for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
                 {
-                    if (dv.Table.Rows[i]["Name"] != DBNull.Value)
-                    { Name = dv.Table.Rows[i]["Name"].ToString(); }
+                    int artistId = Convert.ToInt32(ds.Tables[0].Rows[i]["ArtistId"]);
+
+                    if (ds.Tables[0].Rows[i]["Name"] != DBNull.Value)
+                    { Name = ds.Tables[0].Rows[i]["Name"].ToString(); }
                     else
                     { Name = ""; }
-                    if (dv.Table.Rows[i]["Surname"] != DBNull.Value)
-                    { Surname = dv.Table.Rows[i]["Surname"].ToString(); }
+                    if (ds.Tables[0].Rows[i]["Surname"] != DBNull.Value)
+                    { Surname = ds.Tables[0].Rows[i]["Surname"].ToString(); }
                     else { Surname = ""; }
-                    if (dv.Table.Rows[i]["ArtistType"] != DBNull.Value)
-                    { ArtistType = dv.Table.Rows[i]["ArtistType"].ToString(); }
+                    if (ds.Tables[0].Rows[i]["ArtistType"] != DBNull.Value)
+                    { ArtistType = ds.Tables[0].Rows[i]["ArtistType"].ToString(); }
                     else { ArtistType = ""; }
-                    if (dv.Table.Rows[i]["ImageFileName"] != DBNull.Value)
-                    { ImageFileName = dv.Table.Rows[i]["ImageFileName"].ToString(); }
+                    if (ds.Tables[0].Rows[i]["ImageFileName"] != DBNull.Value)
+                    { ImageFileName = ds.Tables[0].Rows[i]["ImageFileName"].ToString(); }
                     else
                     { ImageFileName = "blank50.png"; }
-                    ArtistID = Convert.ToInt32(dv.Table.Rows[i]["ArtistID"]);
+                    ArtistID = Convert.ToInt32(ds.Tables[0].Rows[i]["ArtistID"]);
 
-                    if (dv.Table.Rows[i]["CV"] != null)
-                    { CV = dv.Table.Rows[i]["CV"].ToString(); }
+                    if (ds.Tables[0].Rows[i]["CV"] != null)
+                    { CV = ds.Tables[0].Rows[i]["CV"].ToString(); }
 
                     if (CV.Length > 150)
                     { TrimCV = CV.Substring(0, 147) + "..."; }
                     else
                     { TrimCV = CV; }
 
+                    string url = "IndexView.aspx?ArtistID=" + ArtistID.ToString();
+
                     if (i == 0)
                     {
+                        DataView dv = ds.Tables[1].DefaultView;
+                        dv.RowFilter = $"ArtistId={artistId}";
+
+
+                        List<string> images = new List<string>();
+
+                        if (dv.Table.Rows.Count > 0)
+                        {
+                            foreach (DataRow dr in dv.ToTable().Rows)
+                            {
+                                if (dr["ImageFileName"] != null)
+                                {
+                                    images.Add(Convert.ToString(dr["ImageFileName"]));
+                                }
+                            }
+                        }
+
+                        string imagesList = "<p class='col-md-4'>";
+
+                        for (int j = 0; j < images.Count; j++)
+                        {
+                            imagesList += "<img class='img-thumbnail-mini' src='/Uploads/Preview/" + images[j] + "'></img>";
+                        }
+                        imagesList += "</p>";
+
                         sbHTML.AppendLine("<li class='list-group-item active' style='height: 30px; padding: 5px;'>" + Surname.Substring(0, 1).ToUpper() + "</li>");
                         sbHTML.AppendLine("<li class='list-group-item'>");
                         sbHTML.AppendLine("<div class='row'>");
                         sbHTML.AppendLine("<a class='col-md-2' href='IndexView.aspx?ArtistID=" + ArtistID.ToString() + "'>" + Name + " " + Surname + "<br/><p class='text-muted'>" + ArtistType + "</p></a>");
-                        sbHTML.AppendLine("<p class='col-md-2'><img src='../Uploads/Preview/" + ImageFileName + "' alt='' class='img-thumbnail'></p>");
-                        sbHTML.AppendLine("<p class='col-md-8'>" + TrimCV + "</p>");
+                        // sbHTML.AppendLine("<p class='col-md-2'><img src='../Uploads/Preview/" + ImageFileName + "' alt='' class='img-thumbnail'></p>");
+                        sbHTML.Append(imagesList);
+                        sbHTML.AppendLine("<p class='col-md-6'>" + TrimCV + "</p>");
                         sbHTML.AppendLine("</div>");
                         sbHTML.AppendLine("</li>");
                     }
                     else
                     {
+                        DataView dv = ds.Tables[1].DefaultView;
+                        dv.RowFilter = $"ArtistId={artistId}";
+
+
+                        List<string> images = new List<string>();
+
+                        if (dv.Table.Rows.Count > 0)
+                        {
+                            foreach (DataRow dr in dv.ToTable().Rows)
+                            {
+                                if (dr["ImageFileName"] != null)
+                                {
+                                    images.Add(Convert.ToString(dr["ImageFileName"]));
+                                }
+                            }
+                        }
+
+                        string imagesList = "<p class='col-md-4'>";
+
+                        for (int j = 0; j < images.Count; j++)
+                        {
+                            imagesList += "<img class='img-thumbnail-mini' src='/Uploads/Preview/" + images[j] + "'></img>";
+                        }
+                        imagesList += "</p>";
+
+
                         sbHTML.AppendLine("<li class='list-group-item'>");
                         sbHTML.AppendLine("<div class='row'>");
                         sbHTML.AppendLine("<a class='col-md-2' href='IndexView.aspx?ArtistID=" + ArtistID.ToString() + "'>" + Name + " " + Surname + "<br/><p class='text-muted'>" + ArtistType + "</p></a>");
-                        sbHTML.AppendLine("<p class='col-md-2'><img src='../Uploads/Preview/" + ImageFileName + "' alt='' class='img-thumbnail'></p>");
-                        sbHTML.AppendLine("<p class='col-md-8'>" + TrimCV + "</p>");
+
+                        sbHTML.Append(imagesList);
+
+                        sbHTML.AppendLine("<p class='col-md-6'>" + TrimCV + "</p>");
                         sbHTML.AppendLine("</div>");
                         sbHTML.AppendLine("</li>");
                     }

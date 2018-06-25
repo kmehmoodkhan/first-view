@@ -15,7 +15,7 @@
         <div class="row" style="border-bottom: 1px solid #eeeeee;">
             <div class="col-md-2">
                 <p>
-                    <asp:Image ID="imgArtist" runat="server" CssClass="img-thumbnail" />
+                    <asp:Image ID="imgArtist" runat="server" CssClass="img-thumbnail-max" />
                 </p>
             </div>
             <div class="col-md-10">
@@ -36,7 +36,7 @@
         </div>
         <table width="100%">
             <tr>
-                <td class="col-md-12" style="vertical-align: top">
+                <td class="col-md-12" style="vertical-align: top;padding-left:0px;">
                     <div>
                         <asp:ListView ID="ArtistWork" runat="server" DataKeyNames="ArtistWorkID" GroupItemCount="6">
                             <EmptyDataTemplate>
@@ -49,13 +49,14 @@
                             </GroupTemplate>
                             <ItemTemplate>
                                 <div class="col-md-2" style="margin-top:25px;">
-                                    <div class="ArtistWorkItemContainer">
-                                        <p>
-                                            <a href="../Uploads/Resized/<%# Eval("ImageFileName")%>" class="example-image-link" data-lightbox="example-set" data-title="<%# Eval("PreviewTitle")%>">
-                                                <img src="../Uploads/Thumbnails/<%# Eval("ImageFileName")%>" title="<%# Eval("WorkName")%>" class="ArtistWorkItem img-thumbnail" style="max-height:200px" />
+                                    <%--<div class="ArtistWorkItemContainer">
+                                        <a class="example-image-link" data-lightbox="example-set" data-title="<%# Eval("PreviewTitle")%>">
+                                            <img src="../Uploads/Original/<%# Eval("ImageFileName")%>" title="<%# Eval("WorkName")%>" class="ArtistWorkItem img-thumbnail-max" />
+                                        </a>
+                                    </div>--%>
+                                     <a href="../Uploads/Resized/<%# Eval("ImageFileName")%>" class="example-image-link" data-lightbox="example-set" data-title="<%# Eval("PreviewTitle")%>">
+                                                <img src="../Uploads/Original/<%# Eval("ImageFileName")%>" title="<%# Eval("WorkName")%>" class="ArtistWorkItem img-thumbnail-max" />
                                             </a>
-                                        </p>
-                                    </div>
                                     <h5><%# Eval("TrimWorkName")%></h5>
                                 </div>
                             </ItemTemplate>
@@ -86,8 +87,8 @@
         </div>
     </div>
     <script type="text/javascript">
-        $(document).ready(function () {
-            $('.img-thumbnail').css("height", "170px");
-        });
+        //$(document).ready(function () {
+        //    $('.img-thumbnail').css("height", "170px");
+        //});
     </script>
 </asp:Content>

@@ -393,9 +393,13 @@ namespace FirstView.Admin.Approvals
                 {
                     url = "~/Artists/List.aspx";
                 }
-                if (Request.QueryString["RetUrl"].ToString() == "2")
+                else if (Request.QueryString["RetUrl"].ToString() == "2")
                 {
                     url = "~/ArtistWork/List.aspx";
+                }
+                else if (Request.QueryString["RetUrl"].ToString() == "3")
+                {
+                    url = "~/ArtistWork/Add.aspx";
                 }
             }
 

@@ -59,12 +59,11 @@ namespace FirstView.DataAccessLayer
             return ds;
         }
 
-        public static DataView CreateIndex()
+        public static DataSet CreateIndex()
         {
-            DataView dv = new DataView();
             DBHelper db = new DBHelper(DBHelper.ConnectionStr.DefaultConnection);
-            dv = db.ExecuteDataView("usp_Artist_CreateIndex", System.Data.CommandType.StoredProcedure);
-            return dv;
+            DataSet ds = db.ExecuteDataSet("usp_Artist_CreateIndex", System.Data.CommandType.StoredProcedure);
+            return ds;
         }
 
         public static DataView CreateIndexAlphabets()
@@ -95,13 +94,12 @@ namespace FirstView.DataAccessLayer
             return dv;
         }
 
-        public static DataView CreateIndexSearchAlpha(string Surname)
+        public static DataSet CreateIndexSearchAlpha(string Surname)
         {
-            DataView dv = new DataView();
             DBHelper db = new DBHelper(DBHelper.ConnectionStr.DefaultConnection);
             db.AddParameter("@Surname", Surname);            
-            dv = db.ExecuteDataView("usp_Artist_CreateIndexSearchAlpha", System.Data.CommandType.StoredProcedure);
-            return dv;
+            DataSet ds = db.ExecuteDataSet("usp_Artist_CreateIndexSearchAlpha", System.Data.CommandType.StoredProcedure);
+            return ds;
         }
 
         public static DataView CreateIndexAlphabetsSearch(string Name, int ArtistTypeID)

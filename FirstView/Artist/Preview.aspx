@@ -44,7 +44,8 @@
             <h4>My Page - Preview</h4>           
             <div class="row">
                 <div class="col-md-2 col-lg-3 col-sm-12 col-sx-12">
-                    <a href="Menu.aspx" id="butBack" runat="server" class="btn btn-default" role="button" style="width: 80px">Back</a>
+                    <asp:Button ID="buttonBack" runat="server" CssClass="btn btn-default" Width="80px" Text="Back" OnClick="buttonBack_Click" />
+
                     <asp:Button ID="butSubmitApprove" CssClass="btn btn-success" runat="server" Width="150px" Text="Submit for Approval" ToolTip="Submit for Approval" OnClick="butSubmitApprove_Click"></asp:Button>
                 </div>
                 <div class="col-md-2 col-lg-6 col-sm-12 col-sx-12">

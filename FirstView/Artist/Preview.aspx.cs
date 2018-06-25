@@ -81,7 +81,7 @@ namespace FirstView.Artist
 
                 var dtPendingRows = dv2.ToTable().Select("ApprovalStatus is null");
 
-                if (dtPendingRows!=null && dtPendingRows.Length> 0)
+                if (dtPendingRows != null && dtPendingRows.Length > 0)
                 {
                     ApprovalStatus = "Pending";
 
@@ -130,15 +130,6 @@ namespace FirstView.Artist
                 }
 
                 butSubmitApprove.Attributes.Add("onclick", "return ConfirmSubmitApprove();");
-
-                butBack.HRef = "Menu.aspx";
-                if (Request.QueryString["RetUrl"] != null)
-                {
-                    if (Request.QueryString["RetUrl"] == "1")
-                    { butBack.HRef = "ProfileEdit.aspx"; }
-                    if (Request.QueryString["RetUrl"] == "2")
-                    { butBack.HRef = "../ArtistWork/Main.aspx"; }
-                }
             }
             catch (Exception ex)
             {
@@ -158,7 +149,7 @@ namespace FirstView.Artist
                 {
                     HiddenField hdnfArtistWorkId = item.FindControl("hdnfArtistWorkID") as HiddenField;
                     HiddenField ApprovalStatus = item.FindControl("hiddenApprovalStatus") as HiddenField;
-                    if(ApprovalStatus.Value == "")
+                    if (ApprovalStatus.Value == "")
                         artistWorkIds = artistWorkIds + (artistWorkIds.Length > 0 ? "," : "") + hdnfArtistWorkId.Value.Trim();
                 }
 
@@ -288,6 +279,29 @@ namespace FirstView.Artist
                 cSettings.LogException(ex);
             }
 
+        }
+
+        protected void buttonBack_Click(object sender, EventArgs e)
+        {
+            string Url = "Menu.aspx";
+
+            if (Request.QueryString["RetUrl"] != null)
+            {
+                if (Request.QueryString["RetUrl"] == "1")
+                {
+                    Url = "ProfileEdit.aspx";
+                }
+                else if (Request.QueryString["RetUrl"] == "2")
+                {
+                    Url = "../ArtistWork/Main.aspx";
+                }
+                else if (Request.QueryString["RetUrl"] == "3")
+                {
+                    Url = "~/ArtistWork/Add.aspx";
+                }
+            }
+            
+            Response.Redirect(Url);
         }
     }
 }

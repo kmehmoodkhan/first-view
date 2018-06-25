@@ -166,6 +166,7 @@
     <Content Include="Admin\ArtistType\Add.aspx" />
     <Content Include="Admin\ArtistType\Edit.aspx" />
     <Content Include="Admin\ArtistType\List.aspx" />
+    <Content Include="Admin\ArtistWork\AuditReport.aspx" />
     <Content Include="Admin\Events\Add.aspx" />
     <Content Include="Admin\Events\List.aspx" />
     <Content Include="Admin\MenuManagement\AddMenu.aspx" />
@@ -175,6 +176,7 @@
     <Content Include="Admin\Users\PersonalDetails.aspx" />
     <Content Include="Admin\Users\ResetPassword.aspx" />
     <Content Include="ArtistWork\ExhibitionForm.aspx" />
+    <Content Include="ArtistWork\Preview.aspx" />
     <Content Include="Artist\PreviewArtistProfile.aspx" />
     <Content Include="ContactUs.aspx" />
     <Content Include="Content\jquery-ui.css" />
@@ -190,6 +192,7 @@
     <Content Include="Images\event_NICKANDREW_03.png" />
     <Content Include="Images\event_paul_boak.jpg" />
     <Content Include="Images\event_siltongroup.jpg" />
+    <Content Include="Images\Info.png" />
     <Content Include="Images\spring_emporium.jpg" />
     <Content Include="Images\vintage_paint_01.jpg" />
     <Content Include="Images\vintage_paint_02.jpg" />
@@ -1240,6 +1243,13 @@
     <Compile Include="Admin\ArtistType\List.aspx.designer.cs">
       <DependentUpon>List.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Admin\ArtistWork\AuditReport.aspx.cs">
+      <DependentUpon>AuditReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\ArtistWork\AuditReport.aspx.designer.cs">
+      <DependentUpon>AuditReport.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Admin\Events\Add.aspx.cs">
       <DependentUpon>Add.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1302,6 +1312,13 @@
     </Compile>
     <Compile Include="ArtistWork\ExhibitionForm.aspx.designer.cs">
       <DependentUpon>ExhibitionForm.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ArtistWork\Preview.aspx.cs">
+      <DependentUpon>Preview.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ArtistWork\Preview.aspx.designer.cs">
+      <DependentUpon>Preview.aspx</DependentUpon>
     </Compile>
     <Compile Include="Artist\PreviewArtistProfile.aspx.cs">
       <DependentUpon>PreviewArtistProfile.aspx</DependentUpon>

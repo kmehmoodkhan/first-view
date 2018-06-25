@@ -35,7 +35,7 @@ namespace FirstView.Artist
                 {
                     lblFullname.Text = dv.Table.Rows[i]["Name"].ToString() + " " + dv.Table.Rows[i]["Surname"].ToString();
                     lblCV.Text = dv.Table.Rows[i]["CV"].ToString();
-                    imgArtist.ImageUrl = "~/Uploads/Thumbnails/" + dv.Table.Rows[i]["ImageFileName"].ToString();
+                    imgArtist.ImageUrl = "~/Uploads/Original/" + dv.Table.Rows[i]["ImageFileName"].ToString();
                 }
             }
 

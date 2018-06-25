@@ -30,7 +30,7 @@ namespace FirstView.BusinessLayer
             return FirstView.DataAccessLayer.cArtist.Search(IsDeleted,Name,ArtistTypeID,Pattern);
         }
 
-        public DataView CreateIndex()
+        public DataSet CreateIndex()
         {
             return FirstView.DataAccessLayer.cArtist.CreateIndex();
         }
@@ -45,7 +45,7 @@ namespace FirstView.BusinessLayer
             return FirstView.DataAccessLayer.cArtist.CreateIndexSearch(Name,ArtistTypeID);
         }
 
-        public DataView CreateIndexSearchAlpha(string Surname)
+        public DataSet CreateIndexSearchAlpha(string Surname)
         {
             return FirstView.DataAccessLayer.cArtist.CreateIndexSearchAlpha(Surname);
         }

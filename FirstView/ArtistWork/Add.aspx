@@ -33,6 +33,7 @@
             <h4>Artist Work - Add</h4>
             <p class="lead">
                 <a href="Main.aspx" runat="server" id="btnBack" class="btn btn-default" style="width: 80px" role="button">Back</a>
+                <asp:Button ID="ButtonPreview" ValidationGroup="Submit" class="btn btn-default" Width="80px" runat="server" CausesValidation="false" Text="Preview" OnClick="ButtonPreview_Click" />
                 <asp:Button ID="butSave" ValidationGroup="Submit" class="btn btn-primary" Width="80px" runat="server" Text="Save" OnClick="butSave_Click" />
             </p>
         </div>
@@ -50,7 +51,7 @@
                 </div>
                 <div class="row marginTop">
                     <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12 align-middle">
-                        <label for="subject">Price<span class="requiredF">*</span></label>
+                        <label for="subject">Wall Price<span class="requiredF">*</span></label>
                         <div class="input-group">
                             <asp:TextBox ID="txtPrice" runat="server" class="form-control" MaxLength="100"></asp:TextBox>
                             <br />

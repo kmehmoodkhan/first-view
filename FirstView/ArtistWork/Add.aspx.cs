@@ -227,5 +227,11 @@ namespace FirstView.ArtistWork
         {
             Response.Redirect(Request.Url.ToString(), true);
         }
+
+        protected void ButtonPreview_Click(object sender, EventArgs e)
+        {
+            string Url = "~/Artist/Preview.aspx?RetUrl=3";
+            Response.Redirect(Url);
+        }
     }
 }
