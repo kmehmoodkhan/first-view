@@ -112,7 +112,7 @@ namespace FirstView.Admin.Artists
                 ArtistID = Convert.ToInt32(Request.QueryString["ArtistID"]);
             }
 
-            a.Edit(ArtistID, txtName.Text, txtSurname.Text, txtCV.Text, Convert.ToInt32(ddlArtistType.SelectedValue), chkIsActive.Checked, hidUniqueID.Value, Session["FV_Username"].ToString());
+            a.Edit(ArtistID, txtName.Text, txtSurname.Text, txtCV.Text, Convert.ToInt32(ddlArtistType.SelectedValue), chkIsActive.Checked, hidUniqueID.Value, Session["FV_Username"].ToString(),true);
 
             ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "openModal();", true);
 

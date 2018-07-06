@@ -57,7 +57,21 @@ namespace FirstView.ArtistWork
                 gvArtistWorks.Visible = false;
                 lblStatus.Text = "There is no data available.";
                 lblStatus.Visible = true;
-            }         
+            }
+
+
+            string commission = aw.GetArtistCommission(ArtistID);
+
+            //if (!string.IsNullOrEmpty(commission) && commission != "0")
+            //{
+            //    gvArtistWorks.Columns[3].Visible = true;
+            //    gvArtistWorks.Columns[4].Visible = false;
+            //}
+            //else
+            //{
+            //    gvArtistWorks.Columns[3].Visible = false;
+            //    gvArtistWorks.Columns[4].Visible = true;
+            //}
         }
         protected void btnDelete_Click(object sender, EventArgs e)
         {
@@ -124,6 +138,8 @@ namespace FirstView.ArtistWork
                 { Width = Convert.ToString(gvArtistWorks.DataKeys[e.Row.RowIndex]["Width"]); }
                 if (gvArtistWorks.DataKeys[e.Row.RowIndex]["Height"] != DBNull.Value)
                 { Height = Convert.ToString(gvArtistWorks.DataKeys[e.Row.RowIndex]["Height"]); }
+
+
 
                 Label lblSize = (Label)e.Row.FindControl("lblSize");
                 Panel pnlExhibtion = (Panel)e.Row.FindControl("pnlExhibtion");

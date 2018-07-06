@@ -13,6 +13,7 @@ namespace FirstView.Admin.ArtistWork
             if (!Page.IsPostBack)
             {
                 LoadData();
+                CalculateCommission();
             }
         }
 
@@ -51,7 +52,24 @@ namespace FirstView.Admin.ArtistWork
                 ArtistWorkID = Convert.ToInt32(Request.QueryString["ArtistWorkID"]);
             }
 
+
+           
+
+            string commission = aw.GetArtistCommission(ArtistID);
+            ViewState["Commission"] = commission;
+
+            if (string.IsNullOrEmpty(commission) || commission.Trim() == "0")
+            {
+                divApproximateWallPrice.Visible = true;
+            }
+            else
+            {
+                divApproximateWallPrice.Visible = false;
+            }
+
             btnBack.HRef = "List.aspx?ArtistID=" + ArtistID.ToString();
+
+            
 
             dv = aw.ListByID(ArtistWorkID);
             if (dv.Table.Rows.Count > 0)
@@ -75,8 +93,18 @@ namespace FirstView.Admin.ArtistWork
                             txtHeighestEdition.Text = Convert.ToString(dv.Table.Rows[i]["HighestEdition"]);
                         }
                     }
-                    if (dv.Table.Rows[i]["Price"] != DBNull.Value)
-                    { txtPrice.Text = dv.Table.Rows[i]["Price"].ToString(); }
+                    if (dv.Table.Rows[i]["WallPrice"] != DBNull.Value)
+                    {
+                        txtPrice.Text = Math.Round(Convert.ToDecimal(dv.Table.Rows[i]["WallPrice"])).ToString();
+                    }
+
+
+                    if (dv.Table.Rows[i]["ArtistPrice"] != DBNull.Value)
+                    {
+                        txtArtistPrice.Text = Math.Round(Convert.ToDecimal(dv.Table.Rows[i]["ArtistPrice"])).ToString();
+                    }
+
+
                     if (dv.Table.Rows[i]["Width"] != DBNull.Value)
                     { txtWidth.Text = dv.Table.Rows[i]["Width"].ToString(); }
                     if (dv.Table.Rows[i]["Height"] != DBNull.Value)
@@ -100,11 +128,33 @@ namespace FirstView.Admin.ArtistWork
                             chkIsParticipating.Checked = true;
                         }
                     }
+
+                    if (dv.Table.Rows[i]["ApproximatePrice"] != DBNull.Value)
+                    {
+                        this.txtApproximateWallPrice.Text = dv.Table.Rows[i]["ApproximatePrice"].ToString();
+                    }
+
+                    
                 }
 
                 lblArtistName.Text = Name + " " + Surname;
                 imgArtistWork.ImageUrl = "../../Uploads/Thumbnails/" + ImageFileName;
             }
+
+            //if (!string.IsNullOrEmpty(commission) && commission != "0")
+            //{
+            //    divWallPrice.Visible = true;
+            //    divArtistPrice.Visible = false;
+            //}
+            //else
+            //{
+            //    divWallPrice.Visible = false;
+            //    divArtistPrice.Visible = true;
+            //}
+
+
+            
+
             if (lblExhibitionName.Text == "-N/A-")
             {
                 chkIsParticipating.Visible = false;
@@ -130,7 +180,11 @@ namespace FirstView.Admin.ArtistWork
         {
             int ArtistWorkID = 0;
             int ArtistID = 0;
+
             string Price = "";
+            string ArtistPrice = "";
+
+            string estimatedPrice = "";
             int Width = 0;
             int Height = 0;
             int presentationTypeId = 0;
@@ -143,6 +197,10 @@ namespace FirstView.Admin.ArtistWork
             {
                 ArtistID = Convert.ToInt32(Request.QueryString["ArtistID"]);
             }
+
+            string commission = aw.GetArtistCommission(ArtistID);
+
+
             if (Request.QueryString["ArtistWorkID"] != null)
             {
                 ArtistWorkID = Convert.ToInt32(Request.QueryString["ArtistWorkID"]);
@@ -151,6 +209,23 @@ namespace FirstView.Admin.ArtistWork
             {
                 Price = txtPrice.Text;
             }
+
+            if (txtArtistPrice.Text.Length > 0)
+            {
+                ArtistPrice = txtArtistPrice.Text;
+            }
+
+            if (!string.IsNullOrEmpty(txtPrice.Text) && (commission.Trim() != "0") && !string.IsNullOrEmpty(commission))
+            {
+                ArtistPrice = ((Convert.ToDecimal(Price) * (100 - Convert.ToDecimal(commission))) / 100).ToString();
+            }
+
+
+            if (!string.IsNullOrEmpty(this.txtApproximateWallPrice.Text))
+            {
+                estimatedPrice = this.txtApproximateWallPrice.Text;
+            }
+
             if (txtWidth.Text.Length > 0)
             {
                 Width = Convert.ToInt32(txtWidth.Text);
@@ -183,7 +258,7 @@ namespace FirstView.Admin.ArtistWork
                 }
             }
 
-            aw.Edit(ArtistWorkID, txtWorkName.Text, txtMedium.Text.Trim(), Price, Width, Height, hidUniqueID.Value, txtNote.Text, Session["FV_Username"].ToString(), exhibitionNo, presentationTypeId, workEditionTypeId, editionNumber, highestEditionNumber);
+            aw.Edit(ArtistWorkID, txtWorkName.Text, txtMedium.Text.Trim(), Price,ArtistPrice, Width, Height, hidUniqueID.Value, txtNote.Text, Session["FV_Username"].ToString(), exhibitionNo, presentationTypeId, workEditionTypeId, editionNumber, highestEditionNumber, estimatedPrice,true);
 
             ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "openModal();", true);
 
@@ -237,6 +312,84 @@ namespace FirstView.Admin.ArtistWork
         protected void btnReset_Click(object sender, EventArgs e)
         {
             Response.Redirect(Request.Url.ToString(), true);
+        }
+
+        protected void txtPrice_TextChanged(object sender, EventArgs e)
+        {
+
+            if (txtPrice.Text.Trim().Length > 0)
+            {
+                int price = 0;
+                bool isValidNo = true;
+                try
+                {
+                    price = Convert.ToInt32(txtPrice.Text);
+                }
+                catch (Exception ex)
+                {
+                    isValidNo = false;
+                }
+                if (isValidNo)
+                    this.txtApproximateWallPrice.Text = (price / 0.6).ToString();
+
+                CalculateCommission();
+            }
+        }
+
+        protected void txtArtistPrice_TextChanged(object sender, EventArgs e)
+        {
+            if (txtArtistPrice.Text.Trim().Length > 0)
+            {
+                int price = 0;
+                bool isValidNo = true;
+                try
+                {
+                    price = Convert.ToInt32(txtArtistPrice.Text);
+                }
+                catch (Exception ex)
+                {
+                    isValidNo = false;
+                }
+                if (isValidNo)
+                    this.txtApproximateWallPrice.Text = (price / 0.6).ToString();
+
+                CalculateCommission();
+            }
+        }
+
+        private void CalculateCommission()
+        {
+            int ArtistID = 0;
+            if (Request.QueryString["ArtistID"] != null)
+            {
+                ArtistID = Convert.ToInt32(Request.QueryString["ArtistID"]);
+            }
+
+            cArtistWorks aw = new cArtistWorks();
+            string commission = aw.GetArtistCommission(ArtistID);
+
+            if ((commission.Trim() == "0") || string.IsNullOrEmpty(commission))
+            {
+                decimal artistPrice = 0;
+                decimal wallPrice = 0;
+
+                if (!string.IsNullOrEmpty(this.txtArtistPrice.Text))
+                {
+                    artistPrice = decimal.Parse(this.txtArtistPrice.Text);
+                }
+
+                if (!string.IsNullOrEmpty(this.txtPrice.Text))
+                {
+                    wallPrice = decimal.Parse(this.txtPrice.Text);
+                }
+
+
+                decimal commissiom = 0;
+
+                commissiom = ((wallPrice - artistPrice) / wallPrice) * 100;
+
+                this.txtCommission.Text = Math.Round(commissiom).ToString();
+            }
         }
     }
 }

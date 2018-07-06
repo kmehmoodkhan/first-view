@@ -84,7 +84,9 @@ namespace FirstView.Artist
                     {
                         ddlArtistType.SelectedValue = dv.Table.Rows[i]["ArtistTypeID"].ToString();
                     }
-                    }
+
+                    checkBoxArtistPrice.Checked = Convert.ToBoolean(dv.Table.Rows[i]["IsCommission"].ToString().Equals("1"));
+                }
             }
 
             hidUniqueID.Value = Guid.NewGuid().ToString();
@@ -108,7 +110,7 @@ namespace FirstView.Artist
         {
             cArtist a = new cArtist();
 
-            a.Edit(Convert.ToInt32(Session["FV_ArtistID"]), txtName.Text, txtSurname.Text, txtCV.Text, Convert.ToInt32(ddlArtistType.SelectedValue),true, hidUniqueID.Value, Session["FV_Username"].ToString());
+            a.Edit(Convert.ToInt32(Session["FV_ArtistID"]), txtName.Text, txtSurname.Text, txtCV.Text, Convert.ToInt32(ddlArtistType.SelectedValue), true, hidUniqueID.Value, Session["FV_Username"].ToString(), this.checkBoxArtistPrice.Checked);
 
             int ArtistID = Convert.ToInt32(Session["FV_ArtistID"]);
 
@@ -124,7 +126,7 @@ namespace FirstView.Artist
             ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "openModal();", true);
 
             //Response.Redirect("Menu.aspx");
-        }        
+        }
 
         private string GetAdminEmailAddress(out int adminId)
         {
@@ -150,7 +152,7 @@ namespace FirstView.Artist
             CommonLibrary cl = new CommonLibrary();
             cArtistWorks aw = new cArtistWorks();
             cSettings set = new cSettings();
-            DataView dv = new DataView();            
+            DataView dv = new DataView();
 
             dv = aw.ListByIDForEmail(ArtistID);
             if (dv.Table.Rows.Count > 0)
@@ -188,7 +190,7 @@ namespace FirstView.Artist
             {
                 sbBody.AppendLine("<b>Artist Page - Submitted For Approval</b><br/><br/>");
                 sbBody.AppendLine("Good day, <br/>");
-                sbBody.AppendLine(String.Concat("The Artist: ", Name, " " ,  Surname, " has submitted their page for approval. <br/>"));
+                sbBody.AppendLine(String.Concat("The Artist: ", Name, " ", Surname, " has submitted their page for approval. <br/>"));
             }
             else if (ApprovalStatus == 11)
             {
@@ -197,9 +199,9 @@ namespace FirstView.Artist
                 sbBody.AppendLine(String.Concat("The Artist: ", Name, " ", Surname, " has re-submitted their page for approval. <br/>"));
             }
 
-            string url = "http://first-view.uk/users/Login.aspx?papr=1&ArtistId=" + ArtistID+ "&AdId="+ adminId;
+            string url = "http://first-view.uk/users/Login.aspx?papr=1&ArtistId=" + ArtistID + "&AdId=" + adminId;
 
-            sbBody.AppendLine(String.Concat("<a href='"+url+"'> Click here to approve the page.</a><br/><br/>"));
+            sbBody.AppendLine(String.Concat("<a href='" + url + "'> Click here to approve the page.</a><br/><br/>"));
             sbBody.AppendLine("Thank You<br/>");
             sbBody.AppendLine("Admin @ First-View");
 

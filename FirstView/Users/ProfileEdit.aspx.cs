@@ -105,7 +105,7 @@ namespace FirstView.PublicView
             int artistId = Convert.ToInt32(Session["ArtistID"]);
             cArtist a = new cArtist();
             DataTable dvUserDetails = a.UserDetailsByArtistId(artistId).ToTable();
-            a.Edit(artistId, txtName.Text, txtSurname.Text, txtCV.Text, Convert.ToInt32(ddlArtistType.SelectedValue), true, hidUniqueID.Value, Convert.ToString(dvUserDetails.Rows[0]["Username"]));
+            a.Edit(artistId, txtName.Text, txtSurname.Text, txtCV.Text, Convert.ToInt32(ddlArtistType.SelectedValue), true, hidUniqueID.Value, Convert.ToString(dvUserDetails.Rows[0]["Username"]),true);
             cUsers cUsers = new cUsers();
             DataView dv = cUsers.ListAllAdmins();
             ArrayList alEmailIds = new ArrayList();

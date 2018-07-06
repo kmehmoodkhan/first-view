@@ -60,9 +60,9 @@ namespace FirstView.BusinessLayer
             return FirstView.DataAccessLayer.cArtist.Add(Name,Surname,CV,ArtistTypeID,UniqueID,LastModifiedUser);
         }
 
-        public void Edit(int ArtistID, string Name, string Surname, string CV, int ArtistTypeID,bool IsDeleted, string UniqueID, string LastModifiedUser)
+        public void Edit(int ArtistID, string Name, string Surname, string CV, int ArtistTypeID,bool IsDeleted, string UniqueID, string LastModifiedUser,bool isArtistPrice,bool isAdminUser=false)
         {
-            FirstView.DataAccessLayer.cArtist.Edit(ArtistID,Name,Surname,CV,ArtistTypeID,IsDeleted,UniqueID,LastModifiedUser);
+            FirstView.DataAccessLayer.cArtist.Edit(ArtistID,Name,Surname,CV,ArtistTypeID,IsDeleted,UniqueID,LastModifiedUser,isArtistPrice, isAdminUser);
         }
 
         public string Delete(int ArtistID, string LastModifiedUser)

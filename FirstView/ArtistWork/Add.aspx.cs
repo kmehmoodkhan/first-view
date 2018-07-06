@@ -6,6 +6,7 @@ namespace FirstView.ArtistWork
 {
     public partial class Add : System.Web.UI.Page
     {
+
         public static string FileName = "";
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -17,6 +18,7 @@ namespace FirstView.ArtistWork
                     LoadData();
                     BindPresenationTypes();
                     BindWorkEditionTypes();
+                    LoadArtistCommission();
                 }
             }
             catch (Exception)
@@ -25,6 +27,28 @@ namespace FirstView.ArtistWork
                 throw;
             }
 
+        }
+
+        private void LoadArtistCommission()
+        {
+            int ArtistID = 0;
+            ArtistID = Convert.ToInt32(Session["FV_ArtistID"]);
+            cArtistWorks aw = new cArtistWorks();
+            string commission = aw.GetArtistCommission(ArtistID);
+            ViewState["Commission"] = commission;
+
+            if (string.IsNullOrEmpty(commission) || commission.Trim()=="0" )
+            {
+                divApproximateWallPrice.Visible = true;
+                divWallPrice.Visible = false;
+                divArtistPrice.Visible = true;
+            }
+            else
+            {
+                divApproximateWallPrice.Visible = false;
+                divWallPrice.Visible = true;
+                divArtistPrice.Visible = false;
+            }
         }
 
         private void CheckUserValidity()
@@ -118,14 +142,29 @@ namespace FirstView.ArtistWork
                 int ArtistWorkID = 0;
                 int ArtistID = 0;
                 string Price = "";
+                string ArtistPrice = "";
+                String ApprixmatePrice = "";
                 int Width = 0;
                 int Height = 0;
 
                 ArtistID = Convert.ToInt32(Session["FV_ArtistID"]);
+                string commission = aw.GetArtistCommission(ArtistID);
+
                 if (txtPrice.Text.Length > 0)
                 {
                     Price = txtPrice.Text;
                 }
+
+                if (!string.IsNullOrEmpty(txtArtistPrice.Text))
+                {
+                    ArtistPrice = this.txtArtistPrice.Text;
+                }
+
+                if (!string.IsNullOrEmpty(txtPrice.Text) && (commission.Trim() != "0") && !string.IsNullOrEmpty(commission))
+                {
+                    ArtistPrice = ((Convert.ToDecimal(Price) * (100 - Convert.ToDecimal(commission))) / 100).ToString();
+                }
+
                 if (txtWidth.Text.Length > 0)
                 {
                     Width = Convert.ToInt32(txtWidth.Text);
@@ -133,6 +172,11 @@ namespace FirstView.ArtistWork
                 if (txtHeight.Text.Length > 0)
                 {
                     Height = Convert.ToInt32(txtHeight.Text);
+                }
+
+                if(!string.IsNullOrEmpty(txtApproximateWallPrice.Text))
+                {
+                    ApprixmatePrice = txtApproximateWallPrice.Text;
                 }
                 int exhibitionNo = 0;
                 if (chkIsParticipating.Checked)
@@ -161,7 +205,7 @@ namespace FirstView.ArtistWork
                         return;
                     }
                 }
-                ArtistWorkID = aw.Add(txtWorkName.Text, txtMedium.Text.Trim(), Price, Width, Height, ArtistID, hidUniqueID.Value, txtNote.Text, Session["FV_Username"].ToString(), exhibitionNo, presentationTypeId, workEditionTypeId, editionNumber, highestEditionNumber);
+                ArtistWorkID = aw.Add(txtWorkName.Text, txtMedium.Text.Trim(),Price,ArtistPrice, Width, Height, ArtistID, hidUniqueID.Value, txtNote.Text, Session["FV_Username"].ToString(), exhibitionNo, presentationTypeId, workEditionTypeId, editionNumber, highestEditionNumber, ApprixmatePrice);
                 DoReset();
                 ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "openModal();", true);
             }
@@ -197,6 +241,8 @@ namespace FirstView.ArtistWork
             BindPresenationTypes();
             txtWorkName.Text = "";
             txtPrice.Text = "";
+            txtApproximateWallPrice.Text = string.Empty;
+            txtArtistPrice.Text = string.Empty;
             txtWidth.Text = "";
             txtHeight.Text = "";
             txtNote.Text = "";
@@ -232,6 +278,45 @@ namespace FirstView.ArtistWork
         {
             string Url = "~/Artist/Preview.aspx?RetUrl=3";
             Response.Redirect(Url);
+        }
+
+        protected void txtPrice_TextChanged(object sender, EventArgs e)
+        {
+
+            if (txtPrice.Text.Trim().Length > 0) 
+            {
+                int price = 0;
+                bool isValidNo = true;
+                try
+                {
+                    price =  Convert.ToInt32(txtPrice.Text);
+                }
+                catch(Exception ex)
+                {
+                    isValidNo = false;
+                }
+                if (isValidNo)
+                    this.txtApproximateWallPrice.Text = (Math.Round(price * 1.0 / 0.6, 2)).ToString();
+            }
+        }
+
+        protected void txtArtistPrice_TextChanged(object sender, EventArgs e)
+        {
+            if (txtArtistPrice.Text.Trim().Length > 0)
+            {
+                int price = 0;
+                bool isValidNo = true;
+                try
+                {
+                    price = Convert.ToInt32(txtArtistPrice.Text);
+                }
+                catch (Exception ex)
+                {
+                    isValidNo = false;
+                }
+                if (isValidNo)
+                    this.txtApproximateWallPrice.Text = (Math.Round(price * 1.0 / 0.6, 2)).ToString();
+            }
         }
     }
 }

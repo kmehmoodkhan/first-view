@@ -126,7 +126,7 @@ namespace FirstView.DataAccessLayer
             return ArtistID;
         }
 
-        public static void Edit(int ArtistID, string Name, string Surname, string CV, int ArtistTypeID,bool IsDeleted, string UniqueID, string LastModifiedUser)
+        public static void Edit(int ArtistID, string Name, string Surname, string CV, int ArtistTypeID,bool IsDeleted, string UniqueID, string LastModifiedUser, bool isArtistPrice,bool isAdminUser)
         {
             try
             {
@@ -140,6 +140,8 @@ namespace FirstView.DataAccessLayer
                 db.AddParameter("@IsDeleted", IsDeleted == true ? false : true);
                 db.AddParameter("@UniqueID", UniqueID);
                 db.AddParameter("@LastModifiedUser", LastModifiedUser);
+                db.AddParameter("@isArtistPrice", isArtistPrice);
+                db.AddParameter("@isAdminUser", isAdminUser);
                 string result = Convert.ToString(db.ExecuteScalar("usp_Artist_Edit", System.Data.CommandType.StoredProcedure));
             }
             catch (Exception)

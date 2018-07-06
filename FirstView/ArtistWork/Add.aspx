@@ -49,15 +49,35 @@
                         </div>
                     </div>
                 </div>
-                <div class="row marginTop">
+                <div class="row marginTop" id="divWallPrice" runat="server">
                     <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12 align-middle">
                         <label for="subject">Wall Price<span class="requiredF">*</span></label>
                         <div class="input-group">
-                            <asp:TextBox ID="txtPrice" runat="server" class="form-control" MaxLength="100"></asp:TextBox>
+                            <asp:TextBox ID="txtPrice" AutoPostBack="true" runat="server" class="form-control" MaxLength="100" OnTextChanged="txtPrice_TextChanged"></asp:TextBox>
                             <br />
                             <asp:RequiredFieldValidator ValidationGroup="Submit" ID="RequiredFieldValidator2" runat="server" ControlToValidate="txtPrice" SetFocusOnError="true" CssClass="text-danger" Display="Dynamic" ErrorMessage="Price is a required field"></asp:RequiredFieldValidator>
                             <cc1:FilteredTextBoxExtender ID="txtPriceFTBE" FilterMode="ValidChars" ValidChars="0,1,2,3,4,5,6,7,8,9,." runat="server" TargetControlID="txtPrice">
                             </cc1:FilteredTextBoxExtender>
+                        </div>
+                    </div>
+                </div>
+                 <div class="row marginTop" id="divArtistPrice" runat="server">
+                    <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12 align-middle">
+                        <label for="subject">Artist Price<span class="requiredF">*</span></label>
+                        <div class="input-group">
+                            <asp:TextBox ID="txtArtistPrice" AutoPostBack="true" runat="server" class="form-control" MaxLength="100" OnTextChanged="txtArtistPrice_TextChanged"></asp:TextBox>
+                            <br />
+                            <asp:RequiredFieldValidator ValidationGroup="Submit" ID="RequiredFieldValidator1" runat="server" ControlToValidate="txtArtistPrice" SetFocusOnError="true" CssClass="text-danger" Display="Dynamic" ErrorMessage="Price is a required field"></asp:RequiredFieldValidator>
+                            <cc1:FilteredTextBoxExtender ID="FilteredTextBoxExtender1" FilterMode="ValidChars" ValidChars="0,1,2,3,4,5,6,7,8,9,." runat="server" TargetControlID="txtArtistPrice">
+                            </cc1:FilteredTextBoxExtender>
+                        </div>
+                    </div>
+                </div>
+                 <div class="row marginTop" runat="server" id="divApproximateWallPrice" visible="false">
+                    <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12 align-middle">
+                        <label for="subject">Approximate Wall Price</label>
+                        <div class="input-group">
+                            <asp:TextBox ID="txtApproximateWallPrice" ReadOnly="true" runat="server" class="form-control" MaxLength="100"></asp:TextBox>
                         </div>
                     </div>
                 </div>

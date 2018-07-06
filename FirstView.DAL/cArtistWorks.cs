@@ -3,6 +3,7 @@ namespace FirstView.BusinessLayer
 {
     public class cArtistWorks
     {
+
         public DataView ListByArtistID(int ArtistID, int IsDeleted)
         {
             return FirstView.DataAccessLayer.cArtistWorks.ListByArtistID(ArtistID,IsDeleted);
@@ -27,13 +28,13 @@ namespace FirstView.BusinessLayer
         {
             return FirstView.DataAccessLayer.cArtistWorks.ListByIDForEmail(ArtistWorkID);
         }
-        public int Add(string WorkName, string Medium, string Price, int Width, int Height, int ArtistID, string UniqueID, string Note, string LastModifiedUser,int exhibitionNo, int presentationTypeId, int workEditionTypeId, int editionNumber, int highestEditionNumber)
+        public int Add(string WorkName, string Medium, string wallPrice,string artistPrice, int Width, int Height, int ArtistID, string UniqueID, string Note, string LastModifiedUser,int exhibitionNo, int presentationTypeId, int workEditionTypeId, int editionNumber, int highestEditionNumber,string ApprixmatePrice)
         {
-            return FirstView.DataAccessLayer.cArtistWorks.Add(WorkName,Medium,Price,Width,Height,ArtistID,UniqueID,Note,LastModifiedUser, exhibitionNo, presentationTypeId, workEditionTypeId, editionNumber, highestEditionNumber);
+            return FirstView.DataAccessLayer.cArtistWorks.Add(WorkName,Medium, wallPrice,artistPrice, Width,Height,ArtistID,UniqueID,Note,LastModifiedUser, exhibitionNo, presentationTypeId, workEditionTypeId, editionNumber, highestEditionNumber, ApprixmatePrice);
         }
-        public void Edit(int ArtistWorkID, string WorkName, string Medium, string Price, decimal Width, decimal Height, string UniqueID, string Note, string LastModifiedUser,int exhibitionNo,int presentationTypeId,int workEditionTypeId,int editionNumber,int highestEditionNumber)
+        public void Edit(int ArtistWorkID, string WorkName, string Medium, string wallPrice,string artistPrice, decimal Width, decimal Height, string UniqueID, string Note, string LastModifiedUser,int exhibitionNo,int presentationTypeId,int workEditionTypeId,int editionNumber,int highestEditionNumber,string estimatedPrice,bool isAdmin)
         {
-             FirstView.DataAccessLayer.cArtistWorks.Edit(ArtistWorkID,WorkName, Medium, Price, Width, Height, UniqueID, Note, LastModifiedUser, exhibitionNo, presentationTypeId, workEditionTypeId, editionNumber, highestEditionNumber);
+             FirstView.DataAccessLayer.cArtistWorks.Edit(ArtistWorkID,WorkName, Medium, wallPrice,artistPrice, Width, Height, UniqueID, Note, LastModifiedUser, exhibitionNo, presentationTypeId, workEditionTypeId, editionNumber, highestEditionNumber,estimatedPrice,isAdmin);
         }
         public string Delete(int ArtistWorkID, string LastModifiedUser)
         {
@@ -54,6 +55,11 @@ namespace FirstView.BusinessLayer
         public DataView WorkEditionTypes()
         {
             return FirstView.DataAccessLayer.cArtistWorks.WorkEditionTypes();
+        }
+
+        public string GetArtistCommission(int artistId)
+        {
+            return FirstView.DataAccessLayer.cArtistWorks.GetArtistCommission(artistId);
         }
     }
 }

@@ -61,13 +61,14 @@ namespace FirstView.DataAccessLayer
             return dv;
         }
 
-        public static int Add(string WorkName, string Medium, string Price, int Width, int Height, int ArtistID, string UniqueID, string Note, string LastModifiedUser, int exhibitionNo, int presentationTypeId, int workEditionTypeId, int editionNumber, int highestEditionNumber)
+        public static int Add(string WorkName, string Medium, string wallPrice,string artistPrice, int Width, int Height, int ArtistID, string UniqueID, string Note, string LastModifiedUser, int exhibitionNo, int presentationTypeId, int workEditionTypeId, int editionNumber, int highestEditionNumber,string ApprixmatePrice)
         {
             DBHelper db = new DBHelper(DBHelper.ConnectionStr.DefaultConnection);
             int ArtistWorkID = 0;
             db.AddParameter("@WorkName", WorkName);
             db.AddParameter("@Medium", Medium);
-            db.AddParameter("@Price", Price);
+            db.AddParameter("@wallPrice", wallPrice);
+            db.AddParameter("@artistPrice", artistPrice);
             db.AddParameter("@Width", Width);
             db.AddParameter("@Height", Height);            
             db.AddParameter("@ArtistID", ArtistID);
@@ -80,18 +81,23 @@ namespace FirstView.DataAccessLayer
             db.AddParameter("@WorkEditionTypeId", workEditionTypeId);
             db.AddParameter("@EditionNumber", editionNumber);
             db.AddParameter("@HighestEditionNumber", highestEditionNumber);
+            db.AddParameter("@ApprixmatePrice", ApprixmatePrice);
+            
             ArtistWorkID = Convert.ToInt32(db.ExecuteScalar("usp_ArtistWork_Add", System.Data.CommandType.StoredProcedure));
             return ArtistWorkID;
         }
 
-        public static void Edit(int ArtistWorkID, string WorkName, string Medium, string Price, decimal Width, decimal Height, string UniqueID, string Note, string LastModifiedUser, int exhibitionNo, int presentationTypeId, int workEditionTypeId, int editionNumber, int highestEditionNumber)
+        public static void Edit(int ArtistWorkID, string WorkName, string Medium, string wallPrice,string artistPrice, decimal Width, decimal Height, string UniqueID, string Note, string LastModifiedUser, int exhibitionNo, int presentationTypeId, int workEditionTypeId, int editionNumber, int highestEditionNumber,string estimatedPrice,bool isAdmin=false)
         {
             DBHelper db = new DBHelper(DBHelper.ConnectionStr.DefaultConnection);
             int i = 0;
             db.AddParameter("@ArtistWorkID", ArtistWorkID);
             db.AddParameter("@WorkName", WorkName);
             db.AddParameter("@Medium", Medium);
-            db.AddParameter("@Price", Price);
+
+            db.AddParameter("@wallPrice", wallPrice);
+            db.AddParameter("@artistPrice", artistPrice);
+
             db.AddParameter("@Width", Width);
             db.AddParameter("@Height", Height);
             db.AddParameter("@UniqueID", UniqueID);
@@ -103,6 +109,9 @@ namespace FirstView.DataAccessLayer
             db.AddParameter("@WorkEditionTypeId", workEditionTypeId);
             db.AddParameter("@EditionNumber", editionNumber);
             db.AddParameter("@HighestEditionNumber", highestEditionNumber);
+            db.AddParameter("@estimatedPrice", estimatedPrice);
+            
+
             i = db.ExecuteNonQuery("usp_ArtistWork_Edit", System.Data.CommandType.StoredProcedure);
         }
 
@@ -151,6 +160,16 @@ namespace FirstView.DataAccessLayer
             DataView dv = new DataView();
             dv = db.ExecuteDataView("usp_WorkEditionType_List", System.Data.CommandType.StoredProcedure);
             return dv;
+        }
+
+        public static string GetArtistCommission(int artistId)
+        {
+
+            DBHelper db = new DBHelper(DBHelper.ConnectionStr.DefaultConnection);
+            string result = string.Empty;
+            db.AddParameter("@ArtistId", artistId);
+            result = Convert.ToString(db.ExecuteScalar("usp_GetArtistCommission", System.Data.CommandType.StoredProcedure));
+            return result;
         }
     }
 }

@@ -33,7 +33,8 @@
                         <asp:BoundField DataField="WorkName" HeaderText="Work Name" ItemStyle-Width="10%" HeaderStyle-Width="10%" />
                         <asp:BoundField DataField="Medium" HeaderText="Medium" ItemStyle-Width="10%" HeaderStyle-Width="10%" />
                         <asp:BoundField DataField="Note" HeaderText="Note" ItemStyle-Width="20%" HeaderStyle-Width="20%" />
-                        <asp:BoundField DataField="Price" HeaderText="Price (&pound;)" ItemStyle-Width="10%" HeaderStyle-Width="10%" />
+                        <asp:BoundField DataField="WallPrice" HeaderText="Wall Price (&pound;)" ItemStyle-Width="10%" HeaderStyle-Width="10%" />
+                        <asp:BoundField DataField="ArtistPrice" HeaderText="Artist Price (&pound;)" ItemStyle-Width="10%" HeaderStyle-Width="10%" />
                         <asp:TemplateField HeaderText="Size (WxH)" ItemStyle-Width="10%" HeaderStyle-Width="10%">
                             <HeaderStyle HorizontalAlign="Center" />
                             <ItemStyle HorizontalAlign="Center" />

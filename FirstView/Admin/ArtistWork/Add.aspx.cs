@@ -47,6 +47,8 @@ namespace FirstView.Admin.ArtistWork
                 ArtistID = Convert.ToInt32(Request.QueryString["ArtistID"]);
             }
 
+
+
             dv = a.ListByID(ArtistID);
             if (dv.Table.Rows.Count > 0)
             {
@@ -107,7 +109,8 @@ namespace FirstView.Admin.ArtistWork
         {
             int ArtistPieceID = 0;
             int ArtistID = 0;
-            string Price = "";
+            string WallPrice = "";
+            string ArtistPrice = "";
             int Width = 0;
             int Height = 0;
             int presentationTypeId = 0;
@@ -128,8 +131,21 @@ namespace FirstView.Admin.ArtistWork
                 }
                 if (txtPrice.Text.Length > 0)
                 {
-                    Price = txtPrice.Text;
+                    WallPrice = txtPrice.Text;
                 }
+
+                if (!string.IsNullOrEmpty(txtArtistPrice.Text))
+                {
+                    ArtistPrice = this.txtArtistPrice.Text;
+                }
+
+                string commission = aw.GetArtistCommission(ArtistID);
+                if (!string.IsNullOrEmpty(txtPrice.Text) && (commission.Trim() != "0") && !string.IsNullOrEmpty(commission))
+                {
+                    ArtistPrice = ((Convert.ToDecimal(WallPrice) * (100 - Convert.ToDecimal(commission))) / 100).ToString();
+                }
+
+
                 if (txtWidth.Text.Length > 0)
                 {
                     Width = Convert.ToInt32(txtWidth.Text);
@@ -163,7 +179,7 @@ namespace FirstView.Admin.ArtistWork
                     }
                 }
 
-                ArtistPieceID = aw.Add(txtWorkName.Text, txtMedium.Text.Trim(), Price, Width, Height, ArtistID, hidUniqueID.Value, txtNote.Text, Session["FV_Username"].ToString(), exhibitionNo, presentationTypeId, workEditionTypeId, editionNumber, highestEditionNumber);
+                ArtistPieceID = aw.Add(txtWorkName.Text, txtMedium.Text.Trim(), WallPrice,ArtistPrice, Width, Height, ArtistID, hidUniqueID.Value, txtNote.Text, Session["FV_Username"].ToString(), exhibitionNo, presentationTypeId, workEditionTypeId, editionNumber, highestEditionNumber,string.Empty);
 
                 ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "openModal();", true);
 
