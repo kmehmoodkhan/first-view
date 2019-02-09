@@ -141,19 +141,23 @@ namespace FirstView.Admin.ArtistWork
                 imgArtistWork.ImageUrl = "../../Uploads/Thumbnails/" + ImageFileName;
             }
 
-            //if (!string.IsNullOrEmpty(commission) && commission != "0")
-            //{
-            //    divWallPrice.Visible = true;
-            //    divArtistPrice.Visible = false;
-            //}
-            //else
-            //{
-            //    divWallPrice.Visible = false;
-            //    divArtistPrice.Visible = true;
-            //}
+            if (!string.IsNullOrEmpty(commission) && commission != "0")
+            {
+                divWallPrice.Visible = true;
+                divArtistPrice.Visible = false;
+                divCommission.Visible = false;
+            }
+            else
+            {
+                divWallPrice.Visible = true;
+                divArtistPrice.Visible = true;
+                divCommission.Visible = true;
+                divApproximateWallPrice.Visible = false;
+                this.txtCommission.ReadOnly = true;
+            }
 
 
-            
+
 
             if (lblExhibitionName.Text == "-N/A-")
             {
@@ -330,7 +334,7 @@ namespace FirstView.Admin.ArtistWork
                     isValidNo = false;
                 }
                 if (isValidNo)
-                    this.txtApproximateWallPrice.Text = (price / 0.6).ToString();
+                    this.txtApproximateWallPrice.Text = Math.Round((price / 0.6),0).ToString();
 
                 CalculateCommission();
             }
@@ -351,7 +355,7 @@ namespace FirstView.Admin.ArtistWork
                     isValidNo = false;
                 }
                 if (isValidNo)
-                    this.txtApproximateWallPrice.Text = (price / 0.6).ToString();
+                    this.txtApproximateWallPrice.Text = Math.Round((price / 0.6), 0).ToString();
 
                 CalculateCommission();
             }
@@ -386,7 +390,15 @@ namespace FirstView.Admin.ArtistWork
 
                 decimal commissiom = 0;
 
-                commissiom = ((wallPrice - artistPrice) / wallPrice) * 100;
+                if (wallPrice > 0)
+                {
+                    commissiom = ((wallPrice - artistPrice) / wallPrice) * 100;
+                    if(commissiom > 0)
+                    {
+                        commissiom = Math.Round(commissiom, 0);
+                    }
+                }
+                
 
                 this.txtCommission.Text = Math.Round(commissiom).ToString();
             }

@@ -70,6 +70,18 @@ namespace FirstView.Admin.Approvals
             {
                 ArtistWork.DataSource = dv2.Table;
                 ArtistWork.DataBind();
+
+                string commission = dv2.Table.Rows[0]["Commission"].ToString();
+                if (!string.IsNullOrEmpty(commission) && commission.Trim()!="0")
+                {
+                    lblArtistCommission.Text = "[Artist Price]";
+                    lblArtistCommission.Visible = true;
+                }
+                else
+                {
+                    lblArtistCommission.Text = "";
+                    lblArtistCommission.Visible = true;
+                }
             }
             
             // Check Approval Status 

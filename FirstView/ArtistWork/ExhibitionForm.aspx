@@ -91,12 +91,12 @@
                                 <asp:BoundField DataField="Height" HeaderText="Height" ItemStyle-Width="10%" />
                                 <asp:TemplateField ItemStyle-Width="10%">
                                     <ItemTemplate>
-                                        <asp:TextBox ID="txtArtistPrice" Width="75px" CssClass="inputbox" runat="server" Text='<%#Eval("Price") %>'></asp:TextBox>
+                                        <asp:TextBox ID="txtArtistPrice" Width="75px" CssClass="inputbox" runat="server" Text='<%#Eval("ArtistPrice") %>'></asp:TextBox>
                                     </ItemTemplate>
                                 </asp:TemplateField>
                                 <asp:TemplateField ItemStyle-Width="10%">
                                     <ItemTemplate>
-                                        <asp:TextBox ID="txtWallPrice" CssClass="inputbox" Width="75px" runat="server" Text='<%#Eval("Price") %>'></asp:TextBox>
+                                        <asp:TextBox ID="txtWallPrice" CssClass="inputbox" Width="75px" runat="server" Text='<%#Eval("WallPrice") %>'></asp:TextBox>
                                     </ItemTemplate>
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="Include in Exhibition" ItemStyle-Width="15%">

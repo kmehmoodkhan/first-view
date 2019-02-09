@@ -57,8 +57,9 @@
             </div>
             <div class="col-md-4 marginTop">
                 <div style="float: left;">
-                    <asp:CheckBox ID="checkBoxArtistPrice" runat="server" /></div>
-                <div style="float: left; color:red;margin-left:5px">
+                    <asp:CheckBox ID="checkBoxArtistPrice" runat="server" />
+                </div>
+                <div style="float: left; color: red; margin-left: 5px">
                     * Most artist do not select this option
                 </div>
             </div>
@@ -82,6 +83,17 @@
             <div class="col-md-3 marginTop" style="display: flex; align-items: center;">
                 <asp:Image ID="imgArtist" runat="server" Style="display: block; max-width: 150px; max-height: 150px; margin: auto;" CssClass="img-thumbnail" />
             </div>
+        </div>
+        <div class="row">
+            <div class="col-md-2">
+                &nbsp;
+            </div>
+            <div class="col-md-8" style="float: left; color: red; margin-left: 5px">
+                * Most galleries sell on a commission arrangement i.e. the selling price is distributed on a agreed percentage. For First-View this is normal 60% for the artist and 40% for the Gallery. 
+             If checked you set the price you would like to receive and First-View will set the selling price. 
+            </div>
+        </div>
+        <div>
         </div>
         <asp:HiddenField ID="hidUniqueID" runat="server" />
     </div>

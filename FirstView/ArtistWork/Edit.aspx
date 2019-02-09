@@ -125,7 +125,7 @@
                 </div>
                  <div class="row marginTop" runat="server" id="divApproximateWallPrice" visible="false">
                     <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12 align-middle">
-                        <label for="subject">Approximate Wall Price</label>
+                        <asp:Label ID="ApproxWallPrice" runat="server" Text="Approximate Wall Price"></asp:Label>
                         <div class="input-group">
                             <asp:TextBox ID="txtApproximateWallPrice" ReadOnly="true" runat="server" class="form-control" MaxLength="100"></asp:TextBox>
                         </div>

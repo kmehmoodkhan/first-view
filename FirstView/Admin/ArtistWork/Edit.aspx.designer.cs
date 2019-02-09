@@ -130,13 +130,13 @@ namespace FirstView.Admin.ArtistWork {
         protected global::AjaxControlToolkit.FilteredTextBoxExtender txtPriceFTBE;
         
         /// <summary>
-        /// div1 control.
+        /// divCommission control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl div1;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divCommission;
         
         /// <summary>
         /// txtCommission control.

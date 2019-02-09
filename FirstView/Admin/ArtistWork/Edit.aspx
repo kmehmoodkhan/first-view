@@ -128,7 +128,7 @@
                                 </cc1:FilteredTextBoxExtender>
                             </div>
                     </div>
-                     <div class="col-md-4 marginTop" id="div1" runat="server">
+                     <div class="col-md-4 marginTop" id="divCommission" runat="server">
                         <label for="subject">Commission %</label>
                             <div class="input-group">
                                 <asp:TextBox ID="txtCommission" Width="78px" runat="server" class="form-control" MaxLength="100"></asp:TextBox>

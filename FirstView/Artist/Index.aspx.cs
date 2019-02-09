@@ -289,7 +289,7 @@ namespace FirstView.Artist
                     {
                         string url = "IndexView.aspx?ArtistID=" + ArtistID.ToString();
 
-                        sbHTML.AppendLine("<li class='list-group-item'>");
+                        sbHTML.AppendLine("<li class='list-group-item' onclick='return ShowArtistDetail(" + ArtistID + ")'>");
                         sbHTML.AppendLine("<div class='row'>");
                         sbHTML.AppendLine("<a class='col-md-2' href='" + url + "'>" + Name + " " + Surname + "<br/><p class='text-muted'>" + ArtistType + "</p></a>");
                         sbHTML.AppendLine("<p class='col-md-2'><img src='../Uploads/Preview/" + ImageFileName + "' alt='' class='img-thumbnail'></p>");
@@ -447,7 +447,7 @@ namespace FirstView.Artist
                         imagesList += "</p>";
 
 
-                        sbHTML.AppendLine("<li class='list-group-item'>");
+                        sbHTML.AppendLine("<li class='list-group-item' onclick='return ShowArtistDetail(" + ArtistID + ")'>");
                         sbHTML.AppendLine("<div class='row'>");
                         sbHTML.AppendLine("<a class='col-md-2' href='IndexView.aspx?ArtistID=" + ArtistID.ToString() + "'>" + Name + " " + Surname + "<br/><p class='text-muted'>" + ArtistType + "</p></a>");
 

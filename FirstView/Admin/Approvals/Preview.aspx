@@ -112,15 +112,16 @@
             </div>
         </div>
         <div class="row" style="border-bottom: 1px solid #eeeeee;">
-            <div class="col-md-1">
+            <div class="col-md-2">
                 <p>
                     <asp:Image ID="imgArtist" runat="server" CssClass="img-thumbnail" />
                 </p>
             </div>
-            <div class="col-md-11">
+            <div class="col-md-10">
                 <div>
                     <h4>
                         <asp:Label ID="lblFullname" runat="server" Text=""></asp:Label>
+                        &nbsp;<asp:Label ID="lblArtistCommission" Visible="false" runat="server"></asp:Label>
                     </h4>
                     <p>
                         <asp:Label ID="lblCV" runat="server" Text=""></asp:Label>

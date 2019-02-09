@@ -177,6 +177,11 @@ namespace FirstView.ArtistWork
                 if(!string.IsNullOrEmpty(txtApproximateWallPrice.Text))
                 {
                     ApprixmatePrice = txtApproximateWallPrice.Text;
+
+                    if (!string.IsNullOrEmpty(ApprixmatePrice))
+                    {
+                        Price = Math.Round(Convert.ToDecimal(ApprixmatePrice), 0).ToString();
+                    }
                 }
                 int exhibitionNo = 0;
                 if (chkIsParticipating.Checked)
@@ -296,7 +301,15 @@ namespace FirstView.ArtistWork
                     isValidNo = false;
                 }
                 if (isValidNo)
-                    this.txtApproximateWallPrice.Text = (Math.Round(price * 1.0 / 0.6, 2)).ToString();
+                {
+                    var approxPrice = (Math.Round(price * 1.0 / 0.6, 2));
+                    if (approxPrice > 0)
+                    {
+                        approxPrice = Math.Round(approxPrice, 0);
+                    }
+                    this.txtApproximateWallPrice.Text = approxPrice.ToString();
+                }
+                    
             }
         }
 
@@ -315,7 +328,7 @@ namespace FirstView.ArtistWork
                     isValidNo = false;
                 }
                 if (isValidNo)
-                    this.txtApproximateWallPrice.Text = (Math.Round(price * 1.0 / 0.6, 2)).ToString();
+                    this.txtApproximateWallPrice.Text = (Math.Round(price * 1.0 / 0.6, 0)).ToString();
             }
         }
     }
