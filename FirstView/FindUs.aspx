@@ -1,7 +1,7 @@
 ﻿<%@ Page Title="Find Us" Language="C#" MasterPageFile="~/PublicMaster.Master" AutoEventWireup="true" CodeBehind="FindUs.aspx.cs" Inherits="FirstView.FindUs" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCNaYQHvGMh9Cw6OWXYPWuDKtt3qQMGozQ"></script>
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=xx"></script>
     <script type="text/javascript">
         function initialize() {
             var uluru = { lat: 51.104825, lng: -2.3200769999999693 };
